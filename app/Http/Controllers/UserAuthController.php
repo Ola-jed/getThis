@@ -8,13 +8,14 @@ use App\Mail\RegistrationMail;
 use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
+use Illuminate\View\View;
 
 class UserAuthController extends Controller
 {
@@ -24,27 +25,28 @@ class UserAuthController extends Controller
      */
     public function signupView(): Factory|View|Application
     {
-        return view('register');
+        return view('auth.register');
     }
 
     /**
      * Create a new user
      * @param SignUpRequest $signInRequest
-     * @return Redirector|Application|RedirectResponse
+     * @return Redirector|Application|RedirectResponse|View
      */
-    public function signUp(SignUpRequest $signInRequest): Redirector|Application|RedirectResponse
+    public function signUp(SignUpRequest $signInRequest): Redirector|Application|RedirectResponse|View
     {
         $userCreated = User::create([
             'name' => $signInRequest->input('name'),
             'email' => $signInRequest->input('email'),
-            'password' => Hash::make($signInRequest->input('password'))
+            'password' => Hash::make($signInRequest->input('password1'))
         ]);
-        if($userCreated)
+        if($userCreated != null)
         {
             Session::put('user',$userCreated);
-            return redirect('index')->with([
-                'user'=> $userCreated
-            ]);
+            Mail::to($userCreated->email)
+                ->send(new RegistrationMail($userCreated));
+            return redirect('/');
+
         }
         else
         {
@@ -60,25 +62,21 @@ class UserAuthController extends Controller
      */
     public function signinView(): Factory|View|Application
     {
-        return view('login');
+        return view('auth.login');
     }
 
     /**
      * Sign in
      * @param SignInRequest $signInRequest
-     * @return Redirector|Application|RedirectResponse
+     * @return Redirector|Application|RedirectResponse|View
      */
-    public function signIn(SignInRequest $signInRequest): Redirector|Application|RedirectResponse
+    public function signIn(SignInRequest $signInRequest): Redirector|Application|RedirectResponse|View
     {
-        if(Auth::attempt(['email' => $signInRequest->input('email'),'password' => $signInRequest->input('password')]))
+        if(Auth::attempt($signInRequest->only('email','password')))
         {
             $user = Auth::user();
             Session::put('user',$user);
-            Mail::to($user->email)
-                ->send(new RegistrationMail($user));
-            return redirect('index')->with([
-                'user'=> $user
-            ]);
+            return redirect('/');
         }
         else
         {

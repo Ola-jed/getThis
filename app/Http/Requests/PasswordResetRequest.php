@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use JetBrains\PhpStorm\ArrayShape;
 
-class SignUpRequest extends FormRequest
+class PasswordResetRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,10 +24,10 @@ class SignUpRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'string|bail|required|max:30',
-            'email' => 'email|bail|required|unique:users,email',
-            'password1' => 'string|bail|required|same:password2',
-            'password2' => 'string|bail|required|same:password1'
+            'email' => 'email|bail|required',
+            'token' => 'bail|required',
+            'password' => 'string|bail|required|same:password_confirmation',
+            'password_confirmation' => 'string|bail|required|same:password'
         ];
     }
 }
