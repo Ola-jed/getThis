@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SignInRequest;
 use App\Http\Requests\SignUpRequest;
+use App\Mail\RegistrationMail;
 use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -12,6 +13,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
 class UserAuthController extends Controller
@@ -40,7 +42,9 @@ class UserAuthController extends Controller
         if($userCreated)
         {
             Session::put('user',$userCreated);
-            return redirect('index');
+            return redirect('index')->with([
+                'user'=> $userCreated
+            ]);
         }
         else
         {
@@ -70,7 +74,11 @@ class UserAuthController extends Controller
         {
             $user = Auth::user();
             Session::put('user',$user);
-            return redirect('index');
+            Mail::to($user->email)
+                ->send(new RegistrationMail($user));
+            return redirect('index')->with([
+                'user'=> $user
+            ]);
         }
         else
         {

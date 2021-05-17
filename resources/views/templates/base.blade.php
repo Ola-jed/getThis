@@ -6,7 +6,8 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
-    <style>@yield('style')</style>
+    <link rel="shortcut icon" href="{{ asset('logo.png') }}" type="image/x-icon">
+    @yield('style')
     @yield('script')
 </head>
 <body>
