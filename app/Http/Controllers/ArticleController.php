@@ -119,4 +119,26 @@ class ArticleController extends Controller
             ]);
         }
     }
+
+    /**
+     * Search all articles related to a subject
+     * @param Request $subjectRequested
+     * @return mixed
+     */
+    public function searchBySubject(Request $subjectRequested): mixed
+    {
+        return Article::where('subject',$subjectRequested->input('subject'))
+            ->get();
+    }
+
+    /**
+     * Search all articles by title
+     * @param Request $searchRequest
+     * @return mixed
+     */
+    public function searchByTitle(Request $searchRequest): mixed
+    {
+        return Article::where('title','LIKE',"%{$searchRequest->input('title')}%")
+            ->get();
+    }
 }
