@@ -24,9 +24,9 @@ class ArticleController extends Controller
      * Display a listing of the articles.
      * Offset and limit can be passed
      * @param Request $args
-     * @return Application|Factory|View
+     * @return View|Factory|Application|RedirectResponse
      */
-    public function index(Request $args): View|Factory|Application
+    public function index(Request $args): View|Factory|Application|RedirectResponse
     {
         if(!Session::has('user')) return redirect('/');
         // If a valid offset is given, we consider it. Otherwise, we start from zero
@@ -34,31 +34,19 @@ class ArticleController extends Controller
             intval($args->input(self::OFFSET)) : 0;
         $articles = DB::table('articles')
             ->limit(self::LIMIT_NUM)
-            ->select(['id,subject,title,writer_id,created_at,updated_at'])
+            ->select(['id','subject','title','writer_id','created_at','updated_at'])
             ->offset($offset)
             ->get();
-        return view('articles')->with(['articles' => $articles]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Application|RedirectResponse|Response|Redirector
-     */
-    public function create(): Response|Redirector|Application|RedirectResponse
-    {
-        //
-        if(!Session::has('user')) return redirect('/');
-
+        return view('article.articles')->with(['articles' => $articles]);
     }
 
     /**
      * Store a newly created article.
      *
      * @param ArticleCreationRequest $request
-     * @return Application|Redirector|RedirectResponse
+     * @return Redirector|RedirectResponse|Application|View
      */
-    public function store(ArticleCreationRequest $request): Redirector|RedirectResponse|Application
+    public function store(ArticleCreationRequest $request): Redirector|RedirectResponse|Application|View
     {
         if(!Session::has('user')) return redirect('/');
         $article = Article::create([
@@ -93,25 +81,13 @@ class ArticleController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Application|Redirector|RedirectResponse
-     */
-    public function edit(int $id): Redirector|RedirectResponse|Application
-    {
-        if(!Session::has('user')) return redirect('/');
-
-    }
-
-    /**
      * Update the specified article in database.
      *
      * @param ArticleCreationRequest $request
      * @param int $articleId
-     * @return Application|RedirectResponse|Response|Redirector
+     * @return Response|Redirector|Application|RedirectResponse|View
      */
-    public function update(ArticleCreationRequest $request, int $articleId): Response|Redirector|Application|RedirectResponse
+    public function update(ArticleCreationRequest $request, int $articleId): Response|Redirector|Application|RedirectResponse|View
     {
         if(!Session::has('user')) return redirect('/');
         Article::where('id',$articleId)

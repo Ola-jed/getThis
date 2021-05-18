@@ -7,9 +7,10 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class RegistrationMail extends Mailable
+class ContactMail extends Mailable
 {
     use Queueable, SerializesModels;
+    public string $content;
     public User $user;
 
     /**
@@ -17,20 +18,23 @@ class RegistrationMail extends Mailable
      *
      * @return void
      */
-    public function __construct(User $userCreated)
+    public function __construct(string $subject,string $content,User $user)
     {
-        $this->user = $userCreated;
+        $this->subject = $subject;
+        $this->content = $content;
+        $this->user = $user;
     }
 
     /**
      * Build the message.
-     * We're going to use the signup view
+     *
      * @return $this
      */
-    public function build(): RegistrationMail
+    public function build()
     {
         return $this->from('getthis020@gmail.com')
-            ->subject('GetThis : Registration')
-            ->view('emails.signupmail');
+            ->subject($this->subject)
+            ->replyTo($this->user->email)
+            ->view('emails.contact');
     }
 }

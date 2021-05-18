@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ForgetPasswordRequest;
 use App\Http\Requests\PasswordResetRequest;
 use App\Models\User;
-use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -54,6 +53,7 @@ class ForgotPasswordController extends Controller
      */
     public function passwordResetForm(string $token): Factory|View|Application
     {
+        Session::put('token',$token);
         return view('auth.passwordreset')->with(['token' => $token]);
     }
 
@@ -64,19 +64,16 @@ class ForgotPasswordController extends Controller
      */
     public function submitPasswordResetForm(PasswordResetRequest $passwordResetRequest): RedirectResponse
     {
-        $status = Password::reset(
-            $passwordResetRequest->only('email','password','password_confirmation','password','token'),
-            function ($user, $password) use ($passwordResetRequest)
-            {
-                $user->forceFill([
-                    'password' => Hash::make($passwordResetRequest->input('password1'))
-                ]);
-                $user->save();
-                event(new PasswordReset($user));
-            }
-        );
-        return $status == Password::PASSWORD_RESET
-            ? redirect()->route('login')->with('status', __($status))
-            : back()->withErrors(['email' => [__($status)]]);
+        if (Session::get('token') !== $passwordResetRequest->input('token'))
+        {
+            return back()->withErrors(['email' => 'Invalid token']);
+        }
+        if(Session::get('email') !== $passwordResetRequest->input('email'))
+        {
+            return back()->withErrors(['email' => 'Invalid email']);
+        }
+        User::where('email',$passwordResetRequest->input('email'))
+            ->update(['password' => Hash::make($passwordResetRequest->input('password'))]);
+        return redirect('/signin');
     }
 }

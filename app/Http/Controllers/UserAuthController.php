@@ -11,7 +11,6 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
@@ -81,7 +80,7 @@ class UserAuthController extends Controller
         else
         {
             return back()->withErrors([
-                'message' => 'Cannot login'
+                'message' => 'Invalid password or email'
             ]);
         }
     }
