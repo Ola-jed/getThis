@@ -9,7 +9,7 @@ Route::get('/article/{id}/comments',[CommentController::class,'getAll'])
 Route::post('/article/{id}/comments',[CommentController::class,'store']);
 
 // For a specific Comment
-Route::put('/article/{id}',[CommentController::class,'update'])
+Route::put('/comment/{id}',[CommentController::class,'update'])
     ->where('id','[0-9]+');
-Route::delete('/article/{id}',[CommentController::class,'deleteComment'])
+Route::delete('/comment/{id}',[CommentController::class,'deleteComment'])
     ->where('id','[0-9]+');

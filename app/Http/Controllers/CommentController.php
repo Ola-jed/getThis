@@ -9,7 +9,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\View;
+use Illuminate\View\View;
 
 class CommentController extends Controller
 {
@@ -35,8 +35,8 @@ class CommentController extends Controller
     public function store(CommentCreationRequest $request, int $articleId): void
     {
         if(!Session::has('user')) return;
-        Article::create([
-            'writer_id' => Session::get('users')->id,
+        Comment::create([
+            'writer_id' => Session::get('user')->id,
             'article_id' => $articleId,
             'content' => $request->input('content')
         ]);

@@ -1,11 +1,15 @@
 @extends('templates.base')
 
 @section('title')
-    Articles
+    {{ $article->title }}
 @endsection
 
 @section('style')
+    <link rel="stylesheet" href="{{ asset('css/article.css') }}">
+@endsection
 
+@section('script')
+    <script src="{{ asset('js/commentManager.js') }}" defer></script>
 @endsection
 
 @section('content')

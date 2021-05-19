@@ -1,0 +1,31 @@
+html{
+    height: auto;
+}
+.subject{
+    font-style: italic;
+}
+.title{
+    color: #D9A338;
+    font-weight: bolder;
+}
+article{
+
+}
+.comments{
+    border: 1px #2d3748 solid;
+    margin: 1%;
+}
+.comment{
+    border: 1px #2d3748 double;
+    padding: 1%;
+    background: rgba(255, 255, 255, 0.1);
+}
+.comment-author a{
+    color: #ffffff;
+}
+.comment-content{
+    font-style: italic;
+}
+.comment-date{
+
+}

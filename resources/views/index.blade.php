@@ -5,5 +5,9 @@
 @endsection
 
 @section('content')
-    Hello {{ \Illuminate\Support\Facades\Session::get('user')->name }}
+    @include('components.menu')
+    <main>
+        Hello {{ \Illuminate\Support\Facades\Session::get('user')->name }}
+    </main>
+    @include('components.footer')
 @endsection

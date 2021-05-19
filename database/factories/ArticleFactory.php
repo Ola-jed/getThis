@@ -23,7 +23,7 @@ class ArticleFactory extends Factory
     public function definition(): array
     {
         return [
-            'subject' => $this->faker->sentence,
+            'subject' => $this->faker->catchPhrase,
             'title' => $this->faker->sentence,
             'content' => $this->faker->realText(),
             'writer_id' => $this->faker->randomElement(User::all()->pluck('id')->all())

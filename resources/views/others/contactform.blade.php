@@ -8,9 +8,8 @@
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 @endsection
 
-@include('components.menu')
-
 @section('content')
+    @include('components.menu')
     <div class="login-box">
         <h2>Contact</h2>
         <form action="{{ url('contact') }}" method="post">
@@ -34,6 +33,5 @@
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror
     </div>
+    @include('components.footer')
 @endsection
-
-@include('components.footer')

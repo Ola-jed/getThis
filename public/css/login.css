@@ -48,10 +48,10 @@
     font-size: 12px;
 }
 .other-login {
-    margin: 2%;
+    margin-top: 4%;
     display: flex;
     flex-flow: row nowrap;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 button{
     border: none;

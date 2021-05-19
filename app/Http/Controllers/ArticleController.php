@@ -55,7 +55,7 @@ class ArticleController extends Controller
             'content' => $request->input('content'),
             'writer_id' => Session::get('user')->id
         ]);
-        return view('read')->with(['article' => $article]);
+        return view('article.article')->with(['article' => $article]);
     }
 
     /**
@@ -70,13 +70,11 @@ class ArticleController extends Controller
         try
         {
             $article = Article::findOrFail($articleId);
-            return view('article')->with(['article' => $article]);
+            return view('article.article')->with(['article' => $article]);
         }
         catch (Exception $exception)
         {
-            return back()->withErrors([
-                'message' => 'Article not found'
-            ]);
+            return back();
         }
     }
 
@@ -93,7 +91,7 @@ class ArticleController extends Controller
         Article::where('id',$articleId)
             ->update($request->all());
         $article = Article::find($articleId);
-        return view('article')->with(['article' => $article]);
+        return view('article.article')->with(['article' => $article]);
     }
 
     /**
@@ -110,7 +108,7 @@ class ArticleController extends Controller
         if($articleToDelete->writer_id === Session::get('user')->id)
         {
             $articleToDelete->delete();
-            return view('articles');
+            return view('article.articles');
         }
         else
         {
