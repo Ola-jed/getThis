@@ -28,6 +28,7 @@
         <div class="date">
             Written the {{ date('j F, Y', strtotime($article->created_at)) }}
         </div>
+        <hr>
         <div class="comment-form">
             <form action="{{ url('/article/'.$article->id.'/comments') }}" method="post" id="comment-post" onsubmit="return false">
                 @csrf

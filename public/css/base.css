@@ -1,10 +1,14 @@
+@font-face {
+    font-family: Fira;
+    src: url(../font/FiraCode-Regular.ttf) format("truetype");
+}
 html {
     height: 100%;
     margin:0;
     padding:0;
-    font-family: sans-serif;
+    font-family: Fira, sans-serif;
     color: #ffffff;
-    background: linear-gradient(#141e30, #243b55) no-repeat;
+    background: linear-gradient(#2a3a55, #425c79) no-repeat;
 }
 nav {
     margin: 27px auto 0;
@@ -77,8 +81,8 @@ nav .start-contact, a:nth-child(5):hover~.animation {
     background-color: #e67e22;
 }
 main{
-    margin: 5%;
-    padding: 5%;
+    margin: 2%;
+    padding: 4%;
     background: rgba(0,0,0,.5);
 }
 textarea{

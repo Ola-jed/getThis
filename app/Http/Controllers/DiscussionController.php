@@ -34,7 +34,7 @@ class DiscussionController extends Controller
             intval($args->input(self::OFFSET)) : 0;
         $discussions = DB::table('discussions')
             ->limit(self::LIMIT_NUM)
-            ->select(['id','subject','author_id','created_at','updated_at'])
+            ->select(['id','subject','creator_id','created_at','updated_at'])
             ->offset($offset)
             ->get();
         return view('discussion.discussions')->with(['discussions' => $discussions]);

@@ -1,7 +1,7 @@
 @extends('templates.base')
 
 @section('title')
-    {{ $article->title }}
+    {{ $discussion->subject }}
 @endsection
 
 @section('style')

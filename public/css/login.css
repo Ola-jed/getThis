@@ -48,15 +48,21 @@
     font-size: 12px;
 }
 .other-login {
+    position: center;
     margin-top: 4%;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-evenly;
 }
+.other-login a{
+    text-align: center;
+}
 button{
+    margin-top: 1%;
+    border-radius: 8px;
     border: none;
     color: #fff;
-    padding: 4%;
+    padding: 3%;
     text-decoration: none;
     cursor: pointer;
     background: linear-gradient(#141e30, #243b55);
@@ -67,9 +73,6 @@ button:hover{
 }
 .register,.other{
     text-align: center;
-}
-.other{
-    color: #cbd5e0;
 }
 .invalid-feedback{
     color: #F55;
@@ -82,7 +85,6 @@ button:hover{
 }
 .register a{
     font-size: 0.9em;
-    text-decoration: underline rgba(255, 255, 255, 0.28);
     color: #ffffff;
 }
 textarea{
