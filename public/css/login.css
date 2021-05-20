@@ -86,6 +86,7 @@ button:hover{
 .register a{
     font-size: 0.9em;
     color: #ffffff;
+    text-decoration: none;
 }
 textarea{
     resize: none;

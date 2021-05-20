@@ -1,6 +1,10 @@
 html{
     height: auto;
 }
+.date{
+    margin-top: 2%;
+    text-align: right;
+}
 .subject{
     font-style: italic;
     text-align: center;
@@ -9,6 +13,7 @@ html{
 .title{
     color: #fabb3f;
     font-weight: bolder;
+    margin-bottom: 1%;
 }
 article{
 
@@ -31,11 +36,10 @@ legend{
     padding: 1%;
     background: rgba(255, 255, 255, 0.1);
 }
-.comment-author a{
+.comment-author a, .date a{
     color: #b38a09;
 }
 .comment-content{
-    font-weight: bold;
 }
 .comment-date{
     font-size: 0.8em;

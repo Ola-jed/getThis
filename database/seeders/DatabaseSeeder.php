@@ -18,10 +18,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(10)->create();
+        User::factory(30)->create();
         Article::factory(10)->create();
-        Comment::factory(10)->create();
+        Comment::factory(60)->create();
         Discussion::factory(10)->create();
-        Message::factory(10)->create();
+        Message::factory(50)->create();
     }
 }

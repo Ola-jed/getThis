@@ -26,7 +26,7 @@
             {{ $article->content }}
         </article>
         <div class="date">
-            Written the {{ date('j F, Y', strtotime($article->created_at)) }}
+            Written the {{ date('j F, Y', strtotime($article->created_at)) }} by <a href="{{ url('/profile/'.\App\Models\User::find($article->writer_id)->id) }}">{{ \App\Models\User::find($article->writer_id)->name }}</a>
         </div>
         <hr>
         <div class="comment-form">
