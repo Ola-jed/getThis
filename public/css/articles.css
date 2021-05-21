@@ -1,19 +1,7 @@
 html{
     height: auto;
 }
-h3{
-    text-align: center;
-}
-.latest-articles,.hottest-discussions{
-    border: 1px #ffffff solid;
-    padding: 1%;
-    margin-top: 2%;
-    margin-bottom: 2%;
-}
-.latest-articles > p,.hottest-discussions > p{
-    text-align: center;
-}
-.article, .discussion{
+.article{
     border: 1px #ffffff solid;
     box-shadow: 2px 2px gray;
     margin: 1%;
@@ -38,19 +26,10 @@ h3{
 .article-author{
     font-size: 0.95em;
 }
-.hottest-discussions{
-
+.navigation-links{
+    text-align: center;
 }
-.discussion{
-
-}
-.discussion-title{
-
-}
-.discussion-message-number{
-
-}
-.discussion p a{
+.previous,.next{
     color: #b38a09;
     text-decoration: none;
 }

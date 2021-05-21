@@ -19,7 +19,6 @@ function loadComments()
         }
     }).catch(function(error)
     {
-        const err = "Problem with the server";
         console.log(error);
     })
 }
@@ -31,7 +30,6 @@ document.addEventListener("DOMContentLoaded", loadComments);
 const commentForm = document.getElementsByTagName("form")[0];
 const commentFormContent = new FormData(commentForm);
 commentForm.addEventListener('submit',function (e) {
-    e.preventDefault();
     const formAction = this.getAttribute("action");
     fetch(formAction,{
         method : 'post',
@@ -39,11 +37,11 @@ commentForm.addEventListener('submit',function (e) {
     }).then(function()
     {
         alert("Comment posted");
-        loadComments();
     }).catch(function(error)
     {
-        alert("Comment post failed :"+error);
+        alert("Comment post failed : "+error);
     });
+    loadComments();
 });
 
 // Delete a comment
@@ -52,7 +50,6 @@ function makeCommentsDeletable()
     deleteForms.forEach((e)=>{
         e.addEventListener('submit',function (event) {
             console.log(e);
-            event.preventDefault();
             const deleteFormAction = e.getAttribute("action");
             const deleteFormContent = new FormData(e);
             fetch(deleteFormAction,{
@@ -61,11 +58,11 @@ function makeCommentsDeletable()
             }).then(function()
             {
                 alert("Comment deleted");
-                loadComments();
             }).catch(function(error)
             {
-                alert("Delete failed :"+error);
+                alert("Suppression failed :"+error);
             });
+            loadComments();
         })
     });
 }

@@ -8,32 +8,33 @@ html{
 .subject{
     font-style: italic;
     text-align: center;
-    margin: 1%;
+    width: max-content;
+    padding: 1%;
+    margin: 0 auto 1%;
+    border: 1px solid #fff;
+    box-shadow: 2px 1px #ffffff;
 }
 .title{
     color: #fabb3f;
     font-weight: bolder;
     margin-bottom: 1%;
 }
-article{
-
-}
 .comments{
     border: 1px #2d3748 solid;
     margin: 1%;
 }
 .comment-form{
-    width: 30%;
     margin: 1%;
-    padding: 2%;
-    border: 3px solid #ffffff;
+    padding: 1%;
 }
 legend{
     text-decoration: underline;
 }
 .comment{
-    border: 1px #2d3748 double;
+    border: 1px #768297 double;
+    border-radius: 6px;
     padding: 1%;
+    margin: 1%;
     background: rgba(255, 255, 255, 0.1);
 }
 .comment-author a, .date a{
