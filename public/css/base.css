@@ -89,3 +89,8 @@ main{
 textarea{
     resize: none;
 }
+.invalid-feedback{
+    color: #F55;
+    margin: 1%;
+    text-align: center;
+}

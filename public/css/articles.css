@@ -14,8 +14,23 @@ html{
 .article p a:hover{
     text-decoration: underline;
 }
-.article-title{
-
+.article-add{
+    cursor: pointer;
+}
+.article-add,.article-creation{
+    padding-left: 2%;
+}
+.article-creation{
+    margin: 2%;
+    display: none;
+    padding: 2%;
+    border: 2px solid white;
+    width: min-content;
+    background-color: rgba(14, 17, 47, 0.09);
+}
+.article-creation h3{
+    text-align: center;
+    text-decoration: underline;
 }
 .article-subject{
     border: 1px #ffffff solid;
@@ -32,4 +47,75 @@ html{
 .previous,.next{
     color: #b38a09;
     text-decoration: none;
+}
+button{
+    margin-top: 1%;
+    border-radius: 8px;
+    border: none;
+    color: #fff;
+    padding: 1%;
+    text-decoration: none;
+    cursor: pointer;
+    background: linear-gradient(#141e30, #243b55);
+}
+button:hover{
+    background: linear-gradient(0deg, rgba(18,84,97,1) 0%, rgba(36,58,88,1) 50%, rgba(11,17,27,1) 100%);
+    transition: all 0.5s ease 0s;
+}
+.login-trigger {
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(to bottom right, #B05574, #F87E7B);
+    padding: 15px 30px;
+    border-radius: 30px;
+    position: relative;
+    top: 50%;
+}
+h4 {
+    font-weight: bold;
+    color: #fff;
+}
+.close {
+    color: #fff;
+    transform: scale(1.2)
+}
+.modal-content {
+    font-weight: bold;
+    background: linear-gradient(to bottom right,#F87E7B,#B05574);
+}
+.form-control {
+    margin: 1em 0;
+}
+.form-control:hover, .form-control:focus {
+    box-shadow: none;
+    border-color: #fff;
+}
+.title, .subject {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    border-bottom: 2px solid #eee;
+    padding-left: 0;
+    font-weight: normal;
+    background: transparent;
+}
+.form-control::-webkit-input-placeholder {
+    color: #eee;
+}
+.form-control:focus::-webkit-input-placeholder {
+    font-weight: bold;
+    color: #fff;
+}
+.login {
+    border-radius: 2%;
+    background: none;
+    border: 2px solid #FAB87F;
+    color: #FAB87F;
+    font-weight: bold;
+    transition: all .5s;
+    margin-top: 1em;
+}
+.login:hover {
+    background: #FAB87F;
+    color: #fff;
 }

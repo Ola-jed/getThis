@@ -40,6 +40,9 @@ legend{
 .comment-author a, .date a{
     color: #b38a09;
 }
+.comment-author{
+    font-weight: bold;
+}
 .comment-content{
 }
 .comment-date{

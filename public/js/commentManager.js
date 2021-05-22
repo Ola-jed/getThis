@@ -1,6 +1,9 @@
 const currentArticle = document.URL.split("/")[document.URL.split("/").length - 1];
 let deleteForms = document.querySelectorAll(".delete-form");
 
+// When the page is loaded, we fetch the comments for the article
+document.addEventListener("DOMContentLoaded", loadComments);
+
 // Load all the comments relative to the current article in their container
 function loadComments()
 {
@@ -23,25 +26,22 @@ function loadComments()
     })
 }
 
-// When the page is loaded, we fetch the comments for the article
-document.addEventListener("DOMContentLoaded", loadComments);
-
 // Submit the comment
 const commentForm = document.getElementsByTagName("form")[0];
-const commentFormContent = new FormData(commentForm);
 commentForm.addEventListener('submit',function (e) {
     const formAction = this.getAttribute("action");
+    const commentFormContent = new FormData(commentForm);
     fetch(formAction,{
         method : 'post',
         body : commentFormContent,
     }).then(function()
     {
         alert("Comment posted");
+        loadComments();
     }).catch(function(error)
     {
         alert("Comment post failed : "+error);
     });
-    loadComments();
 });
 
 // Delete a comment
@@ -49,7 +49,6 @@ function makeCommentsDeletable()
 {
     deleteForms.forEach((e)=>{
         e.addEventListener('submit',function (event) {
-            console.log(e);
             const deleteFormAction = e.getAttribute("action");
             const deleteFormContent = new FormData(e);
             fetch(deleteFormAction,{
@@ -58,11 +57,11 @@ function makeCommentsDeletable()
             }).then(function()
             {
                 alert("Comment deleted");
+                loadComments();
             }).catch(function(error)
             {
                 alert("Suppression failed :"+error);
             });
-            loadComments();
         })
     });
 }

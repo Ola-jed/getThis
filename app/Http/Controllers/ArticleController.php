@@ -23,6 +23,7 @@ class ArticleController extends Controller
     /**
      * Display a listing of the articles.
      * Offset and limit can be passed
+     * We get the latest articles first
      * @param Request $args
      * @return View|Factory|Application|RedirectResponse
      */
@@ -32,9 +33,8 @@ class ArticleController extends Controller
         // If a valid offset is given, we consider it. Otherwise, we start from zero
         $offset = $args->has(self::OFFSET) && intval($args->input(self::OFFSET)) > 0 ?
             intval($args->input(self::OFFSET)) : 0;
-        $articles = DB::table('articles')
-            ->limit(self::LIMIT_NUM)
-            ->select(['id','subject','title','writer_id','created_at','updated_at'])
+        $articles = Article::limit(self::LIMIT_NUM)
+            ->orderBy('id','desc')
             ->offset($offset)
             ->get();
         return view('article.articles')->with(['articles' => $articles]);
@@ -96,47 +96,42 @@ class ArticleController extends Controller
 
     /**
      * Remove the specified article
-     *
+     * This method is built to be called by js
      * @param int $articleId
-     * @return Application|Factory|View|RedirectResponse|Response
+     * @return void
      */
-    public function destroy(int $articleId): Factory|Response|View|RedirectResponse|Application
+    public function destroy(int $articleId): void
     {
-        if(!Session::has('user')) return redirect('/');
-        // Check that connected user is author of the article
         $articleToDelete = Article::find($articleId);
         if($articleToDelete->writer_id === Session::get('user')->id)
         {
             $articleToDelete->delete();
-            return view('article.articles');
-        }
-        else
-        {
-            return back()->withErrors([
-                'message' => 'You don\'t have the permission to delete this article'
-            ]);
         }
     }
 
     /**
      * Search all articles related to a subject
      * @param Request $subjectRequested
-     * @return mixed
+     * @return Factory|\Illuminate\Contracts\View\View|Application
      */
-    public function searchBySubject(Request $subjectRequested): mixed
+    public function searchBySubject(Request $subjectRequested): Factory|\Illuminate\Contracts\View\View|Application
     {
-        return Article::where('subject',$subjectRequested->input('subject'))
-            ->get();
+        return \view('article.articlelist')->with([
+            'articles' => Article::where('subject',$subjectRequested->input('subject'))
+                ->get()
+        ]);
     }
 
     /**
      * Search all articles by title
      * @param Request $searchRequest
-     * @return mixed
+     * @return Factory|\Illuminate\Contracts\View\View|Application
      */
-    public function searchByTitle(Request $searchRequest): mixed
+    public function searchByTitle(Request $searchRequest): \Illuminate\Contracts\View\View|Factory|Application
     {
-        return Article::where('title','LIKE',"%{$searchRequest->input('title')}%")
-            ->get();
+        return \view('article.articlelist')->with([
+            'articles' => Article::where('title','LIKE',"%{$searchRequest->input('title')}%")
+                ->get()
+        ]);
     }
 }
