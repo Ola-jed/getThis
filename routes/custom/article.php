@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 // Articles management
 Route::get('/articles',[ArticleController::class,'index']);
 Route::get('/articles/subject',[ArticleController::class,'searchBySubject']);
-Route::get('/articles/title',[ArticleController::class,'searchBySubject']);
+Route::get('/articles/title',[ArticleController::class,'searchByTitle']);
 Route::post('/articles',[ArticleController::class,'store']);
 
 // For a specific Article

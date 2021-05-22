@@ -1,56 +1,9 @@
 html{
     height: auto;
 }
-h3{
-    text-align: center;
-}
 .latest-articles,.hottest-discussions{
     border: 1px #ffffff solid;
     padding: 1%;
     margin-top: 2%;
     margin-bottom: 2%;
-}
-.latest-articles > p,.hottest-discussions > p{
-    text-align: center;
-}
-.article, .discussion{
-    border: 1px #ffffff solid;
-    box-shadow: 2px 2px gray;
-    margin: 1%;
-    padding: 1%;
-}
-.article p a{
-    color: #b38a09;
-    text-decoration: none;
-}
-.article p a:hover{
-    text-decoration: underline;
-}
-.article-title{
-
-}
-.article-subject{
-    border: 1px #ffffff solid;
-    box-shadow: 2px 2px #959595;
-    padding: 1%;
-    width: 50%;
-}
-.article-author{
-    font-size: 0.95em;
-}
-.hottest-discussions{
-
-}
-.discussion{
-
-}
-.discussion-title{
-
-}
-.discussion-message-number{
-
-}
-.discussion p a{
-    color: #b38a09;
-    text-decoration: none;
 }

@@ -130,7 +130,7 @@ class ArticleController extends Controller
     public function searchByTitle(Request $searchRequest): \Illuminate\Contracts\View\View|Factory|Application
     {
         return \view('article.articlelist')->with([
-            'articles' => Article::where('title','LIKE',"%{$searchRequest->input('title')}%")
+            'articles' => Article::where('title','LIKE','%'.$searchRequest->input('title').'%')
                 ->get()
         ]);
     }

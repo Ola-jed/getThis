@@ -1,51 +1,11 @@
-.login-box {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 400px;
-    padding: 40px;
-    transform: translate(-50%, -50%);
-    background: rgba(0,0,0,.5);
-    box-sizing: border-box;
-    box-shadow: 0 15px 25px rgba(0,0,0,.6);
-    border-radius: 10px;
+/*html{*/
+/*    overflow: hidden;*/
+/*}*/
+button{
+    margin: 1%;
 }
-.login-box h2 {
-    margin: 0 0 30px;
-    padding: 0;
-    color: #fff;
-    text-align: center;
-}
-.login-box .user-box {
-    position: relative;
-}
-.login-box .user-box input {
-    width: 100%;
-    padding: 10px 0;
-    font-size: 16px;
-    color: #fff;
-    margin-bottom: 30px;
-    border: none;
-    border-bottom: 1px solid #fff;
-    outline: none;
-    background: transparent;
-}
-.login-box .user-box label {
-    position: absolute;
-    top:0;
-    left: 0;
-    padding: 10px 0;
-    font-size: 16px;
-    color: #fff;
-    pointer-events: none;
-    transition: .5s;
-}
-.login-box .user-box input:focus ~ label,
-.login-box .user-box input:valid ~ label {
-    top: -20px;
-    left: 0;
-    color: #03e9f4;
-    font-size: 12px;
+form{
+    padding: 1%;
 }
 .other-login {
     position: center;
@@ -57,20 +17,6 @@
 .other-login a{
     text-align: center;
 }
-button{
-    margin-top: 1%;
-    border-radius: 8px;
-    border: none;
-    color: #fff;
-    padding: 3%;
-    text-decoration: none;
-    cursor: pointer;
-    background: linear-gradient(#141e30, #243b55);
-}
-button:hover{
-    background: linear-gradient(0deg, rgba(18,84,97,1) 0%, rgba(36,58,88,1) 50%, rgba(11,17,27,1) 100%);
-    transition: all 0.5s ease 0s;
-}
 .register,.other{
     text-align: center;
 }
@@ -78,11 +24,25 @@ button:hover{
     margin: 3%;
     padding-top: 1%;
 }
-.register a{
-    font-size: 0.9em;
-    color: #ffffff;
-    text-decoration: none;
+.register a:hover{
+    color: #b38a09;
 }
 textarea{
     resize: none;
+}
+main{
+    position: relative;
+}
+form .field{
+    margin: auto;
+}
+form .control{
+    text-align: center;
+}
+.hero-body{
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+.field{
+    margin: 0.5em;
 }

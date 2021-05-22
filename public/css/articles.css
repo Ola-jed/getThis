@@ -7,6 +7,9 @@ html{
     margin: 1%;
     padding: 1%;
 }
+.article-search{
+    margin-left: 2%;
+}
 .article p a{
     color: #b38a09;
     text-decoration: none;
@@ -21,12 +24,7 @@ html{
     padding-left: 2%;
 }
 .article-creation{
-    margin: 2%;
-    display: none;
-    padding: 2%;
-    border: 2px solid white;
-    width: min-content;
-    background-color: rgba(14, 17, 47, 0.09);
+    display: none ;
 }
 .article-creation h3{
     text-align: center;
@@ -43,24 +41,6 @@ html{
 }
 .navigation-links{
     text-align: center;
-}
-.previous,.next{
-    color: #b38a09;
-    text-decoration: none;
-}
-button{
-    margin-top: 1%;
-    border-radius: 8px;
-    border: none;
-    color: #fff;
-    padding: 1%;
-    text-decoration: none;
-    cursor: pointer;
-    background: linear-gradient(#141e30, #243b55);
-}
-button:hover{
-    background: linear-gradient(0deg, rgba(18,84,97,1) 0%, rgba(36,58,88,1) 50%, rgba(11,17,27,1) 100%);
-    transition: all 0.5s ease 0s;
 }
 .login-trigger {
     font-weight: bold;
@@ -98,24 +78,4 @@ h4 {
     padding-left: 0;
     font-weight: normal;
     background: transparent;
-}
-.form-control::-webkit-input-placeholder {
-    color: #eee;
-}
-.form-control:focus::-webkit-input-placeholder {
-    font-weight: bold;
-    color: #fff;
-}
-.login {
-    border-radius: 2%;
-    background: none;
-    border: 2px solid #FAB87F;
-    color: #FAB87F;
-    font-weight: bold;
-    transition: all .5s;
-    margin-top: 1em;
-}
-.login:hover {
-    background: #FAB87F;
-    color: #fff;
 }

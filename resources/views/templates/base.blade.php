@@ -8,6 +8,7 @@
     <title>@yield('title')</title>
     <link rel="shortcut icon" href="{{ asset('images/logo.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('css/base.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bulma/css/bulma.min.css') }}">
     @yield('style')
     @yield('script')
 </head>

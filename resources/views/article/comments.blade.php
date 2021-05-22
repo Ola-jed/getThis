@@ -7,7 +7,7 @@
             <form action="{{ url('/comment/'.$comment->id) }}" method="post" class="delete-form" onsubmit="return false">
                 @csrf
                 @method('DELETE')
-                <button type="submit">Delete</button>
+                <button type="submit" class="button is-danger">Delete</button>
             </form>
         @endif
     </div>

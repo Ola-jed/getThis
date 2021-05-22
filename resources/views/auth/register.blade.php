@@ -9,40 +9,42 @@
 @endsection
 
 @section('content')
-    <div class="login-box">
-        <h2>Register</h2>
-        <form action="{{ url('register') }}" method="post">
+    <div class="hero-body">
+        <form action="{{ url('register') }}" method="post" class="box has-background-dark is-center has-text-white column is-4 is-offset-4">
             @csrf
-            <div class="user-box">
-                <input type="name" name="name" required>
-                <label>Username</label>
+            <h5 class="has-text-centered has-text-light is-white title is-5">Register</h5>
+            <div class="field column is-two-thirds">
+                <label for="name" class="label has-text-white">Username</label>
+                <input type="text" class="input is-primary" name="name" placeholder="Name" required>
                 @error('name')
-                    <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="help is-danger">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="user-box">
-                <input type="email" name="email" required>
-                <label>Email</label>
+            <div class="field column is-two-thirds">
+                <label for="email" class="label has-text-white">Email</label>
+                <input type="email" name="email" class="input is-primary" placeholder="user@mail.com" required>
                 @error('email')
-                    <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="help is-danger">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="user-box">
-                <input type="password" name="password1" required>
-                <label>Password</label>
+            <div class="field column is-two-thirds">
+                <label for="password" class="label has-text-white">Password</label>
+                <input type="password" name="password1" class="input is-primary" placeholder="*****" required>
                 @error('password1')
-                    <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="help is-danger">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="user-box">
-                <input type="password" name="password2" required>
-                <label>Confirm password</label>
+            <div class="field column is-two-thirds">
+                <label for="password" class="label has-text-white">Confirm password</label>
+                <input type="password" name="password2" class="input is-primary" placeholder="*****" required>
                 @error('password2')
-                    <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="help is-danger">{{ $message }}</div>
                 @enderror
             </div>
-            <button type="submit">Register</button>
-            <div class="register"><a href="{{ url('/login') }}">Already registered ? Login</a></div>
+            <div class="control">
+                <button type="submit" class="button is-link is-outlined">Register</button>
+            </div>
+            <div class="register has-text-link"><a href="{{ url('/login') }}">Already registered ? Login</a></div>
         </form>
         @error('message')
             <div class="invalid-feedback">{{ $message }}</div>
