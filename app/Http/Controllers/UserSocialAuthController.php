@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\View;
+use Illuminate\View\View;
 use Laravel\Socialite\Facades\Socialite;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
@@ -34,18 +35,18 @@ class UserSocialAuthController extends Controller
 
     /**
      * Github callback function
-     * @return Application|\Illuminate\Http\RedirectResponse|Redirector
+     * @return Application|\Illuminate\Http\RedirectResponse|Redirector|View
      */
-    public function githubCallback(): Application|\Illuminate\Http\RedirectResponse|Redirector
+    public function githubCallback(): Application|\Illuminate\Http\RedirectResponse|Redirector|View
     {
         return $this->callback('github', 'github_id');
     }
 
     /**
      * Google callback function
-     * @return \Illuminate\Http\RedirectResponse|Application|Redirector
+     * @return Application|\Illuminate\Http\RedirectResponse|Redirector|View
      */
-    public function googleCallback(): Application|\Illuminate\Http\RedirectResponse|Redirector
+    public function googleCallback(): Application|\Illuminate\Http\RedirectResponse|Redirector|View
     {
         return $this->callback('google', 'google_id');
     }
@@ -53,9 +54,9 @@ class UserSocialAuthController extends Controller
     /**
      * @param string $driver
      * @param string $column
-     * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|Redirector|Application|\Illuminate\Http\RedirectResponse
+     * @return Factory|Redirector|Application|\Illuminate\Http\RedirectResponse|Illuminate\View\View
      */
-    private function callback(string $driver, string $column): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|Redirector|Application|\Illuminate\Http\RedirectResponse
+    private function callback(string $driver, string $column): Factory|Redirector|Application|\Illuminate\Http\RedirectResponse|View
     {
         try
         {

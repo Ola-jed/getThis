@@ -44,9 +44,9 @@ class ArticleController extends Controller
      * Store a newly created article.
      *
      * @param ArticleCreationRequest $request
-     * @return Redirector|RedirectResponse|Application|View
+     * @return Redirector|RedirectResponse|Application
      */
-    public function store(ArticleCreationRequest $request): Redirector|RedirectResponse|Application|View
+    public function store(ArticleCreationRequest $request): Redirector|RedirectResponse|Application
     {
         if(!Session::has('user')) return redirect('/');
         $article = Article::create([
@@ -55,7 +55,7 @@ class ArticleController extends Controller
             'content' => $request->input('content'),
             'writer_id' => Session::get('user')->id
         ]);
-        return view('article.article')->with(['article' => $article]);
+        return redirect('article/'.$article->id);
     }
 
     /**
@@ -79,19 +79,34 @@ class ArticleController extends Controller
     }
 
     /**
+     * Show the form to update the specified article
+     * @param int $articleId
+     * @return Response|Redirector|Application|RedirectResponse|View
+     */
+    public function edit(int $articleId): Response|Redirector|Application|RedirectResponse|View
+    {
+        if(!Session::has('user')) return redirect('/');
+        $articleToUpdate = Article::find($articleId);
+        if($articleToUpdate->writer_id === Session::get('user')->id)
+        {
+            return \view('article.articleupdate')->with(['article' => $articleToUpdate]);
+        }
+        return redirect('article/'.$articleId);
+    }
+
+    /**
      * Update the specified article in database.
      *
      * @param ArticleCreationRequest $request
      * @param int $articleId
-     * @return Response|Redirector|Application|RedirectResponse|View
+     * @return Response|Redirector|Application|RedirectResponse
      */
-    public function update(ArticleCreationRequest $request, int $articleId): Response|Redirector|Application|RedirectResponse|View
+    public function update(ArticleCreationRequest $request, int $articleId): Response|Redirector|Application|RedirectResponse
     {
         if(!Session::has('user')) return redirect('/');
         Article::where('id',$articleId)
-            ->update($request->all());
-        $article = Article::find($articleId);
-        return view('article.article')->with(['article' => $article]);
+            ->update($request->only(['title','subject','content']));
+        return redirect('article/'.$articleId);
     }
 
     /**

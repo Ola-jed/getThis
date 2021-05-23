@@ -5,33 +5,34 @@
 @endsection
 
 @section('style')
+    <link rel="stylesheet" href="{{ asset('css/formPage.css') }}">
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 @endsection
 
 @section('content')
     @include('components.menu')
-    <div class="login-box">
+    <div class="hero-body">
         <h2>Contact</h2>
-        <form action="{{ url('contact') }}" method="post">
+        <form action="{{ url('contact') }}" method="post" class="box has-background-dark is-center has-text-white column is-4 is-offset-4 is-centered">
             @csrf
-            <div class="user-box">
-                <input type="name" name="subject" required>
-                <label>Subject</label>
+            <div class="field column">
+                <label for="subject" class="label has-text-white">Subject</label>
+                <input type="text" name="subject" class="input is-primary" placeholder="Subject" required>
                 @error('subject')
-                    <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="help is-danger">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="user-box">
-                <textarea name="content" placeholder="Your message" cols="42" rows="10"></textarea>
+            <div class="field column">
+                <textarea name="content" placeholder="Your message" cols="42" rows="10" class="textarea is-primary"></textarea>
                 @error('content')
-                    <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="help is-danger">{{ $message }}</div>
                 @enderror
             </div>
-            <button type="submit">Send</button>
+            <button type="submit" class="button is-link is-outlined">Send</button>
+            @error('message')
+            <div class="help is-danger">{{ $message }}</div>
+            @enderror
         </form>
-        @error('message')
-            <div class="invalid-feedback">{{ $message }}</div>
-        @enderror
     </div>
     @include('components.footer')
 @endsection

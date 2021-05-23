@@ -66,6 +66,7 @@ addBtn.onclick = function (){
 /**
  * Fetch method for article suppression
  * We iter on the array of delete buttons and add event listener
+ * TODO: suppression fail
  */
 deleteArticles.forEach((e) => {
     e.addEventListener('submit',function (event) {
@@ -76,12 +77,11 @@ deleteArticles.forEach((e) => {
             body : deleteFormContent,
         }).then(function()
         {
+            location.reload();
         }).catch(function(error)
         {
-            alert("Suppression failed :"+error);
             console.log("Suppression failed :"+error);
         });
-        location.reload();
     });
 });
 
