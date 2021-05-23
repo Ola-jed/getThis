@@ -7,7 +7,6 @@
             <span></span>
             <span></span>
             <span></span>
-            <span></span>
         </a>
     </div>
     <div class="navbar-menu has-background-dark" id="nav-links">

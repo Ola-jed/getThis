@@ -1,3 +1,4 @@
+'use strict';
 /**
  * Default Url without the get parameters
  * @type {string}

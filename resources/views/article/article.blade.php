@@ -26,8 +26,8 @@
             {{ $article->content }}
         </article>
         <div class="date">
-            <a href="{{ url('/profile/'.\App\Models\User::find($article->writer_id)->id) }}">{{ \App\Models\User::find($article->writer_id)->name }}</a>, on {{ date('F j , Y', strtotime($article->created_at)) }}
-            <p>Last update, on {{ date('F j , Y', strtotime($article->updated_at)) }}</p>
+            <a href="{{ url('/profile/'.\App\Models\User::find($article->writer_id)->id) }}">{{ \App\Models\User::find($article->writer_id)->name }}</a>, on {{ date('F j , Y H:i:s', strtotime($article->created_at)) }}
+            <p>Last update on {{ date('F j , Y H:i:s', strtotime($article->updated_at)) }}</p>
         </div>
         @if(\Illuminate\Support\Facades\Session::get('user')->id === $article->writer_id)
             <a href="{{ url('/article/'.$article->id.'/update') }}" class="button is-link">Update</a>

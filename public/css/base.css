@@ -15,3 +15,6 @@ main{
 nav{
     padding: 0.5%;
 }
+footer .column a:hover{
+    color: white;
+}

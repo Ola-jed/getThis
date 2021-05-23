@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Http\Requests\DiscussionCreationRequest;
 use App\Models\Discussion;
-use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\DB;
 use Illuminate\View\Factory;
 use Illuminate\View\View;
 use Illuminate\Routing\Redirector;
@@ -32,9 +31,8 @@ class DiscussionController extends Controller
         // If a valid offset is given, we consider it. Otherwise, we start from zero
         $offset = $args->has(self::OFFSET) && intval($args->input(self::OFFSET)) > 0 ?
             intval($args->input(self::OFFSET)) : 0;
-        $discussions = DB::table('discussions')
+        $discussions = Discussion::withCount('messages')
             ->limit(self::LIMIT_NUM)
-            ->select(['id','subject','creator_id','created_at','updated_at'])
             ->offset($offset)
             ->get();
         return view('discussion.discussions')->with(['discussions' => $discussions]);
@@ -42,18 +40,18 @@ class DiscussionController extends Controller
 
     /**
      * Create a new discussion
-     *
+     * And redirect to the right view
      * @param DiscussionCreationRequest $request
-     * @return Redirector|RedirectResponse|Application|View
+     * @return Redirector|RedirectResponse|Application
      */
-    public function store(DiscussionCreationRequest $request): Redirector|RedirectResponse|Application|View
+    public function store(DiscussionCreationRequest $request): Redirector|RedirectResponse|Application
     {
         if(!Session::has('user')) return redirect('/');
         $discussion = Discussion::create([
             'subject' => $request->input('subject'),
             'creator_id' => Session::get('user')->id
         ]);
-        return view('discussion.discussion')->with(['discussion' => $discussion]);
+        return redirect('discussion/'.$discussion->id);
     }
 
     /**
@@ -70,7 +68,7 @@ class DiscussionController extends Controller
             $disc = Discussion::findOrFail($discId);
             return view('discussion.discussion')->with(['discussion' => $disc]);
         }
-        catch (Exception $exception)
+        catch (Exception)
         {
             return back();
         }
@@ -81,15 +79,14 @@ class DiscussionController extends Controller
      *
      * @param DiscussionCreationRequest $request
      * @param int $discussionId
-     * @return Response|Redirector|Application|RedirectResponse|View
+     * @return Response|Redirector|Application|RedirectResponse
      */
-    public function update(DiscussionCreationRequest $request,int $discussionId): Response|Redirector|Application|RedirectResponse|View
+    public function update(DiscussionCreationRequest $request,int $discussionId): Response|Redirector|Application|RedirectResponse
     {
         if(!Session::has('user')) return redirect('/');
         Discussion::where('id',$discussionId)
-            ->update($request->all());
-        $discussion = Article::find($discussionId);
-        return view('discussion.discussion')->with(['article' => $discussion]);
+            ->update($request->only(['subject']));
+        return redirect('discussion/'.$discussionId);
     }
 
     /**
@@ -106,7 +103,7 @@ class DiscussionController extends Controller
         if($discussionToDelete->writer_id === Session::get('user')->id)
         {
             $discussionToDelete->delete();
-            return view('discussion.discussions');
+            return redirect('discussions');
         }
         else
         {
@@ -119,11 +116,13 @@ class DiscussionController extends Controller
     /**
      * Get all the discussions by subject
      * @param Request $searchRequest
-     * @return mixed
+     * @return Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function searchBySubject(Request $searchRequest): mixed
+    public function searchBySubject(Request $searchRequest): Application|\Illuminate\Contracts\View\Factory|View
     {
-        return Discussion::where('title','LIKE',"%{$searchRequest->input('subject')}%")
-            ->get();
+        return \view('discussion.discussionlist')->with([
+            'discussions' => Discussion::where('title','LIKE',"%{$searchRequest->input('subject')}%")
+                ->get()
+        ]);
     }
 }

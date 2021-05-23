@@ -1,0 +1,9 @@
+html{
+    height: auto;
+}
+.discussion-add{
+    cursor: pointer;
+}
+.discussion-creation{
+    display: none;
+}
