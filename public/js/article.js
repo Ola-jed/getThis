@@ -15,6 +15,7 @@ const searchInput = document.getElementById("form-search");
 document.addEventListener('DOMContentLoaded',()=>{
     addForm.style.display = "none";
 });
+
 /**
  * Reload the page with the new articles to display
  * @param {boolean} isNext

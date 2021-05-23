@@ -12,9 +12,9 @@
 @section('content')
     @include('components.menu')
     <div class="hero-body">
-        <h2>Contact</h2>
         <form action="{{ url('contact') }}" method="post" class="box has-background-dark is-center has-text-white column is-4 is-offset-4 is-centered">
             @csrf
+            <h5 class="has-text-centered has-text-light is-white title is-5">Contact</h5>
             <div class="field column">
                 <label for="subject" class="label has-text-white">Subject</label>
                 <input type="text" name="subject" class="input is-primary" placeholder="Subject" required>

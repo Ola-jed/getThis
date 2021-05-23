@@ -10,15 +10,15 @@ html{
 .article-search{
     margin-left: 2%;
 }
-.article p a{
-    color: #b38a09;
-    text-decoration: none;
-}
-.article p a:hover{
-    text-decoration: underline;
-}
 .article-add{
     cursor: pointer;
+}
+.article-title{
+    display: block;
+    margin-bottom: 1%;
+}
+.article-author{
+    margin-bottom: 1%;
 }
 .article-add,.article-creation{
     padding-left: 2%;
@@ -42,40 +42,7 @@ html{
 .navigation-links{
     text-align: center;
 }
-.login-trigger {
-    font-weight: bold;
-    color: #fff;
-    background: linear-gradient(to bottom right, #B05574, #F87E7B);
-    padding: 15px 30px;
-    border-radius: 30px;
-    position: relative;
-    top: 50%;
-}
 h4 {
     font-weight: bold;
     color: #fff;
-}
-.close {
-    color: #fff;
-    transform: scale(1.2)
-}
-.modal-content {
-    font-weight: bold;
-    background: linear-gradient(to bottom right,#F87E7B,#B05574);
-}
-.form-control {
-    margin: 1em 0;
-}
-.form-control:hover, .form-control:focus {
-    box-shadow: none;
-    border-color: #fff;
-}
-.title, .subject {
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-    border-bottom: 2px solid #eee;
-    padding-left: 0;
-    font-weight: normal;
-    background: transparent;
 }
