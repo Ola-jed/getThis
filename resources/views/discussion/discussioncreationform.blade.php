@@ -1,6 +1,6 @@
-<form action="{{ url('/articles') }}" method="post" class="discussion-creation box">
+<form action="{{ url('/discussions') }}" method="post" class="discussion-creation box">
     @csrf
-    <h3>New discussion</h3>
+    <h3 class="is-centered">New discussion</h3>
     <div class="field">
         <label for="subject" class="label has-text-black">Subject</label>
         <input type="text" class="input is-primary" name="subject" placeholder="Subject" required>

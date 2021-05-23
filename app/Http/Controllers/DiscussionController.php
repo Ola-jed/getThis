@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Message;
 use Exception;
 use App\Http\Requests\DiscussionCreationRequest;
 use App\Models\Discussion;
@@ -66,7 +67,11 @@ class DiscussionController extends Controller
         try
         {
             $disc = Discussion::findOrFail($discId);
-            return view('discussion.discussion')->with(['discussion' => $disc]);
+            $messages = Message::where('discussion_id',$discId)->get();
+            return view('discussion.discussion')->with([
+                'discussion' => $disc,
+                'messages' => $messages
+            ]);
         }
         catch (Exception)
         {

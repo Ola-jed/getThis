@@ -26,7 +26,7 @@
             {{ $article->content }}
         </article>
         <div class="date">
-            <a href="{{ url('/profile/'.\App\Models\User::find($article->writer_id)->id) }}">{{ \App\Models\User::find($article->writer_id)->name }}</a>, on {{ date('F j , Y H:i:s', strtotime($article->created_at)) }}
+            <a href="{{ url('/profile/'.$article->writer_id) }}">{{ \App\Models\User::find($article->writer_id)->name }}</a>, on {{ date('F j , Y H:i:s', strtotime($article->created_at)) }}
             <p>Last update on {{ date('F j , Y H:i:s', strtotime($article->updated_at)) }}</p>
         </div>
         @if(\Illuminate\Support\Facades\Session::get('user')->id === $article->writer_id)

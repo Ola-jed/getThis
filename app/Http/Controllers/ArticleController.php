@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\DB;
 
 class ArticleController extends Controller
 {

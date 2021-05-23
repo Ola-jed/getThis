@@ -9,6 +9,7 @@
 @endsection
 
 @section('script')
+    <script src="{{ asset('js/discussions.js') }}" defer></script>
 @endsection
 
 @section('content')
