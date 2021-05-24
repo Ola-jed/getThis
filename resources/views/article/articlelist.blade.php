@@ -7,7 +7,9 @@
             <form action="{{ url('/article/'.$article->id) }}" method="post" class="delete-article" onsubmit="return false">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="button is-danger">Delete</button>
+                <button type="submit" class="button is-danger">
+                    <img src="{{ asset('images/delete.svg') }}" alt="delete">
+                </button>
             </form>
         @endif
     </div>

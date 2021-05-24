@@ -11,7 +11,9 @@ html{
     margin-left: 2%;
 }
 .article-add{
+    display: block;
     cursor: pointer;
+    text-align: right;
 }
 .article-title{
     display: block;

@@ -2,7 +2,9 @@ html{
     height: auto;
 }
 .discussion-add{
+    display: block;
     cursor: pointer;
+    text-align: right;
 }
 .discussion-creation{
     display: none;
