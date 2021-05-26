@@ -6,10 +6,13 @@
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/articles.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/common_articles_discussions.css') }}">
 @endsection
 
 @section('script')
     <script src="{{ asset('js/article.js') }}" defer></script>
+    <script src="{{ asset('js/navigation.js') }}" defer></script>
+    <script src="{{ asset('js/formShow.js') }}" defer></script>
 @endsection
 
 @section('content')
@@ -25,7 +28,7 @@
                 </button>
             </div>
         </div>
-        <span class="article-add">
+        <span class="add">
             <img src="{{ asset('images/plus.svg') }}" alt="">
         </span>
         @include('article.articleform')

@@ -2,18 +2,11 @@ html{
     height: auto;
 }
 .article{
-    border: 1px #ffffff solid;
-    box-shadow: 2px 2px gray;
     margin: 1%;
     padding: 1%;
 }
 .article-search{
     margin-left: 2%;
-}
-.article-add{
-    display: block;
-    cursor: pointer;
-    text-align: right;
 }
 .article-title{
     display: block;
@@ -21,16 +14,6 @@ html{
 }
 .article-author{
     margin-bottom: 1%;
-}
-.article-add,.article-creation{
-    padding-left: 2%;
-}
-.article-creation{
-    display: none ;
-}
-.article-creation h3{
-    text-align: center;
-    text-decoration: underline;
 }
 .article-subject{
     border: 1px #ffffff solid;

@@ -1,15 +1,14 @@
 html{
     height: auto;
 }
-.discussion-add{
-    display: block;
-    cursor: pointer;
-    text-align: right;
-}
-.discussion-creation{
-    display: none;
+.discussion{
+    margin: 1%;
+    padding: 1%;
 }
 .discussion-creation h3{
     text-align: center;
     text-decoration: underline;
+}
+.navigation-links{
+    text-align: center;
 }

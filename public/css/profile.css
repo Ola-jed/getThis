@@ -1,0 +1,10 @@
+html{
+    height: auto;
+}
+.articles, .discussions{
+    border: 1px rgba(0, 0, 0, 0.69) solid;
+    border-radius: 7px;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    padding: 1%;
+}

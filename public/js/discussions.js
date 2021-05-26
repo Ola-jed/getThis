@@ -1,17 +1,23 @@
 'use strict';
-const addBtn = document.querySelector(".discussion-add");
-const discCreationForm = document.querySelector(".discussion-creation");
+
+const searchBtn = document.querySelector(".search-btn");
+const searchInput = document.getElementById("form-search");
 
 /**
- * Variable to get visible status of the form to add a new article
- * @type {boolean}
+ * Search bar
+ * We call the controller and set the html content
  */
-let formIsVisible = false;
-
-/**
- * Listener on the add button to show the form
- */
-addBtn.onclick = function (){
-    formIsVisible = !formIsVisible;
-    discCreationForm.style.display = formIsVisible ? "block" : "none";
+searchBtn.onclick = function () {
+    fetch(`/discussions/subject?subject=${searchInput.value}`,{
+        method : 'GET'
+    }).then(function(response)
+    {
+        return response.text();
+    }).then(function(text)
+    {
+        document.querySelector(".discussions").innerHTML = text === "" ? "No result" : text;
+    }).catch(function(error)
+    {
+        console.log(error);
+    });
 };

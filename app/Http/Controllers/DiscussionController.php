@@ -31,8 +31,9 @@ class DiscussionController extends Controller
         if(!Session::has('user')) return redirect('/');
         // If a valid offset is given, we consider it. Otherwise, we start from zero
         $offset = $args->has(self::OFFSET) && intval($args->input(self::OFFSET)) > 0 ?
-            intval($args->input(self::OFFSET)) : 0;
+                intval($args->input(self::OFFSET)) : 0;
         $discussions = Discussion::withCount('messages')
+            ->orderBy('id','desc')
             ->limit(self::LIMIT_NUM)
             ->offset($offset)
             ->get();
@@ -103,7 +104,7 @@ class DiscussionController extends Controller
     public function destroy(int $discussionId): Factory|Response|View|RedirectResponse|Application
     {
         if(!Session::has('user')) return redirect('/');
-        // Check that connected user is author of the article
+        // Check that connected user is author of the discussion
         $discussionToDelete = Discussion::find($discussionId);
         if($discussionToDelete->writer_id === Session::get('user')->id)
         {
@@ -113,7 +114,7 @@ class DiscussionController extends Controller
         else
         {
             return back()->withErrors([
-                'message' => 'You don\'t have the permission to delete this article'
+                'message' => 'You don\'t have the permission to delete this discussion'
             ]);
         }
     }
@@ -126,7 +127,7 @@ class DiscussionController extends Controller
     public function searchBySubject(Request $searchRequest): Application|\Illuminate\Contracts\View\Factory|View
     {
         return \view('discussion.discussionlist')->with([
-            'discussions' => Discussion::where('title','LIKE',"%{$searchRequest->input('subject')}%")
+            'discussions' => Discussion::where('subject','LIKE',"%{$searchRequest->input('subject')}%")
                 ->get()
         ]);
     }

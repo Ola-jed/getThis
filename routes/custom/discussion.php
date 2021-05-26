@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 // Discussions
 Route::get('/discussions',[DiscussionController::class,'index']);
+Route::get('/discussions/subject',[DiscussionController::class,'searchBySubject']);
 Route::post('/discussions',[DiscussionController::class,'store']);
 
 // For a specific discussion

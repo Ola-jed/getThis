@@ -9,6 +9,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Discussion extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'creator_id',
+        'subject'
+    ];
 
     public function messages(): HasMany
     {

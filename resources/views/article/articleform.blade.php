@@ -1,4 +1,4 @@
-<form action="{{ url('/articles') }}" method="post" class="article-creation box">
+<form action="{{ url('/articles') }}" method="post" class="creation box">
     @csrf
     <h3>New article</h3>
     <div class="field">

@@ -1,0 +1,14 @@
+.add{
+    display: block;
+    cursor: pointer;
+    text-align: right;
+    margin: 1%;
+}
+
+.creation{
+    display: none;
+}
+.creation h3{
+    text-align: center;
+    text-decoration: underline;
+}
