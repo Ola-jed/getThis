@@ -105,3 +105,4 @@ searchBtn.onclick = function () {
         console.log(error);
     });
 };
+

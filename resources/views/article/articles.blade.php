@@ -6,7 +6,6 @@
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/articles.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/bulma/css/bulma.min.css') }}">
 @endsection
 
 @section('script')

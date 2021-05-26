@@ -4,13 +4,13 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-/*
+/**
  * Users table
  * A user has :
  * Name
  * Email
  * Password
- * Status (active or no)
+ * Google and github id's
  */
 class CreateUsersTable extends Migration
 {
