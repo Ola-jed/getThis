@@ -11,10 +11,17 @@ use Illuminate\Support\Facades\Session;
 
 class MessageController extends Controller
 {
+    /**
+     * Get all the messages relative to a discussion
+     * @param int $discussionId
+     * @return Factory|View|Application
+     */
     public function getAll(int $discussionId): Factory|View|Application
     {
         return \view('discussion.messages')->with([
-            'messages' => Message::where('discussion_id',$discussionId)->get()
+            'messages' => Message::where('discussion_id',$discussionId)
+                ->orderBy('id','desc')
+                ->get()
         ]);
     }
 

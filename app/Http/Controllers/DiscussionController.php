@@ -68,7 +68,9 @@ class DiscussionController extends Controller
         try
         {
             $disc = Discussion::findOrFail($discId);
-            $messages = Message::where('discussion_id',$discId)->get();
+            $messages = Message::where('discussion_id',$discId)
+                ->orderBy('id','desc')
+                ->get();
             return view('discussion.discussion')->with([
                 'discussion' => $disc,
                 'messages' => $messages

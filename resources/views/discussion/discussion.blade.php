@@ -9,12 +9,13 @@
 @endsection
 
 @section('script')
+    <script src="{{ asset('js/discussion.js') }}" defer></script>
 @endsection
 
 @section('content')
     @include('components.menu')
     <main>
-        <div class="has-text-white">
+        <div class="has-text-white infos">
             <h2 class="title has-text-white is-center">{{ $discussion->subject }}</h2>
             <p>Created by <a href="{{ url('/profile/'.$discussion->creator_id) }}">{{ \App\Models\User::find($discussion->creator_id)->name }}</a>, on {{ date('F j , Y H:i:s', strtotime($discussion->created_at)) }}</p>
         </div>

@@ -4,3 +4,6 @@ html{
 .messages{
     margin: 1%;
 }
+.infos p{
+    margin-bottom: 2%;
+}
