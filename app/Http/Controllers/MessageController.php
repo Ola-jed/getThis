@@ -3,14 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Message;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\View\View;
 use App\Http\Requests\MessageCreationRequest;
 use Illuminate\Support\Facades\Session;
 
 class MessageController extends Controller
 {
-    public function getAll()
+    public function getAll(int $discussionId): Factory|View|Application
     {
-
+        return \view('discussion.messages')->with([
+            'messages' => Message::where('discussion_id',$discussionId)->get()
+        ]);
     }
 
     /**

@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\DiscussionController;
+use App\Http\Controllers\MessageController;
 use Illuminate\Support\Facades\Route;
 
 // Discussions
@@ -13,4 +14,8 @@ Route::get('/discussion/{id}',[DiscussionController::class,'show'])
 Route::put('/discussion/{id}',[DiscussionController::class,'update'])
     ->where('id','[0-9]+');
 Route::delete('/discussion/{id}',[DiscussionController::class,'destroy'])
+    ->where('id','[0-9]+');
+
+// Messages
+Route::post('/discussion/id',[MessageController::class,'store'])
     ->where('id','[0-9]+');
