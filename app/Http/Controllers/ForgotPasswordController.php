@@ -38,7 +38,7 @@ class ForgotPasswordController extends Controller
             return back()->withErrors(['email' => 'Email not found']);
         }
         $status = Password::sendResetLink(
-            $forgetPasswordRequest->only('email')
+            $forgetPasswordRequest->input('email')
         );
         Session::put('email',$forgetPasswordRequest->input('email'));
         return $status === Password::RESET_LINK_SENT
@@ -73,7 +73,9 @@ class ForgotPasswordController extends Controller
             return back()->withErrors(['email' => 'Invalid email']);
         }
         User::where('email',$passwordResetRequest->input('email'))
-            ->update(['password' => Hash::make($passwordResetRequest->input('password'))]);
+            ->update([
+                'password' => Hash::make($passwordResetRequest->input('password'))
+            ]);
         return redirect('/signin');
     }
 }

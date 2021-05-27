@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CommentCreationRequest;
-use App\Models\Article;
 use App\Models\Comment;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
@@ -22,6 +21,7 @@ class CommentController extends Controller
     {
         if(!Session::has('user')) return redirect('/');
         $commentsRelated = Comment::where('article_id',$articleId)
+            ->orderBy('id','desc')
             ->get();
         return view('article.comments')->with(['comments' => $commentsRelated]);
     }

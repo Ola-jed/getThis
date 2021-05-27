@@ -28,7 +28,7 @@
             {{ $status ?? ''}}
         </form>
         @error('message')
-        <div class="invalid-feedback">{{ $message }}</div>
+            <div class="invalid-feedback">{{ $message }}</div>
         @enderror
     </div>
 @endsection

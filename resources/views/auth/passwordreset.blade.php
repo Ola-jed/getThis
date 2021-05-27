@@ -9,8 +9,6 @@
 @endsection
 
 @section('content')
-
-
     <div class="login-box">
         <h2>Password reset</h2>
         <form action="{{ url('reset-password') }}" method="post">
