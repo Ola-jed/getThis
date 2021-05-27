@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AccountUpdateRequest;
+use App\Mail\AccountDeletedMail;
 use App\Models\Article;
 use App\Models\Discussion;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\View\Factory;
 use Illuminate\View\View;
 use Illuminate\Routing\Redirector;
@@ -33,5 +38,39 @@ class ProfileController extends Controller
             'articles' => $articlesWritten,
             'discussions' => $discussionsCreated
         ]);
+    }
+
+    /**
+     * Update the account of the connected user
+     * @param AccountUpdateRequest $updateAccount
+     * @return Redirector|RedirectResponse|Application
+     */
+    public function update(AccountUpdateRequest $updateAccount): Redirector|RedirectResponse|Application
+    {
+        if(!Session::has('user')) return redirect('/');
+        $userToUpdate = User::find(Session::get('user')->id);
+        // Let's update the user attributes
+        $userToUpdate->name = $updateAccount->input('name');
+        $userToUpdate->email = $updateAccount->input('email');
+        $userToUpdate->password = empty($updateAccount->input('new_password')) ?
+            $userToUpdate->password : Hash::make($updateAccount->input('new_password'));
+        $userToUpdate->save();
+        return redirect('/profile');
+    }
+
+    /**
+     * Delete the account of the connected user
+     * @return Redirector|RedirectResponse|Application
+     */
+    public function destroy(): Redirector|RedirectResponse|Application
+    {
+        if(!Session::has('user')) return redirect('/');
+        if(User::destroy(Session::get('user')->id))
+        {
+            Mail::to(Session::get('user')->email)
+                ->send(new AccountDeletedMail(Session::get('user')));
+            return redirect('/register');
+        }
+        return back();
     }
 }

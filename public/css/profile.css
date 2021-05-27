@@ -8,3 +8,14 @@ html{
     margin-bottom: 1%;
     padding: 1%;
 }
+.profile-photo{
+    text-align: center;
+}
+#profile-update{
+    display: none;
+}
+.user-infos{
+    border: 2px solid #fff;
+    margin: 1% 1% 2%;
+    padding: 1%;
+}

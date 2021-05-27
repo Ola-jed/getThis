@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SignUpRequest extends FormRequest
+class AccountUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,8 +26,9 @@ class SignUpRequest extends FormRequest
         return [
             'name' => 'string|bail|required|max:30',
             'email' => 'email|bail|required|unique:users,email',
-            'password1' => 'string|bail|required|same:password2',
-            'password2' => 'string|bail|required|same:password1'
+            'initial_password' => 'string|bail|required',
+            'new_password' => 'string|bail|same:new_password_confirm',
+            'new_password_confirm' => 'string|bail|same:new_password'
         ];
     }
 }
