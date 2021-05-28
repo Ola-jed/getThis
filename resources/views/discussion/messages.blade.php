@@ -1,6 +1,6 @@
 @foreach($messages as $message)
     <div class="box">
-        <p><a href="{{ url('/profile/'.$message->writer_id) }}">{{ \App\Models\User::find($message->writer_id)->name }}</a></p>
+        <p><a href="{{ url('/account/'.$message->writer_id) }}">{{ \App\Models\User::find($message->writer_id)->name }}</a></p>
         <p>{{ $message->content }}</p>
         <hr>
         <p class="has-text-black">{{ date('F j , Y H:i:s', strtotime($message->created_at)) }}</p>

@@ -1,4 +1,4 @@
-<form action="{{ url('/profile') }}" method="post" id="profile-update" class="box has-background-dark has-text-white column is-offset-3">
+<form action="{{ url('/profile') }}" method="post" id="profile-update" class="box has-background-dark has-text-white column">
     @csrf
     @method('PUT')
     <h5 class="has-text-centered has-text-light is-white title is-5">Update account</h5>
@@ -25,7 +25,7 @@
     </div>
     <div class="field column">
         <label for="new_password" class="label has-text-white">New password (not required)</label>
-        <input type="password" name="email" class="input is-primary">
+        <input type="password" name="new_password" class="input is-primary">
         @error('new_password')
             <div class="help is-danger">{{ $message }}</div>
         @enderror
@@ -37,4 +37,5 @@
             <div class="help is-danger">{{ $message }}</div>
         @enderror
     </div>
+    <button type="submit" class="button is-primary">Update</button>
 </form>

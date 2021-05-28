@@ -34,9 +34,12 @@ class ProfileController extends Controller
         $discussionsCreated = Discussion::where('creator_id',Session::get('user')->id)
             ->limit(10)
             ->get();
+        $articleCount = Article::where('writer_id',Session::get('user')->id)
+            ->count();
         return \view('profile.profile')->with([
             'articles' => $articlesWritten,
-            'discussions' => $discussionsCreated
+            'discussions' => $discussionsCreated,
+            'article_count' => $articleCount
         ]);
     }
 
@@ -55,6 +58,7 @@ class ProfileController extends Controller
         $userToUpdate->password = empty($updateAccount->input('new_password')) ?
             $userToUpdate->password : Hash::make($updateAccount->input('new_password'));
         $userToUpdate->save();
+        Session::put('user',$userToUpdate);
         return redirect('/profile');
     }
 

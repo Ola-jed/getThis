@@ -13,9 +13,11 @@ html{
 }
 #profile-update{
     display: none;
+    margin-left: 0;
+    margin-top: 2%;
 }
 .user-infos{
     border: 2px solid #fff;
-    margin: 1% 1% 2%;
+    margin-bottom: 2%;
     padding: 1%;
 }

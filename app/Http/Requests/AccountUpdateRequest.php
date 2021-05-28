@@ -25,10 +25,10 @@ class AccountUpdateRequest extends FormRequest
     {
         return [
             'name' => 'string|bail|required|max:30',
-            'email' => 'email|bail|required|unique:users,email',
+            'email' => 'email|bail|required',
             'initial_password' => 'string|bail|required',
-            'new_password' => 'string|bail|same:new_password_confirm',
-            'new_password_confirm' => 'string|bail|same:new_password'
+            'new_password' => 'same:new_password_confirm',
+            'new_password_confirm' => 'same:new_password'
         ];
     }
 }
