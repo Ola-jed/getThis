@@ -29,7 +29,7 @@
             </div>
         </div>
         <span class="add">
-            <img src="{{ asset('images/plus.svg') }}" alt="">
+            <img src="{{ asset('images/plus.svg') }}" alt="Add">
         </span>
         @include('article.articleform')
         <div class="articles">

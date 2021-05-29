@@ -86,7 +86,7 @@ class UserSocialAuthController extends Controller
                         'message' => 'Registration with '.$driver.' failed'
                     ]);
                 }
-                Session::put('user',$user);
+                Session::put('user',$newUser);
                 return redirect('/');
             }
             return view('error')->with([
@@ -96,7 +96,7 @@ class UserSocialAuthController extends Controller
         catch (Exception $e)
         {
             return view('error')->with([
-                'message' => $e->getMessage()
+                'message' => 'Something weird happened'
             ]);
         }
     }

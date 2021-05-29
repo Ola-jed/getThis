@@ -17,5 +17,8 @@ let formIsVisible = false;
  */
 addBtn.onclick = function (){
     formIsVisible = !formIsVisible;
+    addBtn.innerHTML = formIsVisible
+        ? "<img src=\"images/minus.svg\" alt=\"Hide form\">"
+        : "<img src=\"images/plus.svg\" alt=\"Add\">";
     addForm.style.display = formIsVisible ? "block" : "none";
 };
