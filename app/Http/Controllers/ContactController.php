@@ -34,8 +34,11 @@ class ContactController extends Controller
     {
         if(!Session::has('user')) return redirect('/');
         Mail::to(self::ADMIN_EMAIL)
-            ->send(new ContactMail($request->input('subject'),
-                $request->input('subject'),Session::get('user')));
+            ->send(new ContactMail(
+                $request->input('subject'),
+                $request->input('subject'),
+                Session::get('user')
+            ));
         return view('others.contactsent');
     }
 }
