@@ -33,7 +33,7 @@ class ArticleController extends Controller
         $offset = $args->has(self::OFFSET) && intval($args->input(self::OFFSET)) > 0 ?
             intval($args->input(self::OFFSET)) : 0;
         $articles = Article::limit(self::LIMIT_NUM)
-            ->orderBy('id','desc')
+            ->latest()
             ->offset($offset)
             ->get();
         return view('article.articles')->with(['articles' => $articles]);
