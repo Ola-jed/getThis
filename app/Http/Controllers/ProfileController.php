@@ -28,13 +28,11 @@ class ProfileController extends Controller
     public function index(): View|Factory|Application|RedirectResponse
     {
         if(!Session::has('user')) return redirect('/');
-        $articlesWritten = Article::where('writer_id',Session::get('user')->id)
+        $articlesWritten = Session::get('user')->articles;
+        $discussionsCreated = Discussion::where('user_id',Session::get('user')->id)
             ->limit(10)
             ->get();
-        $discussionsCreated = Discussion::where('creator_id',Session::get('user')->id)
-            ->limit(10)
-            ->get();
-        $articleCount = Article::where('writer_id',Session::get('user')->id)
+        $articleCount = Article::where('user_id',Session::get('user')->id)
             ->count();
         return \view('profile.profile')->with([
             'articles' => $articlesWritten,

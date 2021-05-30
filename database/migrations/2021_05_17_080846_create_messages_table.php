@@ -23,10 +23,10 @@ class CreateMessagesTable extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('writer_id');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('discussion_id');
             $table->text('content');
-            $table->foreign('writer_id')
+            $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
                 ->cascadeOnDelete()

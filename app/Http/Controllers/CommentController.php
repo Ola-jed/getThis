@@ -36,7 +36,7 @@ class CommentController extends Controller
     {
         if(!Session::has('user')) return;
         Comment::create([
-            'writer_id' => Session::get('user')->id,
+            'user_id' => Session::get('user')->id,
             'article_id' => $articleId,
             'content' => $request->input('content')
         ]);
@@ -51,7 +51,7 @@ class CommentController extends Controller
     {
         if(!Session::has('user')) return false;
         $commentToDelete = Comment::find($commentId);
-        if($commentToDelete->writer_id === Session::get('user')->id)
+        if($commentToDelete->user_id === Session::get('user')->id)
         {
             return Comment::destroy($commentId);
         }
@@ -67,7 +67,7 @@ class CommentController extends Controller
     {
         if(!Session::has('user')) return;
         $commentToUpdate = Comment::find($commentId);
-        if($commentToUpdate->writer_id === Session::get('user')->id)
+        if($commentToUpdate->user_id === Session::get('user')->id)
         {
             $commentToUpdate->content = $request->input('content');
             $commentToUpdate->save();

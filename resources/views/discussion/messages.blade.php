@@ -1,10 +1,10 @@
 @foreach($messages as $message)
     <div class="box">
-        <p><a href="{{ url('/account/'.$message->writer_id) }}">{{ \App\Models\User::find($message->writer_id)->name }}</a></p>
+        <p><a href="{{ url('/account/'.$message->user_id) }}">{{ $message->user->name }}</a></p>
         <p>{{ $message->content }}</p>
         <hr>
         <p class="has-text-black">{{ date('F j , Y H:i:s', strtotime($message->created_at)) }}</p>
-        @if(\Illuminate\Support\Facades\Session::get('user')->id === $message->writer_id)
+        @if(\Illuminate\Support\Facades\Session::get('user')->id === $message->user_id)
             <form action="{{ url('/message/'.$message->id) }}" method="post" class="message-delete">
                 @csrf
                 @method('DELETE')

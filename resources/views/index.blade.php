@@ -22,7 +22,7 @@
                 <div class="article box ">
                     <p class="article-title"><a href="{{ url('article/'.$article->id) }}">{{ $article->title }}</a></p>
                     <p class="article-subject box has-background-dark has-text-white column is-one-third"> {{ $article->subject }}</p>
-                    <p class="article-author"><a href="{{ url('/profile/'.\App\Models\User::find($article->writer_id)->id) }}">{{ \App\Models\User::find($article->writer_id)->name }}</a> the {{ date('j F, Y H:i:s', strtotime($article->created_at)) }}</p>
+                    <p class="article-author"><a href="{{ url('/profile/'.$article->user_id) }}">{{ $article->user->name }}</a> the {{ date('j F, Y H:i:s', strtotime($article->created_at)) }}</p>
                 </div>
             @endforeach
         </div>

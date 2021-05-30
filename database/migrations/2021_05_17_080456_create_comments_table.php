@@ -22,10 +22,10 @@ class CreateCommentsTable extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('writer_id');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('article_id');
             $table->text('content');
-            $table->foreign('writer_id')
+            $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
                 ->cascadeOnDelete()

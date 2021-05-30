@@ -84,4 +84,14 @@ class UserAuthController extends Controller
             ]);
         }
     }
+
+    /**
+     * Logout the connected user
+     * @return Redirector|Application|RedirectResponse
+     */
+    public function logout(): Redirector|Application|RedirectResponse
+    {
+        Session::flush();
+        return redirect('/');
+    }
 }

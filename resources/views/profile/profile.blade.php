@@ -44,7 +44,7 @@
             </div>
         @endif
         <div>
-            <form action="{{ url('/profile') }}" method="post">
+            <form action="{{ url('/profile') }}" method="post" class="delete-profile">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="button is-danger is-outlined" name="delete">Delete my account</button>

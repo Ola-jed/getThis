@@ -52,7 +52,7 @@ class ArticleController extends Controller
             'subject' => $request->input('subject'),
             'title' => $request->input('title'),
             'content' => $request->input('content'),
-            'writer_id' => Session::get('user')->id
+            'user_id' => Session::get('user')->id
         ]);
         return redirect('article/'.$article->id);
     }
@@ -86,7 +86,7 @@ class ArticleController extends Controller
     {
         if(!Session::has('user')) return redirect('/');
         $articleToUpdate = Article::find($articleId);
-        if($articleToUpdate->writer_id === Session::get('user')->id)
+        if($articleToUpdate->user_id === Session::get('user')->id)
         {
             return \view('article.articleupdate')->with(['article' => $articleToUpdate]);
         }
@@ -117,7 +117,7 @@ class ArticleController extends Controller
     public function destroy(int $articleId): void
     {
         $articleToDelete = Article::find($articleId);
-        if($articleToDelete->writer_id === Session::get('user')->id)
+        if($articleToDelete->user_id === Session::get('user')->id)
         {
             $articleToDelete->delete();
         }

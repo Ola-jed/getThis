@@ -26,7 +26,7 @@ class ArticleFactory extends Factory
             'subject' => $this->faker->catchPhrase,
             'title' => $this->faker->sentence,
             'content' => $this->faker->sentences(15,true),
-            'writer_id' => $this->faker->randomElement(User::all()->pluck('id')->all())
+            'user_id' => $this->faker->randomElement(User::all()->pluck('id')->all())
         ];
     }
 }

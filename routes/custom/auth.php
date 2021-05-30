@@ -12,6 +12,7 @@ Route::post('{signin}',[UserAuthController::class,'signIn'])
     ->where('signin','signin|login');
 Route::post('{signup}',[UserAuthController::class,'signUp'])
     ->where('signup','signup|register');
+Route::post('logout',[UserAuthController::class,'logout']);
 
 // Forgotten password routes
 Route::get('forget-password', [ForgotPasswordController::class, 'forgetPasswordForm'])

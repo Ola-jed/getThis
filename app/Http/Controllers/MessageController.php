@@ -35,7 +35,7 @@ class MessageController extends Controller
         if(!Session::has('user')) return;
         Message::create([
             'content' => $messageCreationRequest->input('content'),
-            'writer_id' => Session::get('user')->id,
+            'user_id' => Session::get('user')->id,
             'discussion_id' => $discussionId
         ]);
     }
@@ -50,7 +50,7 @@ class MessageController extends Controller
     {
         if(!Session::has('user')) return false;
         $messageToDelete = Message::find($messageId);
-        if(Session::get('user')->id !== $messageToDelete->writer_id) return false;
+        if(Session::get('user')->id !== $messageToDelete->user_id) return false;
         return Message::destroy($messageId);
     }
 }

@@ -51,7 +51,7 @@ class DiscussionController extends Controller
         if(!Session::has('user')) return redirect('/');
         $discussion = Discussion::create([
             'subject' => $request->input('subject'),
-            'creator_id' => Session::get('user')->id
+            'user_id' => Session::get('user')->id
         ]);
         return redirect('discussion/'.$discussion->id);
     }
