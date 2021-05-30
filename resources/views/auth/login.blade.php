@@ -31,7 +31,7 @@
                 <button type="submit" class="button is-link is-outlined">Login</button>
             </div>
             @error('message')
-                <div class="help is-danger">{{ $message }}</div>
+                <div class="help is-danger has-text-centered">{{ $message }}</div>
             @enderror
             <div class="other">Or login with</div>
             <div class="other-login ">
