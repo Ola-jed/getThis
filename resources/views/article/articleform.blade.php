@@ -3,14 +3,14 @@
     <h3>New article</h3>
     <div class="field">
         <label for="subject" class="label has-text-black">Subject</label>
-        <input type="text" class="input is-primary" name="subject" placeholder="Subject" required>
+        <input type="text" class="input is-primary" name="subject" placeholder="Subject" maxlength="25" required>
         @error('subject')
             <div class="help is-danger">{{ $message }}</div>
         @enderror
     </div>
     <div class="field">
         <label for="subject" class="label has-text-black">Title</label>
-        <input type="text" class="input is-primary" name="title" placeholder="Title" required>
+        <input type="text" class="input is-primary" name="title" placeholder="Title" maxlength="25" required>
         @error('title')
             <div class="help is-danger">{{ $message }}</div>
         @enderror

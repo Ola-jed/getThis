@@ -71,7 +71,7 @@ class ArticleController extends Controller
             $article = Article::findOrFail($articleId);
             return view('article.article')->with(['article' => $article]);
         }
-        catch (Exception $exception)
+        catch (Exception)
         {
             return back();
         }

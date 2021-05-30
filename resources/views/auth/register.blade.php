@@ -16,7 +16,7 @@
             <h5 class="has-text-centered has-text-light is-white title is-5">Register</h5>
             <div class="field column is-two-thirds">
                 <label for="name" class="label has-text-white">Username</label>
-                <input type="text" class="input is-primary" name="name" placeholder="Name" required>
+                <input type="text" class="input is-primary" name="name" placeholder="Name" maxlength="25" required>
                 @error('name')
                     <div class="help is-danger">{{ $message }}</div>
                 @enderror

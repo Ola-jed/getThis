@@ -4,7 +4,7 @@
     <h5 class="has-text-centered has-text-light is-white title is-5">Update account</h5>
     <div class="field column">
         <label for="name" class="label has-text-white">Name</label>
-        <input type="text" name="name" class="input is-primary" value="{{ \Illuminate\Support\Facades\Session::get('user')->name }}" required>
+        <input type="text" name="name" class="input is-primary" value="{{ \Illuminate\Support\Facades\Session::get('user')->name }}" maxlength="25" required>
         @error('name')
             <div class="help is-danger">{{ $message }}</div>
         @enderror
