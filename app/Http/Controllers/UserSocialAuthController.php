@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\RegistrationMail;
 use Exception;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Hash;
@@ -86,6 +88,8 @@ class UserSocialAuthController extends Controller
                         'message' => 'Registration with '.$driver.' failed'
                     ]);
                 }
+                Mail::to($newUser->email)
+                    ->send(new RegistrationMail($newUser));
                 Session::put('user',$newUser);
                 return redirect('/');
             }
@@ -96,7 +100,7 @@ class UserSocialAuthController extends Controller
         catch (Exception $e)
         {
             return view('error')->with([
-                'message' => 'Something weird happened'
+                'message' => 'Something weird happened : '.$e->getMessage()
             ]);
         }
     }

@@ -71,8 +71,9 @@ class ProfileController extends Controller
         {
             Mail::to(Session::get('user')->email)
                 ->send(new AccountDeletedMail(Session::get('user')));
+            Session::flush();
             return redirect('/register');
         }
-        return back();
+        return redirect('/profile');
     }
 }

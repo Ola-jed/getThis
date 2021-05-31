@@ -33,10 +33,10 @@ class ContactController extends Controller
     public function sendContactForm(ContactRequest $request): Redirector|Application|RedirectResponse|View
     {
         if(!Session::has('user')) return redirect('/');
-        Mail::to(config('app.admin_email'))
+        Mail::to(env('ADMIN_EMAIL'))
             ->send(new ContactMail(
                 $request->input('subject'),
-                $request->input('subject'),
+                $request->input('content'),
                 Session::get('user')
             ));
         return view('others.contactsent');

@@ -45,7 +45,6 @@ class UserAuthController extends Controller
             Mail::to($userCreated->email)
                 ->send(new RegistrationMail($userCreated));
             return redirect('/');
-
         }
         else
         {
