@@ -7,7 +7,6 @@ const searchInput = document.getElementById("form-search");
 /**
  * Fetch method for article suppression
  * We iter on the array of delete buttons and add event listener
- * TODO: suppression fail
  */
 deleteArticles.forEach((e) => {
     e.addEventListener('submit',function (event) {

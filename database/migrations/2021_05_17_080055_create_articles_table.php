@@ -25,6 +25,7 @@ class CreateArticlesTable extends Migration
             $table->id();
             $table->string('subject');
             $table->string('title');
+            $table->string('slug');
             $table->text('content');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')

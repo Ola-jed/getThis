@@ -17,7 +17,7 @@ class Article extends Model
      */
     public function comments(): HasMany
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class)->latest();
     }
 
     /**
@@ -32,6 +32,7 @@ class Article extends Model
     protected $fillable = [
         'subject',
         'title',
+        'slug',
         'content',
         'user_id'
     ];

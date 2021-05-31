@@ -11,7 +11,7 @@
 @section('content')
     @include('components.menu')
     <main class="has-text-white">
-        <form action="{{ url('article/'.$article->id) }}" method="post">
+        <form action="{{ url('article/'.$article->slug) }}" method="post">
             @csrf
             @method('PUT')
             <div class="field">

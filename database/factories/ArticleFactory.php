@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Article;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class ArticleFactory extends Factory
 {
@@ -22,9 +23,11 @@ class ArticleFactory extends Factory
      */
     public function definition(): array
     {
+        $title = $this->faker->sentence;
         return [
             'subject' => $this->faker->catchPhrase,
-            'title' => $this->faker->sentence,
+            'title' => $title,
+            'slug' => Str::slug($title),
             'content' => $this->faker->sentences(15,true),
             'user_id' => $this->faker->randomElement(User::all()->pluck('id')->all())
         ];

@@ -24,8 +24,8 @@ class ArticleCreationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'subject' => 'string|bail|required|max:25',
-            'title' => 'string|bail|required|max:25',
+            'subject' => 'string|bail|required',
+            'title' => 'string|bail|required',
             'content' => 'string|bail|required'
         ];
     }

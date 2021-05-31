@@ -30,11 +30,11 @@
             <p>Last update on {{ date('F j , Y H:i:s', strtotime($article->updated_at)) }}</p>
         </div>
         @if(\Illuminate\Support\Facades\Session::get('user')->id === $article->user_id)
-            <a href="{{ url('/article/'.$article->id.'/update') }}" class="button is-link">Update</a>
+            <a href="{{ url('/article/'.$article->slug.'/update') }}" class="button is-link">Update</a>
         @endif
         <hr>
         <div class="comment-form">
-            <form action="{{ url('/article/'.$article->id.'/comments') }}" method="post" id="comment-post" onsubmit="return false">
+            <form action="{{ url('/article/'.$article->slug.'/comments') }}" method="post" id="comment-post" onsubmit="return false">
                 @csrf
                 <textarea name="content" id="content" cols="30" rows="10" placeholder="Your comment" required></textarea><br>
                 <button type="submit" class="button is-primary">Post</button>

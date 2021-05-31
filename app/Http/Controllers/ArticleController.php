@@ -10,10 +10,16 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
+/**
+ * Class ArticleController
+ * Controller for articles management
+ * @package App\Http\Controllers
+ */
 class ArticleController extends Controller
 {
     private const LIMIT_NUM = 10;
@@ -51,6 +57,7 @@ class ArticleController extends Controller
         $article = Article::create([
             'subject' => $request->input('subject'),
             'title' => $request->input('title'),
+            'slug' => Str::slug($request->input('title')),
             'content' => $request->input('content'),
             'user_id' => Session::get('user')->id
         ]);
@@ -60,63 +67,80 @@ class ArticleController extends Controller
     /**
      * Display the specified article.
      *
-     * @param int $articleId
+     * @param string $slug
      * @return Application|Factory|View|RedirectResponse
      */
-    public function show(int $articleId): Factory|View|RedirectResponse|Application
+    public function show(string $slug): Factory|View|RedirectResponse|Application
     {
         if(!Session::has('user')) return redirect('/');
         try
         {
-            $article = Article::findOrFail($articleId);
+            $article = Article::whereSlug($slug)
+                ->firstOrFail();
             return view('article.article')->with(['article' => $article]);
         }
         catch (Exception)
         {
-            return back();
+            return redirect('/articles');
         }
     }
 
     /**
      * Show the form to update the specified article
-     * @param int $articleId
+     * @param string $slug
      * @return Response|Redirector|Application|RedirectResponse|View
      */
-    public function edit(int $articleId): Response|Redirector|Application|RedirectResponse|View
+    public function edit(string $slug): Response|Redirector|Application|RedirectResponse|View
     {
         if(!Session::has('user')) return redirect('/');
-        $articleToUpdate = Article::find($articleId);
-        if($articleToUpdate->user_id === Session::get('user')->id)
+        try
         {
-            return \view('article.articleupdate')->with(['article' => $articleToUpdate]);
+            $articleToUpdate = Article::whereSlug($slug)
+                ->firstOrFail();
+            if($articleToUpdate->user_id === Session::get('user')->id)
+            {
+                return \view('article.articleupdate')->with(['article' => $articleToUpdate]);
+            }
+            return redirect('article/'.$slug);
         }
-        return redirect('article/'.$articleId);
+        catch (Exception)
+        {
+           return redirect('/articles');
+        }
     }
 
     /**
      * Update the specified article in database.
-     *
      * @param ArticleCreationRequest $request
-     * @param int $articleId
+     * @param string $slug
      * @return Response|Redirector|Application|RedirectResponse
      */
-    public function update(ArticleCreationRequest $request, int $articleId): Response|Redirector|Application|RedirectResponse
+    public function update(ArticleCreationRequest $request, string $slug): Response|Redirector|Application|RedirectResponse
     {
         if(!Session::has('user')) return redirect('/');
-        Article::where('id',$articleId)
-            ->update($request->only(['title','subject','content']));
-        return redirect('article/'.$articleId);
+        $articleToUpdate = Article::whereSlug($slug)->first();
+        if(Session::get('user')->id === $articleToUpdate->user_id)
+        {
+            $articleToUpdate->title = $request->input('title');
+            $articleToUpdate->slug = Str::slug($request->input('title'));
+            $articleToUpdate->subject = $request->input('subject');
+            $articleToUpdate->content = $request->input('content');
+            $articleToUpdate->save();
+            // When the update is finished, we redirect with the new slug
+            return redirect('article/'.Str::slug($request->input('title')));
+        }
+        return redirect('/articles');
     }
 
     /**
      * Remove the specified article
      * This method is built to be called by js
-     * @param int $articleId
+     * @param string $slug
      * @return void
      */
-    public function destroy(int $articleId): void
+    public function destroy(string $slug): void
     {
-        $articleToDelete = Article::find($articleId);
+        $articleToDelete = Article::whereSlug($slug)->first();
         if($articleToDelete->user_id === Session::get('user')->id)
         {
             $articleToDelete->delete();

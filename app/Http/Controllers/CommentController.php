@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CommentCreationRequest;
+use App\Models\Article;
 use App\Models\Comment;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
@@ -14,30 +15,30 @@ class CommentController extends Controller
 {
     /**
      * Get all comments related to an article
-     * @param int $articleId
+     * @param string $articleSlug
      * @return Redirector|Application|RedirectResponse|View
      */
-    public function getAll(int $articleId): Redirector|Application|RedirectResponse|View
+    public function getAll(string $articleSlug): Redirector|Application|RedirectResponse|View
     {
         if(!Session::has('user')) return redirect('/');
-        $commentsRelated = Comment::where('article_id',$articleId)
-            ->orderBy('id','desc')
-            ->get();
+        $commentsRelated = Article::whereSlug($articleSlug)
+            ->first()
+            ->comments;
         return view('article.comments')->with(['comments' => $commentsRelated]);
     }
 
     /**
      * Post a comment
      * @param CommentCreationRequest $request
-     * @param int $articleId
+     * @param string $articleSlug
      * @return void
      */
-    public function store(CommentCreationRequest $request, int $articleId): void
+    public function store(CommentCreationRequest $request, string $articleSlug): void
     {
         if(!Session::has('user')) return;
         Comment::create([
             'user_id' => Session::get('user')->id,
-            'article_id' => $articleId,
+            'article_id' => Article::whereSlug($articleSlug)->first()->id,
             'content' => $request->input('content')
         ]);
     }
