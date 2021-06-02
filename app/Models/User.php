@@ -21,8 +21,7 @@ class User extends Authenticatable
     }
 
     /**
-     * The attributes that are mass assignable.
-     *
+     * The attributes that are mass assignable
      * @var array
      */
     protected $fillable = [
@@ -30,7 +29,7 @@ class User extends Authenticatable
         'email',
         'password',
         'google_id',
-        'github_id',
+        'github_id'
     ];
 
     /**
@@ -39,7 +38,6 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password',
-        'remember_token'
+        'password'
     ];
 }
