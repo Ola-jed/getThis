@@ -15,9 +15,11 @@
             <div class="help is-danger">{{ $message }}</div>
         @enderror
     </div>
-    <textarea name="content" id="content" cols="30" rows="10" class="textarea is-primary" placeholder="My beautiful and incredible article" required></textarea><br>
+    <label class="label has-text-black">Content</label>
+    <div id="editor" class="textarea is-primary"></div>
+    <textarea name="content" id="content" hidden required></textarea><br>
     @error('content')
         <div class="invalid-feedback">{{ $message }}</div>
     @enderror
-    <button type="submit" class="button is-primary">Create</button>
+    <button type="submit" class="button is-primary" id="create-article">Create</button>
 </form>

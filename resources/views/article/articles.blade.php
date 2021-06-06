@@ -7,12 +7,16 @@
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/articles.css') }}">
     <link rel="stylesheet" href="{{ asset('css/common_articles_discussions.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/toastui-editor.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/codemirror.min.css') }}">
 @endsection
 
 @section('script')
     <script src="{{ asset('js/article.js') }}" defer></script>
     <script src="{{ asset('js/navigation.js') }}" defer></script>
     <script src="{{ asset('js/formShow.js') }}" defer></script>
+    <script src="{{ asset('js/toastui.min.js') }}" defer></script>
+    <script src="{{ asset('js/articleForm.js') }}" defer></script>
 @endsection
 
 @section('content')

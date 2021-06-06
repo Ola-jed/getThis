@@ -6,6 +6,9 @@
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/article.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/toastui-viewer.min.css') }}">
+    <script src="{{ asset('js/toastui-viewer.min.js') }}" defer></script>
+    <script src="{{ asset('js/articleContentShow.js') }}" defer></script>
 @endsection
 
 @section('script')
@@ -23,7 +26,10 @@
             {{ $article->subject }}
         </div>
         <article>
-            {{ $article->content }}
+            <div id="viewer" class="has-background-white">
+                {{-- No indentation because of md --}}
+{{ $article->content }}
+            </div>
         </article>
         <div class="date">
             <a href="{{ url('/profile/'.$article->user_id) }}">{{ $article->user->name }}</a>, on {{ date('F j , Y H:i:s', strtotime($article->created_at)) }}

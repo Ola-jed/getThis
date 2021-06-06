@@ -31,3 +31,7 @@ h4 {
     font-weight: bold;
     color: #fff;
 }
+div#editor{
+    margin: 0;
+    padding: 0;
+}
