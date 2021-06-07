@@ -7,6 +7,11 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
+/**
+ * Class AccountDeletedMail
+ * Mail sent when account is deleted
+ * @package App\Mail
+ */
 class AccountDeletedMail extends Mailable
 {
     use Queueable, SerializesModels;
@@ -29,7 +34,7 @@ class AccountDeletedMail extends Mailable
      */
     public function build()
     {
-        return $this->from('getthis020@gmail.com')
+        return $this->from(env('MAIL_FROM_ADDRESS'))
             ->subject('GetThis : User deleted')
             ->view('emails.accountdeleted');
     }

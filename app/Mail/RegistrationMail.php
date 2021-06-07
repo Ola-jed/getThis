@@ -7,6 +7,11 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
+/**
+ * Class RegistrationMail
+ * Mail sent to a new user
+ * @package App\Mail
+ */
 class RegistrationMail extends Mailable
 {
     use Queueable, SerializesModels;
@@ -29,7 +34,7 @@ class RegistrationMail extends Mailable
      */
     public function build(): RegistrationMail
     {
-        return $this->from('getthis020@gmail.com')
+        return $this->from(env('MAIL_FROM_ADDRESS'))
             ->subject('GetThis : Registration')
             ->view('emails.signupmail');
     }

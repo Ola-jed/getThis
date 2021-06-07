@@ -9,6 +9,11 @@ use Illuminate\View\View;
 use App\Http\Requests\MessageCreationRequest;
 use Illuminate\Support\Facades\Session;
 
+/**
+ * Class MessageController
+ * Messages posted in discussions
+ * @package App\Http\Controllers
+ */
 class MessageController extends Controller
 {
     /**

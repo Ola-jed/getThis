@@ -11,6 +11,11 @@ use Illuminate\Support\Collection;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Session;
 
+/**
+ * Class IndexController
+ * Index page
+ * @package App\Http\Controllers
+ */
 class IndexController extends Controller
 {
     /**

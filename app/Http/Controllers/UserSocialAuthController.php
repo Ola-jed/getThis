@@ -15,6 +15,11 @@ use Laravel\Socialite\Facades\Socialite;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Illuminate\Contracts\Foundation\Application;
 
+/**
+ * Class UserSocialAuthController
+ * Social auth with google and github
+ * @package App\Http\Controllers
+ */
 class UserSocialAuthController extends Controller
 {
     /**

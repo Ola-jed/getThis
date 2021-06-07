@@ -16,6 +16,11 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 
+/**
+ * Class UserAuthController
+ * Auth for users
+ * @package App\Http\Controllers
+ */
 class UserAuthController extends Controller
 {
     /**

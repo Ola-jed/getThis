@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * Class Discussion
+ * Discussions with a subject
+ * @package App\Models
+ */
 class Discussion extends Model
 {
     use HasFactory;

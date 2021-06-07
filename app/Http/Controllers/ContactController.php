@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 
+/**
+ * Class ContactController
+ * Controller for the contact form
+ * @package App\Http\Controllers
+ */
 class ContactController extends Controller
 {
     private const ADMIN_EMAIL = 'olabijed@gmail.com';

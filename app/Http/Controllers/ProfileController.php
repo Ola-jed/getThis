@@ -18,7 +18,11 @@ use Illuminate\View\View;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Session;
 
-
+/**
+ * Class ProfileController
+ * User profile
+ * @package App\Http\Controllers
+ */
 class ProfileController extends Controller
 {
     /**

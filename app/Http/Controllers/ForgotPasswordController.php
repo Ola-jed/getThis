@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Session;
 
+/**
+ * Class ForgotPasswordController
+ * Password reset, we send a link by email
+ * @package App\Http\Controllers
+ */
 class ForgotPasswordController extends Controller
 {
     /**

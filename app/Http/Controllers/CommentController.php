@@ -11,6 +11,11 @@ use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 
+/**
+ * Class CommentController
+ * Controller for comments posted under articles
+ * @package App\Http\Controllers
+ */
 class CommentController extends Controller
 {
     /**
