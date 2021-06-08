@@ -46,9 +46,9 @@
                 <button type="submit" class="button is-link is-outlined">Register</button>
             </div>
             <div class="register has-text-link"><a href="{{ url('/login') }}">Already registered ? Login</a></div>
+            @if($errors->has('message'))
+                <div class="help is-danger error">{{ $errors->first('message') }}</div>
+            @endif
         </form>
-        @error('message')
-            <div class="invalid-feedback">{{ $message }}</div>
-        @enderror
     </div>
 @endsection

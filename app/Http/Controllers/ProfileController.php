@@ -7,10 +7,8 @@ use App\Mail\AccountDeletedMail;
 use App\Models\Article;
 use App\Models\Discussion;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\View\Factory;
@@ -57,8 +55,9 @@ class ProfileController extends Controller
         // Let's update the user attributes
         $userToUpdate->name = $updateAccount->input('name');
         $userToUpdate->email = $updateAccount->input('email');
-        $userToUpdate->password = empty($updateAccount->input('new_password')) ?
-            $userToUpdate->password : Hash::make($updateAccount->input('new_password'));
+        $userToUpdate->password = empty($updateAccount->input('new_password'))
+            ? $userToUpdate->password
+            : Hash::make($updateAccount->input('new_password'));
         $userToUpdate->save();
         Session::put('user',$userToUpdate);
         return redirect('/profile');

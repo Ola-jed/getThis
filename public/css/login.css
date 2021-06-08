@@ -1,12 +1,6 @@
 body{
     overflow:hidden;
 }
-button{
-    margin: 1%;
-}
-form{
-    padding: 1%;
-}
 .other-login {
     position: center;
     margin-top: 4%;
@@ -38,4 +32,8 @@ form .field{
 }
 form .control{
     text-align: center;
+}
+.error{
+    text-align: center;
+    font-size: 1em;
 }

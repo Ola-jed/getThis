@@ -54,14 +54,19 @@ class ArticleController extends Controller
     public function store(ArticleCreationRequest $request): Redirector|RedirectResponse|Application
     {
         if(!Session::has('user')) return redirect('/');
-        $article = Article::create([
-            'subject' => $request->input('subject'),
-            'title' => $request->input('title'),
-            'slug' => Str::slug($request->input('title')),
-            'content' => $request->input('content'),
-            'user_id' => Session::get('user')->id
-        ]);
-        return redirect('article/'.$article->id);
+        try
+        {
+            $article = Article::createFromInformation($request->all(),Session::get('user'));
+            return redirect('article/'.$article->id);
+        }
+        catch (Exception)
+        {
+            return back()
+                ->withInput()
+                ->withErrors([
+                    'message' => 'Cannot create the user'
+                ]);
+        }
     }
 
     /**

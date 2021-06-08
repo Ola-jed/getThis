@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Str;
 
 /**
  * Class Article
@@ -15,6 +17,26 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Article extends Model
 {
     use HasFactory;
+
+    /**
+     * Create an article with the data and the writer
+     * @param array $information
+     * @param User $writer
+     * @return mixed
+     * @throws Exception
+     */
+    public static function createFromInformation(array $information, User $writer): Article
+    {
+        $article = Article::create([
+            'subject' => $information['subject'],
+            'title' => $information['title'],
+            'slug' => Str::slug($information['title']),
+            'content' => $information['content'],
+            'user_id' => $writer->id
+        ]);
+        if(is_null($article)) throw new Exception('Article creation failed');
+        return $article;
+    }
 
     /**
      * The comments related to the article

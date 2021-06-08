@@ -6,12 +6,12 @@ use App\Http\Requests\SignInRequest;
 use App\Http\Requests\SignUpRequest;
 use App\Mail\RegistrationMail;
 use App\Models\User;
+use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
@@ -39,21 +39,19 @@ class UserAuthController extends Controller
      */
     public function signUp(SignUpRequest $signInRequest): Redirector|Application|RedirectResponse|View
     {
-        $userCreated = User::create([
-            'name' => $signInRequest->input('name'),
-            'email' => $signInRequest->input('email'),
-            'password' => Hash::make($signInRequest->input('password1'))
-        ]);
-        if($userCreated != null)
+        try
         {
+            $userCreated = User::createFromInformation($signInRequest->all());
             Session::put('user',$userCreated);
             Mail::to($userCreated->email)
                 ->send(new RegistrationMail($userCreated));
             return redirect('/');
         }
-        else
+        catch (Exception)
         {
-            return back()->withErrors([
+            return back()
+                ->withInput()
+                ->withErrors([
                 'message' => 'Cannot create the user'
             ]);
         }
@@ -83,7 +81,9 @@ class UserAuthController extends Controller
         }
         else
         {
-            return back()->withErrors([
+            return back()
+                ->withInput()
+                ->withErrors([
                 'message' => 'Invalid password or email'
             ]);
         }

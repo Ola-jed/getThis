@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * Class User
@@ -15,6 +17,23 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
+
+    /**
+     * Creates  new user from the request data
+     * @param array $information
+     * @return User
+     * @throws Exception
+     */
+    public static function createFromInformation(array $information): User
+    {
+        $user = User::create([
+            'name' => $information['name'],
+            'email' => $information['email'],
+            'password' => Hash::make($information['password1'])
+        ]);
+        if(is_null($user)) throw new Exception('Cannot create user');
+        return $user;
+    }
 
     /**
      * Get all the articles written by the user
