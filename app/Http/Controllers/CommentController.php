@@ -51,15 +51,15 @@ class CommentController extends Controller
     /**
      * Delete a comment
      * @param int $commentId
-     * @return bool|int
+     * @return bool
      */
-    public function deleteComment(int $commentId): bool|int
+    public function deleteComment(int $commentId): bool
     {
         if(!Session::has('user')) return false;
         $commentToDelete = Comment::find($commentId);
         if($commentToDelete->user_id === Session::get('user')->id)
         {
-            return Comment::destroy($commentId);
+            return boolval(Comment::destroy($commentId));
         }
         return false;
     }
