@@ -18,25 +18,14 @@
             <img src="{{ asset('images/article.svg') }}" alt="">
         </h3>
         <div class="latest-articles">
-            @foreach($latest as $article)
-                <div class="article box ">
-                    <p class="article-title"><a href="{{ url('article/'.$article->id) }}">{{ $article->title }}</a></p>
-                    <p class="article-subject box has-background-dark has-text-white column is-one-third"> {{ $article->subject }}</p>
-                    <p class="article-author"><a href="{{ url('/profile/'.$article->user_id) }}">{{ $article->user->name }}</a> the {{ date('j F, Y H:i:s', strtotime($article->created_at)) }}</p>
-                </div>
-            @endforeach
+            @include('article.articlelist')
         </div>
         <h3 class="has-text-centered title has-text-white">
             Hottest discussions
             <img src="{{ asset('images/discussion.svg') }}" alt="">
         </h3>
         <div class="hottest-discussions">
-            @foreach($hottest as $discussion)
-                <div class="discussion box">
-                    <p class="discussion-title"><a href="{{ url('discussion/'.$discussion->id) }}">{{ $discussion->subject }}</a></p>
-                    <p class="discussion-message-number">{{ $discussion->messages_count }} message(s)</p>
-                </div>
-            @endforeach
+            @include('discussion.discussionlist')
         </div>
     </main>
     @include('components.footer')

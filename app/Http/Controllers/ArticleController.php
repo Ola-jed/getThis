@@ -96,8 +96,7 @@ class ArticleController extends Controller
         if(!Session::has('user')) return redirect('/');
         try
         {
-            $articleToUpdate = Article::whereSlug($slug)
-                ->firstOrFail();
+            $articleToUpdate = Article::getBySlug($slug);
             if($articleToUpdate->user_id === Session::get('user')->id)
             {
                 return \view('article.articleupdate')->with(['article' => $articleToUpdate]);
@@ -119,7 +118,7 @@ class ArticleController extends Controller
     public function update(ArticleCreationRequest $request, string $slug): Response|Redirector|Application|RedirectResponse
     {
         if(!Session::has('user')) return redirect('/');
-        $articleToUpdate = Article::whereSlug($slug)->first();
+        $articleToUpdate = Article::getBySlug($slug);
         if(Session::get('user')->id === $articleToUpdate->user_id)
         {
             $articleToUpdate->title = $request->input('title');

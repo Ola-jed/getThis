@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Collection;
 
 /**
  * Class Discussion
@@ -15,6 +16,18 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Discussion extends Model
 {
     use HasFactory;
+
+    /**
+     * Get the n hottest discussions
+     * @param int $number
+     * @return Collection
+     */
+    public static function getHottest(int $number): Collection
+    {
+        return Discussion::withCount('messages')
+            ->orderBy('messages_count', 'desc')
+            ->get($number);
+    }
 
     /**
      * Get the messages of the discussion

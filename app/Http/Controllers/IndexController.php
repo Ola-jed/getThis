@@ -27,32 +27,10 @@ class IndexController extends Controller
         if(Session::has('user'))
         {
             return view('index')->with([
-                'latest' => $this->getLatestArticles(),
-                'hottest' => $this->getHottestDiscussions()
+                'articles' => Article::getLatest(5),
+                'discussions' => Discussion::getHottest(10)
             ]);
         }
         return redirect('/login');
-    }
-
-    /**
-     * Get the 5 latest articles
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function getLatestArticles(): \Illuminate\Database\Eloquent\Collection
-    {
-        return Article::Orderby('created_at','DESC')
-            ->limit(5)
-            ->get();
-    }
-
-    /**
-     * Get the discussions with the most messages
-     * @return Collection
-     */
-    public function getHottestDiscussions(): Collection
-    {
-        return Discussion::withCount('messages')
-            ->orderBy('messages_count', 'desc')
-            ->get(10);
     }
 }

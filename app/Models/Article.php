@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
-use Ramsey\Collection\Collection;
+use Illuminate\Database\Eloquent\Collection;
 
 /**
  * Class Article
@@ -58,6 +58,18 @@ class Article extends Model
     public static function searchBySubject(string $subject): Collection
     {
         return Article::where('subject',$subject)
+            ->get();
+    }
+
+    /**
+     * Get the latest articles with the nuber given
+     * @param int $number
+     * @return Collection
+     */
+    public static function getLatest(int $number): Collection
+    {
+        return Article::latest()
+            ->limit(5)
             ->get();
     }
 
