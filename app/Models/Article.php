@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
+use Ramsey\Collection\Collection;
 
 /**
  * Class Article
@@ -36,6 +37,53 @@ class Article extends Model
         ]);
         if(is_null($article)) throw new Exception('Article creation failed');
         return $article;
+    }
+
+    /**
+     * Search an article with the title
+     * @param string $title
+     * @return Collection
+     */
+    public static function searchByTitle(string $title): Collection
+    {
+        return Article::where('title','LIKE','%'.$title.'%')
+            ->get();
+    }
+
+    /**
+     * Search an article with the subject
+     * @param string $subject
+     * @return Collection
+     */
+    public static function searchBySubject(string $subject): Collection
+    {
+        return Article::where('subject',$subject)
+            ->get();
+    }
+
+    /**
+     * Get an article by slug
+     * @param string $slug
+     * @return Article
+     */
+    public static function getBySlug(string $slug): Article
+    {
+        return Article::whereSlug($slug)
+            ->firstOrFail();
+    }
+
+    /**
+     * Get with limit and offset
+     * @param int $limit
+     * @param int $offset
+     * @return Collection
+     */
+    public static function getByLimitAndOffset(int $limit, int $offset = 0): Collection
+    {
+        return Article::limit($limit)
+            ->latest()
+            ->offset($offset)
+            ->get();
     }
 
     /**

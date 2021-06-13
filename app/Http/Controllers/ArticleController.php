@@ -38,10 +38,7 @@ class ArticleController extends Controller
         // If a valid offset is given, we consider it. Otherwise, we start from zero
         $offset = $args->has(self::OFFSET) && intval($args->input(self::OFFSET)) > 0 ?
             intval($args->input(self::OFFSET)) : 0;
-        $articles = Article::limit(self::LIMIT_NUM)
-            ->latest()
-            ->offset($offset)
-            ->get();
+        $articles = Article::getByLimitAndOffset(self::LIMIT_NUM,$offset);
         return view('article.articles')->with(['articles' => $articles]);
     }
 
@@ -80,8 +77,7 @@ class ArticleController extends Controller
         if(!Session::has('user')) return redirect('/');
         try
         {
-            $article = Article::whereSlug($slug)
-                ->firstOrFail();
+            $article = Article::getBySlug($slug);
             return view('article.article')->with(['article' => $article]);
         }
         catch (Exception)
@@ -160,8 +156,7 @@ class ArticleController extends Controller
     public function searchBySubject(Request $subjectRequested): Factory|\Illuminate\Contracts\View\View|Application
     {
         return \view('article.articlelist')->with([
-            'articles' => Article::where('subject',$subjectRequested->input('subject'))
-                ->get()
+            'articles' => Article::searchBySubject($subjectRequested->input('subject'))
         ]);
     }
 
@@ -173,8 +168,7 @@ class ArticleController extends Controller
     public function searchByTitle(Request $searchRequest): \Illuminate\Contracts\View\View|Factory|Application
     {
         return \view('article.articlelist')->with([
-            'articles' => Article::where('title','LIKE','%'.$searchRequest->input('title').'%')
-                ->get()
+            'articles' => Article::searchByTitle($searchRequest->input('title'))
         ]);
     }
 }
