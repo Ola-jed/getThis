@@ -24,9 +24,7 @@ class MessageController extends Controller
     public function getAll(int $discussionId): Factory|View|Application
     {
         return \view('discussion.messages')->with([
-            'messages' => Message::where('discussion_id',$discussionId)
-                ->orderBy('id','desc')
-                ->get()
+            'messages' => Message::getLatestOfDiscussion($discussionId)
         ]);
     }
 

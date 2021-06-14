@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -14,6 +15,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Message extends Model
 {
     use HasFactory;
+
+    /**
+     * Get the latest messages of a discussion
+     * @param int $discussionId
+     * @return Collection
+     */
+    public static function getLatestOfDiscussion(int $discussionId): Collection
+    {
+        return Message::where('discussion_id',$discussionId)
+            ->oldest('id','desc')
+            ->get();
+    }
 
     /**
      * Get the discussion related to this message

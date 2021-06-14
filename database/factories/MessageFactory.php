@@ -6,7 +6,6 @@ use App\Models\Discussion;
 use App\Models\Message;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use JetBrains\PhpStorm\ArrayShape;
 
 class MessageFactory extends Factory
 {

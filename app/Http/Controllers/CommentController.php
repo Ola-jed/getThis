@@ -26,9 +26,7 @@ class CommentController extends Controller
     public function getAll(string $articleSlug): Redirector|Application|RedirectResponse|View
     {
         if(!Session::has('user')) return redirect('/');
-        $commentsRelated = Article::whereSlug($articleSlug)
-            ->first()
-            ->comments;
+        $commentsRelated = Article::getBySlug($articleSlug)->comments;
         return view('article.comments')->with(['comments' => $commentsRelated]);
     }
 

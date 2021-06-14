@@ -52,3 +52,7 @@ legend{
 #comment-post button{
     margin-top: 2%;
 }
+#viewer{
+    border-radius: 10px;
+    padding: 1%;
+}

@@ -14,4 +14,4 @@ use Illuminate\Support\Facades\Route;
 | The custom routes for web are in the "/custom" folder
 */
 
-Route::get('/',[IndexController::class,'index']);
+Route::get('/',[IndexController::class,'index'])->name('index');
