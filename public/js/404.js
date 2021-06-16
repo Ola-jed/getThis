@@ -24,7 +24,7 @@ function randomTime(min, max)
  */
 function randomHole(holes)
 {
-    const index  = Math.floor(Math.random() * holes.length);
+    const index = Math.floor(Math.random() * holes.length);
     const hole = holes[index];
     // Prevent same hole from getting the same number
     if (hole === lastHole)

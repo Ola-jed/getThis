@@ -10,7 +10,6 @@ use Illuminate\View\View;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Contracts\View\Factory;
-use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Illuminate\Contracts\Foundation\Application;
@@ -61,7 +60,7 @@ class UserSocialAuthController extends Controller
     /**
      * @param string $driver
      * @param string $column
-     * @return Factory|Redirector|Application|\Illuminate\Http\RedirectResponse|Illuminate\View\View
+     * @return Factory|Redirector|Application|\Illuminate\Http\RedirectResponse|View
      */
     private function callback(string $driver, string $column): Factory|Redirector|Application|\Illuminate\Http\RedirectResponse|View
     {
@@ -70,9 +69,9 @@ class UserSocialAuthController extends Controller
             $user = Socialite::driver($driver)->user();
             $findUser = User::where($column, $user->id)
                 ->first();
-            if ($findUser)
+            if (!is_null($findUser))
             {
-                Session::put('user',$user);
+                session(['user' => $user]);
                 return redirect('/');
             }
             // else
@@ -95,7 +94,7 @@ class UserSocialAuthController extends Controller
                 }
                 Mail::to($newUser->email)
                     ->send(new RegistrationMail($newUser));
-                Session::put('user',$newUser);
+                session(['user' => $newUser]);
                 return redirect('/');
             }
             return view('error')->with([

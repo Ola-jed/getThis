@@ -13,7 +13,6 @@ use Illuminate\Http\Response;
 use Illuminate\View\Factory;
 use Illuminate\View\View;
 use Illuminate\Routing\Redirector;
-use Illuminate\Support\Facades\Session;
 
 /**
  * Class DiscussionController
@@ -33,12 +32,12 @@ class DiscussionController extends Controller
      */
     public function index(Request $args): View|Factory|Application|RedirectResponse
     {
-        if(!Session::has('user')) return redirect('/');
+        if(!session()->has('user')) return redirect('/');
         // If a valid offset is given, we consider it. Otherwise, we start from zero
         $offset = $args->has(self::OFFSET) && intval($args->input(self::OFFSET)) > 0 ?
                 intval($args->input(self::OFFSET)) : 0;
         $discussions = Discussion::withCount('messages')
-            ->orderBy('id','desc')
+            ->latest()
             ->limit(self::LIMIT_NUM)
             ->offset($offset)
             ->get();
@@ -53,11 +52,12 @@ class DiscussionController extends Controller
      */
     public function store(DiscussionCreationRequest $request): Redirector|RedirectResponse|Application
     {
-        if(!Session::has('user')) return redirect('/');
+        if(!session()->has('user')) return redirect('/');
         $discussion = Discussion::create([
             'subject' => $request->input('subject'),
-            'user_id' => Session::get('user')->id
+            'user_id' => session()->get('user')->id
         ]);
+        if(is_null($discussion)) return back();
         return redirect('discussion/'.$discussion->id);
     }
 
@@ -69,12 +69,12 @@ class DiscussionController extends Controller
      */
     public function show(int $discId): Factory|View|RedirectResponse|Application
     {
-        if(!Session::has('user')) return redirect('/');
+        if(!session()->has('user')) return redirect('/');
         try
         {
             $disc = Discussion::findOrFail($discId);
             $messages = Message::where('discussion_id',$discId)
-                ->orderBy('id','desc')
+                ->latest()
                 ->get();
             return view('discussion.discussion')->with([
                 'discussion' => $disc,
@@ -96,7 +96,7 @@ class DiscussionController extends Controller
      */
     public function update(DiscussionCreationRequest $request,int $discussionId): Response|Redirector|Application|RedirectResponse
     {
-        if(!Session::has('user')) return redirect('/');
+        if(!session()->has('user')) return redirect('/');
         Discussion::where('id',$discussionId)
             ->update($request->only(['subject']));
         return redirect('discussion/'.$discussionId);
@@ -110,10 +110,10 @@ class DiscussionController extends Controller
      */
     public function destroy(int $discussionId): Factory|Response|View|RedirectResponse|Application
     {
-        if(!Session::has('user')) return redirect('/');
+        if(!session()->has('user')) return redirect('/');
         // Check that connected user is author of the discussion
         $discussionToDelete = Discussion::find($discussionId);
-        if($discussionToDelete->writer_id === Session::get('user')->id)
+        if($discussionToDelete->writer_id === session()->get('user')->id)
         {
             $discussionToDelete->delete();
             return redirect('discussions');
@@ -134,8 +134,7 @@ class DiscussionController extends Controller
     public function searchBySubject(Request $searchRequest): Application|\Illuminate\Contracts\View\Factory|View
     {
         return \view('discussion.discussionlist')->with([
-            'discussions' => Discussion::where('subject','LIKE',"%{$searchRequest->input('subject')}%")
-                ->get()
+            'discussions' => Discussion::getBySubject($searchRequest->input('subject'))
         ]);
     }
 }

@@ -30,6 +30,17 @@ class Discussion extends Model
     }
 
     /**
+     * Get all articles by subject
+     * @param string $subject
+     * @return Collection
+     */
+    public static function getBySubject(string $subject): Collection
+    {
+        return Discussion::where('subject','LIKE',"%{$subject}%")
+            ->get();
+    }
+
+    /**
      * Get the messages of the discussion
      * @return HasMany
      */

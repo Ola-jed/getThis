@@ -6,4 +6,3 @@ const viewer = new Viewer({
     height: 'auto',
     initialValue: initialValue
 });
-console.log(initialValue);

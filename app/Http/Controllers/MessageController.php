@@ -7,7 +7,6 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
 use App\Http\Requests\MessageCreationRequest;
-use Illuminate\Support\Facades\Session;
 
 /**
  * Class MessageController
@@ -35,10 +34,10 @@ class MessageController extends Controller
      */
     public function store(int $discussionId, MessageCreationRequest $messageCreationRequest)
     {
-        if(!Session::has('user')) return;
+        if(!session()->has('user')) return;
         Message::create([
             'content' => $messageCreationRequest->input('content'),
-            'user_id' => Session::get('user')->id,
+            'user_id' => session()->get('user')->id,
             'discussion_id' => $discussionId
         ]);
     }
@@ -51,9 +50,9 @@ class MessageController extends Controller
      */
     public function destroy(int $messageId): bool
     {
-        if(!Session::has('user')) return false;
+        if(!session()->has('user')) return false;
         $messageToDelete = Message::find($messageId);
-        if(Session::get('user')->id !== $messageToDelete->user_id) return false;
+        if(session()->get('user')->id !== $messageToDelete->user_id) return false;
         return Message::destroy($messageId);
     }
 }

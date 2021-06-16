@@ -8,7 +8,6 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 
 /**
@@ -18,15 +17,13 @@ use Illuminate\View\View;
  */
 class ContactController extends Controller
 {
-    private const ADMIN_EMAIL = 'olabijed@gmail.com';
-
     /**
      * Show the contact form
      * @return Redirector|Application|RedirectResponse|View
      */
     public function index(): Redirector|Application|RedirectResponse|View
     {
-        if(!Session::has('user')) return redirect('/');
+        if(!session()->has('user')) return redirect('/');
         return view('others.contactform');
     }
 
@@ -37,12 +34,12 @@ class ContactController extends Controller
      */
     public function sendContactForm(ContactRequest $request): Redirector|Application|RedirectResponse|View
     {
-        if(!Session::has('user')) return redirect('/');
+        if(!session()->has('user')) return redirect('/');
         Mail::to(env('ADMIN_EMAIL'))
             ->send(new ContactMail(
                 $request->input('subject'),
                 $request->input('content'),
-                Session::get('user')
+                session()->get('user')
             ));
         return view('others.contactsent');
     }

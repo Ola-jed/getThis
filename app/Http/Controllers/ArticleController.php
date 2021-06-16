@@ -9,7 +9,6 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
@@ -34,7 +33,7 @@ class ArticleController extends Controller
      */
     public function index(Request $args): View|Factory|Application|RedirectResponse
     {
-        if(!Session::has('user')) return redirect('/');
+        if(!session()->has('user')) return redirect('/');
         // If a valid offset is given, we consider it. Otherwise, we start from zero
         $offset = $args->has(self::OFFSET) && intval($args->input(self::OFFSET)) > 0 ?
             intval($args->input(self::OFFSET)) : 0;
@@ -50,10 +49,10 @@ class ArticleController extends Controller
      */
     public function store(ArticleCreationRequest $request): Redirector|RedirectResponse|Application
     {
-        if(!Session::has('user')) return redirect('/');
+        if(!session()->has('user')) return redirect('/');
         try
         {
-            $article = Article::createFromInformation($request->all(),Session::get('user'));
+            $article = Article::createFromInformation($request->all(),session()->get('user'));
             return redirect('article/'.$article->id);
         }
         catch (Exception)
@@ -74,7 +73,7 @@ class ArticleController extends Controller
      */
     public function show(string $slug): Factory|View|RedirectResponse|Application
     {
-        if(!Session::has('user')) return redirect('/');
+        if(!session()->has('user')) return redirect('/');
         try
         {
             $article = Article::getBySlug($slug);
@@ -93,11 +92,11 @@ class ArticleController extends Controller
      */
     public function edit(string $slug): Response|Redirector|Application|RedirectResponse|View
     {
-        if(!Session::has('user')) return redirect('/');
+        if(!session()->has('user')) return redirect('/');
         try
         {
             $articleToUpdate = Article::getBySlug($slug);
-            if($articleToUpdate->user_id === Session::get('user')->id)
+            if($articleToUpdate->user_id === session()->get('user')->id)
             {
                 return \view('article.articleupdate')->with(['article' => $articleToUpdate]);
             }
@@ -117,9 +116,9 @@ class ArticleController extends Controller
      */
     public function update(ArticleCreationRequest $request, string $slug): Response|Redirector|Application|RedirectResponse
     {
-        if(!Session::has('user')) return redirect('/');
+        if(!session()->has('user')) return redirect('/');
         $articleToUpdate = Article::getBySlug($slug);
-        if(Session::get('user')->id === $articleToUpdate->user_id)
+        if(session()->get('user')->id === $articleToUpdate->user_id)
         {
             $articleToUpdate->title = $request->input('title');
             $articleToUpdate->slug = Str::slug($request->input('title'));
@@ -141,7 +140,7 @@ class ArticleController extends Controller
     public function destroy(string $slug): void
     {
         $articleToDelete = Article::whereSlug($slug)->first();
-        if($articleToDelete->user_id === Session::get('user')->id)
+        if($articleToDelete->user_id === session()->get('user')->id)
         {
             $articleToDelete->delete();
         }

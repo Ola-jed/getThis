@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AccountUpdateRequest;
 use App\Mail\AccountDeletedMail;
-use App\Models\Article;
 use App\Models\Discussion;
 use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
@@ -14,7 +13,6 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\View\Factory;
 use Illuminate\View\View;
 use Illuminate\Routing\Redirector;
-use Illuminate\Support\Facades\Session;
 
 /**
  * Class ProfileController
@@ -29,13 +27,15 @@ class ProfileController extends Controller
      */
     public function index(): View|Factory|Application|RedirectResponse
     {
-        if(!Session::has('user')) return redirect('/');
-        $articlesWritten = Session::get('user')->articles;
-        $discussionsCreated = Discussion::where('user_id',Session::get('user')->id)
+        if(!session()->has('user')) return redirect('/');
+        $articlesWritten = session()->get('user')->articles;
+        $articleCount = count($articlesWritten);
+        $discussionsCreated = session()->get('user')
+            ->discussions()
+            ->withCount('messages')
+            ->orderBy('messages_count', 'desc')
             ->limit(10)
             ->get();
-        $articleCount = Article::where('user_id',Session::get('user')->id)
-            ->count();
         return \view('profile.profile')->with([
             'articles' => $articlesWritten,
             'discussions' => $discussionsCreated,
@@ -50,8 +50,8 @@ class ProfileController extends Controller
      */
     public function update(AccountUpdateRequest $updateAccount): Redirector|RedirectResponse|Application
     {
-        if(!Session::has('user')) return redirect('/');
-        $userToUpdate = User::find(Session::get('user')->id);
+        if(!session()->has('user')) return redirect('/');
+        $userToUpdate = User::find(session()->get('user')->id);
         // Let's update the user attributes
         $userToUpdate->name = $updateAccount->input('name');
         $userToUpdate->email = $updateAccount->input('email');
@@ -59,7 +59,7 @@ class ProfileController extends Controller
             ? $userToUpdate->password
             : Hash::make($updateAccount->input('new_password'));
         $userToUpdate->save();
-        Session::put('user',$userToUpdate);
+        session(['user' => $userToUpdate]);
         return redirect('/profile');
     }
 
@@ -69,12 +69,12 @@ class ProfileController extends Controller
      */
     public function destroy(): Redirector|RedirectResponse|Application
     {
-        if(!Session::has('user')) return redirect('/');
-        if(User::destroy(Session::get('user')->id))
+        if(!session()->has('user')) return redirect('/');
+        if(User::destroy(session()->get('user')->id))
         {
-            Mail::to(Session::get('user')->email)
-                ->send(new AccountDeletedMail(Session::get('user')));
-            Session::flush();
+            Mail::to(session()->get('user')->email)
+                ->send(new AccountDeletedMail(session()->get('user')));
+            session()->flush();
             return redirect('/register');
         }
         return redirect('/profile');

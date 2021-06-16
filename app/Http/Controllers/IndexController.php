@@ -7,9 +7,8 @@ use App\Models\Discussion;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Collection;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Session;
+use function session;
 
 /**
  * Class IndexController
@@ -24,7 +23,7 @@ class IndexController extends Controller
      */
     public function index(): Application|Factory|View|RedirectResponse
     {
-        if(Session::has('user'))
+        if(session()->has('user'))
         {
             return view('index')->with([
                 'articles' => Article::getLatest(5),

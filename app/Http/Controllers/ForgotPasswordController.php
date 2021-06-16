@@ -11,7 +11,6 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
-use Illuminate\Support\Facades\Session;
 
 /**
  * Class ForgotPasswordController
@@ -45,7 +44,7 @@ class ForgotPasswordController extends Controller
         $status = Password::sendResetLink(
             $forgetPasswordRequest->input('email')
         );
-        Session::put('email',$forgetPasswordRequest->input('email'));
+        session(['email' => $forgetPasswordRequest->input('email')]);
         return $status === Password::RESET_LINK_SENT
             ? back()->with(['status' => __($status)])
             : back()->withErrors(['email' => __($status)]);
@@ -58,7 +57,7 @@ class ForgotPasswordController extends Controller
      */
     public function passwordResetForm(string $token): Factory|View|Application
     {
-        Session::put('token',$token);
+        session(['token' => $token]);
         return view('auth.passwordreset')->with(['token' => $token]);
     }
 
@@ -69,11 +68,11 @@ class ForgotPasswordController extends Controller
      */
     public function submitPasswordResetForm(PasswordResetRequest $passwordResetRequest): RedirectResponse
     {
-        if (Session::get('token') !== $passwordResetRequest->input('token'))
+        if (session()->get('token') !== $passwordResetRequest->input('token'))
         {
             return back()->withErrors(['email' => 'Invalid token']);
         }
-        if(Session::get('email') !== $passwordResetRequest->input('email'))
+        if(session()->get('email') !== $passwordResetRequest->input('email'))
         {
             return back()->withErrors(['email' => 'Invalid email']);
         }

@@ -13,7 +13,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 
 /**
@@ -42,7 +41,7 @@ class UserAuthController extends Controller
         try
         {
             $userCreated = User::createFromInformation($signInRequest->all());
-            Session::put('user',$userCreated);
+            session(['user' => $userCreated]);
             Mail::to($userCreated->email)
                 ->send(new RegistrationMail($userCreated));
             return redirect('/');
@@ -52,8 +51,8 @@ class UserAuthController extends Controller
             return back()
                 ->withInput()
                 ->withErrors([
-                'message' => 'Cannot create the user'
-            ]);
+                    'message' => 'Cannot create the user'
+                ]);
         }
     }
 
@@ -76,7 +75,7 @@ class UserAuthController extends Controller
         if(Auth::attempt($signInRequest->only('email','password')))
         {
             $user = Auth::user();
-            Session::put('user',$user);
+            session(['user' => $user]);
             return redirect('/');
         }
         else
@@ -84,8 +83,8 @@ class UserAuthController extends Controller
             return back()
                 ->withInput()
                 ->withErrors([
-                'message' => 'Invalid password or email'
-            ]);
+                    'message' => 'Invalid password or email'
+                ]);
         }
     }
 
@@ -95,7 +94,7 @@ class UserAuthController extends Controller
      */
     public function logout(): Redirector|Application|RedirectResponse
     {
-        Session::flush();
+        session()->flush();
         return redirect('/');
     }
 }

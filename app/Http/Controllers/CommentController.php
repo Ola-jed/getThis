@@ -8,7 +8,6 @@ use App\Models\Comment;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
-use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 
 /**
@@ -25,7 +24,7 @@ class CommentController extends Controller
      */
     public function getAll(string $articleSlug): Redirector|Application|RedirectResponse|View
     {
-        if(!Session::has('user')) return redirect('/');
+        if(!session()->has('user')) return redirect('/');
         $commentsRelated = Article::getBySlug($articleSlug)->comments;
         return view('article.comments')->with(['comments' => $commentsRelated]);
     }
@@ -38,9 +37,9 @@ class CommentController extends Controller
      */
     public function store(CommentCreationRequest $request, string $articleSlug): void
     {
-        if(!Session::has('user')) return;
+        if(!session()->has('user')) return;
         Comment::create([
-            'user_id' => Session::get('user')->id,
+            'user_id' => session()->get('user')->id,
             'article_id' => Article::whereSlug($articleSlug)->first()->id,
             'content' => $request->input('content')
         ]);
@@ -53,9 +52,9 @@ class CommentController extends Controller
      */
     public function deleteComment(int $commentId): bool
     {
-        if(!Session::has('user')) return false;
+        if(!session()->has('user')) return false;
         $commentToDelete = Comment::find($commentId);
-        if($commentToDelete->user_id === Session::get('user')->id)
+        if($commentToDelete->user_id === session()->get('user')->id)
         {
             return boolval(Comment::destroy($commentId));
         }
@@ -69,9 +68,9 @@ class CommentController extends Controller
      */
     public function update(int $commentId, CommentCreationRequest $request)
     {
-        if(!Session::has('user')) return;
+        if(!session()->has('user')) return;
         $commentToUpdate = Comment::find($commentId);
-        if($commentToUpdate->user_id === Session::get('user')->id)
+        if($commentToUpdate->user_id === session()->get('user')->id)
         {
             $commentToUpdate->content = $request->input('content');
             $commentToUpdate->save();
