@@ -32,7 +32,7 @@
             </div>
         </article>
         <div class="date">
-            <a href="{{ url('/profile/'.$article->user_id) }}">{{ $article->user->name }}</a>, on {{ date('F j , Y H:i:s', strtotime($article->created_at)) }}
+            <a href="{{ url('/account/'.$article->user_id) }}">{{ $article->user->name }}</a>, on {{ date('F j , Y H:i:s', strtotime($article->created_at)) }}
             <p>Last update on {{ date('F j , Y H:i:s', strtotime($article->updated_at)) }}</p>
         </div>
         @if(\Illuminate\Support\Facades\Session::get('user')->id === $article->user_id)
