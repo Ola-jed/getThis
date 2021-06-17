@@ -24,3 +24,6 @@ html{
 .delete-profile{
     margin-top: 1%;
 }
+section form textarea{
+    margin-bottom: 2%;
+}

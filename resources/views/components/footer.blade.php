@@ -8,11 +8,11 @@
             <div class="column">
                 <p>GBANGBOCHE Olabissi</p>
                 <p><a href="mailto:olabissi.gbangboche@gmail.com">Mail</a></p>
-                <p><a href="https://github.com/Ola-jed">Github</a></p>
+                <p><a href="https://github.com/Ola-jed" target="_blank">Github</a></p>
             </div>
             <div class="column">
                 <p>Github repository</p>
-                <p><a href="https://github.com/Ola-jed/getThis" class="is-link is-white">https://github.com/Ola-jed/getThis</a></p>
+                <p><a href="https://github.com/Ola-jed/getThis" class="is-link is-white" target="_blank">https://github.com/Ola-jed/getThis</a></p>
                 <form action="{{ url('/logout') }}" method="post">
                     @csrf
                     <button type="submit" class="button is-danger is-outlined">Logout</button>
