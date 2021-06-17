@@ -4,7 +4,7 @@
         <p>{{ $message->content }}</p>
         <hr>
         <p class="has-text-black">{{ date('F j , Y H:i:s', strtotime($message->created_at)) }}</p>
-        @if(\Illuminate\Support\Facades\Session::get('user')->id === $message->user_id)
+        @if(session()->get('user')->id === $message->user_id)
             <form action="{{ url('/message/'.$message->id) }}" method="post" class="message-delete">
                 @csrf
                 @method('DELETE')

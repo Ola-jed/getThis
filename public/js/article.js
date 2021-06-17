@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 const deleteArticles = document.querySelectorAll(".delete-article");
 const searchBtn = document.querySelector(".search-btn");
@@ -43,4 +43,3 @@ searchBtn.onclick = function () {
         console.log(error);
     });
 };
-

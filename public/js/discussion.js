@@ -1,3 +1,5 @@
+"use strict";
+
 const messageForm = document.getElementById("message-form");
 const currentDiscussion = document.URL.split("/")[document.URL.split("/").length - 1];
 let deleteMessageForms = document.querySelectorAll(".message-delete");

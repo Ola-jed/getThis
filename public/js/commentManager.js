@@ -1,3 +1,5 @@
+"use strict";
+
 const currentArticle = document.URL.split("/")[document.URL.split("/").length - 1];
 let deleteForms = document.querySelectorAll(".delete-form");
 

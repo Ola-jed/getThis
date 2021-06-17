@@ -1,3 +1,5 @@
+"use strict";
+
 const createArticleButton = document.getElementById("create-article");
 const articleTextarea = document.getElementById("content");
 const Editor = toastui.Editor;

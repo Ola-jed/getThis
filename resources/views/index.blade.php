@@ -11,7 +11,7 @@
 @section('content')
     @include('components.menu')
     <main class="has-text-white">
-        <h3 class="has-text-centered">Hello {{ \Illuminate\Support\Facades\Session::get('user')->name }}</h3>
+        <h3 class="has-text-centered">Hello {{ session()->get('user')->name }}</h3>
         <hr>
         <h3 class="has-text-centered title has-text-white">
             Latest articles

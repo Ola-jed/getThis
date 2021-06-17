@@ -17,10 +17,10 @@
     <main>
         <div class="user-infos card has-background-dark">
             <div class="profile-photo"><img src="{{ asset('images/user.svg') }}" alt="Profile"></div>
-            <div class="has-text-white subtitle">Name : {{ \Illuminate\Support\Facades\Session::get('user')->name }}</div>
-            <div class="has-text-white subtitle">Email : {{ \Illuminate\Support\Facades\Session::get('user')->email }}</div>
-            <div class="has-text-white subtitle">Active since {{ date('F j, Y H:i:s', strtotime(\Illuminate\Support\Facades\Session::get('user')->created_at)) }}</div>
-            <div class="has-text-white subtitle">Last account update on {{ date('F j, Y H:i:s', strtotime(\Illuminate\Support\Facades\Session::get('user')->created_at)) }}</div>
+            <div class="has-text-white subtitle">Name : {{ session()->get('user')->name }}</div>
+            <div class="has-text-white subtitle">Email : {{ session()->get('user')->email }}</div>
+            <div class="has-text-white subtitle">Active since {{ date('F j, Y H:i:s', strtotime(session()->get('user')->created_at)) }}</div>
+            <div class="has-text-white subtitle">Last account update on {{ date('F j, Y H:i:s', strtotime(session()->get('user')->created_at)) }}</div>
             <div class="has-text-white subtitle">{{ $article_count }} article(s) written</div>
         </div>
         <div class="button is-link update">Update account</div>

@@ -1,3 +1,5 @@
+"use strict";
+
 const initialValue = document.querySelector('#viewer').innerHTML;
 document.querySelector('#viewer').innerHTML = '';
 const Viewer = toastui.Editor;

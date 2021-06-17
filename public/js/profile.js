@@ -1,3 +1,4 @@
+"use strict";
 const profileUpdateForm = document.getElementById("profile-update");
 const updateBtn = document.querySelector(".update");
 

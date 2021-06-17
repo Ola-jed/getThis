@@ -13,10 +13,14 @@ class HttpTests extends TestCase
      *
      * @return void
      */
-    public function test_example()
+    public function test_home()
     {
         $response = $this->get('/');
+        $response->assertStatus(302);
+    }
 
-        $response->assertStatus(200);
+    public function test_login_and_signin()
+    {
+
     }
 }
