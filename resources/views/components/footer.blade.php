@@ -7,7 +7,7 @@
             </div>
             <div class="column">
                 <p>GBANGBOCHE Olabissi</p>
-                <p><a href="mailto:olabissi.gbangboche@gmail.com">Mail</a></p>
+                <p><a href="mailto:olabissi.gbangboche@gmail.com" target="_blank">Mail</a></p>
                 <p><a href="https://github.com/Ola-jed" target="_blank">Github</a></p>
             </div>
             <div class="column">
