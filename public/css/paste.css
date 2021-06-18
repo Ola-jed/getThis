@@ -1,0 +1,28 @@
+html{
+    height: auto;
+}
+form{
+    margin: 2% 1%;
+}
+button{
+    margin-left: 1%;
+}
+form div input[type="text"]{
+    width: 50%;
+    margin-bottom: 2%;
+}
+.select{
+    margin-left: 1%;
+    margin-bottom: 1%;
+}
+form > label {
+    margin-left: 1%;
+}
+textarea{
+    resize: none;
+}
+.error{
+    color: #f14668;
+    text-align: center;
+    font-size: 1.2em;
+}

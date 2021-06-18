@@ -9,7 +9,7 @@ use Tests\TestCase;
 class HttpTests extends TestCase
 {
     /**
-     * A basic feature test example.
+     * Test if you're redirected when you get the index url
      *
      * @return void
      */
@@ -19,8 +19,23 @@ class HttpTests extends TestCase
         $response->assertStatus(302);
     }
 
-    public function test_login_and_signin()
+    public function test_get_login_and_register(): void
     {
-
+        $response = $this->get('/login');
+        $response->assertStatus(200);
+        $response = $this->get('/register');
+        $response->assertStatus(200);
     }
+
+    public function test_post_register(): void
+    {
+        $response = $this->post('/register',[
+            'name' => 'John Doe',
+            'email' => 'johndoe@test.com',
+            'password1' => '0000',
+            'password2' => '0000'
+        ]);
+        dd($response);
+    }
+
 }

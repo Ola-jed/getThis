@@ -4,6 +4,7 @@
             <div class="column">
                 <p>GetThis</p>
                 <p>2021</p>
+                <p><a href="/paste" class="is-link is-white">Paste</a></p>
             </div>
             <div class="column">
                 <p>GBANGBOCHE Olabissi</p>

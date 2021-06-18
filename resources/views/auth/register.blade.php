@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 @endsection
 
+@section('script')
+    <script src="{{ asset('js/register.js') }}" defer></script>
+@endsection
+
 @section('content')
     <div class="hero-body">
         <form action="{{ url('register') }}" method="post" class="box has-background-dark is-center has-text-white column is-4 is-offset-4">
@@ -30,14 +34,14 @@
             </div>
             <div class="field column is-two-thirds">
                 <label for="password" class="label has-text-white">Password</label>
-                <input type="password" name="password1" class="input is-primary" placeholder="*****" required>
+                <input type="password" name="password1" class="input is-primary" placeholder="*****" id="p1" required>
                 @error('password1')
                     <div class="help is-danger">{{ $message }}</div>
                 @enderror
             </div>
             <div class="field column is-two-thirds">
                 <label for="password" class="label has-text-white">Confirm password</label>
-                <input type="password" name="password2" class="input is-primary" placeholder="*****" required>
+                <input type="password" name="password2" class="input is-primary" placeholder="*****" id="p2" required>
                 @error('password2')
                     <div class="help is-danger">{{ $message }}</div>
                 @enderror
