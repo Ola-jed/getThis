@@ -94,15 +94,15 @@ class PasteController extends Controller
      * Show the form to update the paste
      * Can update only if he is the author
      * @param string $slug
-     * @return Redirector|Application|RedirectResponse
+     * @return Redirector|Application|RedirectResponse|View
      */
-    public function edit(string $slug): Redirector|Application|RedirectResponse
+    public function edit(string $slug): Redirector|Application|RedirectResponse|View
     {
         if(!session()->has('user')) return redirect('/');
         $askedPaste = Paste::getWithSlug($slug);
         if(session()->get('user')->id === $askedPaste->user_id)
         {
-            return view('paste.pasteupdateform');
+            return view('paste.pasteupdateform')->with(['paste' => $askedPaste]);
         }
         return redirect('/paste/'.$slug);
     }

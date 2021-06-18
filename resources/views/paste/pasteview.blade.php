@@ -17,11 +17,9 @@
 @section('content')
     @include('components.menu')
     <main>
-        <pre>
-        <code>
+        <pre><code>
             {!! $paste->content !!}
-        </code>
-        </pre>
+        </code></pre>
     </main>
     @include('components.footer')
 @endsection
