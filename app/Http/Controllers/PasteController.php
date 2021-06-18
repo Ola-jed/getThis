@@ -33,9 +33,9 @@ class PasteController extends Controller
     /**
      * Show the asked paste with the slug given
      * @param string $slug
-     * @return Application|RedirectResponse|Redirector
+     * @return Redirector|RedirectResponse|Application|View
      */
-    public function show(string $slug): Redirector|RedirectResponse|Application
+    public function show(string $slug): Redirector|RedirectResponse|Application|View
     {
         if(!session()->has('user')) return redirect('/');
         try
@@ -61,7 +61,7 @@ class PasteController extends Controller
         try
         {
             $paste = Paste::createFromInfo($pasteRequest->all(),session()->get('user')->id);
-            return redirect('/paste/'.$paste->slug);
+            return redirect('paste/'.$paste->slug);
         }
         catch (Exception)
         {

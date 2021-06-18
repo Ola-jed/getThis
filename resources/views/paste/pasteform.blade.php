@@ -20,24 +20,24 @@
                 <div class="help is-danger">{{ $message }}</div>
             @enderror
             <label for="content" class="label has-text-white">Code</label>
-            <textarea name="content" placeholder="Your code" cols="30" rows="20" class="textarea is-primary has-background-dark has-text-white"></textarea>
+            <textarea name="content" placeholder="Your code" cols="30" rows="20" class="textarea is-primary has-background-dark has-text-white" required></textarea>
             @error('content')
                 <div class="help is-danger">{{ $message }}</div>
             @enderror
         </div>
         <label for="lifetime" class="label has-text-white">Lifetime in hours</label>
         <div class="select">
-            <select name="lifetime">
+            <select name="lifetime" required>
                 <option value="1">1</option>
-                <option value="1">2</option>
-                <option value="1">4</option>
-                <option value="1">8</option>
-                <option value="1">16</option>
-                <option value="1">24</option>
-                <option value="1">48</option>
-                <option value="1">72</option>
-                <option value="1">96</option>
-                <option value="1">120</option>
+                <option value="2">2</option>
+                <option value="4">4</option>
+                <option value="8">8</option>
+                <option value="16">16</option>
+                <option value="24">24</option>
+                <option value="48">48</option>
+                <option value="72">72</option>
+                <option value="96">96</option>
+                <option value="120">120</option>
             </select>
         </div>
         @error('lifetime')
