@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -37,7 +38,7 @@ class Paste extends Model
     {
         $paste = Paste::create([
             'content' => $data['content'],
-            'lifetime' => $data['lifetime'],
+            'deletion_date' => Carbon::now()->addHours(intval($data['lifetime']))->toDateTime(),
             'slug' => Str::slug($data['title']),
             'user_id' => $userId
         ]);
@@ -57,7 +58,7 @@ class Paste extends Model
 
     protected $fillable = [
         'content',
-        'lifetime',
+        'deletion_date',
         'slug',
         'user_id'
     ];

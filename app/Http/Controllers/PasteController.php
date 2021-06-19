@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PasteRequest;
 use App\Models\Paste;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -33,11 +34,10 @@ class PasteController extends Controller
     /**
      * Show the asked paste with the slug given
      * @param string $slug
-     * @return Redirector|RedirectResponse|Application|View
+     * @return View
      */
-    public function show(string $slug): Redirector|RedirectResponse|Application|View
+    public function show(string $slug): View
     {
-        if(!session()->has('user')) return redirect('/');
         try
         {
             return view('paste.pasteview')->with([
@@ -74,23 +74,6 @@ class PasteController extends Controller
     }
 
     /**
-     * Destroy the given paste
-     * @param string $slug
-     * @return Redirector|Application|RedirectResponse
-     */
-    public function destroy(string $slug): Redirector|Application|RedirectResponse
-    {
-        if(!session()->has('user')) return redirect('/');
-        $pasteToDelete = Paste::getWithSlug($slug);
-        if($pasteToDelete->user_id === session()->get('user')->id)
-        {
-            $pasteToDelete->forceDelete();
-            return redirect('/paste');
-        }
-        return redirect('/paste/'.$slug);
-    }
-
-    /**
      * Show the form to update the paste
      * Can update only if he is the author
      * @param string $slug
@@ -123,7 +106,9 @@ class PasteController extends Controller
             {
                 $pasteToUpdate->slug = Str::slug($pasteRequest->input('title'));
                 $pasteToUpdate->content = $pasteRequest->input('content');
-                $pasteToUpdate->lifetime = $pasteRequest->input('lifetime');
+                $pasteToUpdate->deletion_date = Carbon::parse($pasteToUpdate->created_at)
+                    ->addHours(intval($pasteRequest->input('lifetime')))
+                    ->toDateTime();
                 $pasteToUpdate->saveOrFail();
                 return redirect('/paste/'.$pasteToUpdate->slug);
             }
@@ -135,6 +120,23 @@ class PasteController extends Controller
                         'message' => 'Cannot update the paste'
                     ]);
             }
+        }
+        return redirect('/paste/'.$slug);
+    }
+
+    /**
+     * Destroy the given paste
+     * @param string $slug
+     * @return Redirector|Application|RedirectResponse
+     */
+    public function destroy(string $slug): Redirector|Application|RedirectResponse
+    {
+        if(!session()->has('user')) return redirect('/');
+        $pasteToDelete = Paste::getWithSlug($slug);
+        if($pasteToDelete->user_id === session()->get('user')->id)
+        {
+            $pasteToDelete->forceDelete();
+            return redirect('/paste');
         }
         return redirect('/paste/'.$slug);
     }

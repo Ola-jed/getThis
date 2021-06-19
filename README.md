@@ -1,7 +1,7 @@
 # getThis
     getThis is a small website where people can write articles
     and chat in discussions. It is built for learning purposes.
-    It is also buit to have an integrated source code sharing tool (getThisBin)    
+    It is also buit to have an integrated source code sharing tool (Paste)    
 
 ## Setup
 
@@ -13,5 +13,3 @@
   # You can change in the .env file
   ./setup.sh # This script is for setup and serve
 ```
-## TODO
-Make a bin service for source code sharing

@@ -16,7 +16,7 @@ class CreatePastesTable extends Migration
         Schema::create('pastes', function (Blueprint $table) {
             $table->id();
             $table->longText('content');
-            $table->unsignedBigInteger('lifetime');
+            $table->dateTime('deletion_date');
             $table->string('slug');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')

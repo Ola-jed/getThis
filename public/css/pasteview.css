@@ -1,7 +1,21 @@
 html{
     height: auto;
 }
+main{
+    padding: 0;
+    margin: 1% 1% 2%;
+}
 main pre{
     margin: 0;
     padding: 0;
+}
+main .has-text-white{
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+main .has-text-white{
+    margin: 1%;
+}
+.modifications{
+    margin: 1%;
 }
