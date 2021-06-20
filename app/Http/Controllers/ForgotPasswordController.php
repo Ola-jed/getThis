@@ -68,9 +68,9 @@ class ForgotPasswordController extends Controller
      */
     public function submitPasswordResetForm(PasswordResetRequest $passwordResetRequest): RedirectResponse
     {
-        if (session()->get('token') !== $passwordResetRequest->input('token'))
+        if(session()->get('token') !== $passwordResetRequest->input('token'))
         {
-            return back()->withErrors(['email' => 'Invalid token']);
+            return back()->withErrors(['token' => 'Invalid token']);
         }
         if(session()->get('email') !== $passwordResetRequest->input('email'))
         {

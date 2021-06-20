@@ -38,7 +38,7 @@ class AccountController extends Controller
                 ->get();
             $discussionsCreated = $requestedUser->discussions()
                 ->withCount('messages')
-                ->orderBy('messages_count', 'desc')
+                ->orderByDesc('messages_count')
                 ->limit(10)
                 ->get();
             return \view('account.account')->with([
