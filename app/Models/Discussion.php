@@ -2,16 +2,39 @@
 
 namespace App\Models;
 
+use Database\Factories\DiscussionFactory;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Carbon;
 
 /**
  * Class Discussion
  * Discussions with a subject
+ *
  * @package App\Models
+ * @property int $id
+ * @property int $user_id
+ * @property string $subject
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read Collection|Message[] $messages
+ * @property-read int|null $messages_count
+ * @property-read User $user
+ * @method static DiscussionFactory factory(...$parameters)
+ * @method static Builder|Discussion newModelQuery()
+ * @method static Builder|Discussion newQuery()
+ * @method static Builder|Discussion query()
+ * @method static Builder|Discussion whereCreatedAt($value)
+ * @method static Builder|Discussion whereId($value)
+ * @method static Builder|Discussion whereSubject($value)
+ * @method static Builder|Discussion whereUpdatedAt($value)
+ * @method static Builder|Discussion whereUserId($value)
+ * @mixin Eloquent
  */
 class Discussion extends Model
 {
@@ -36,7 +59,7 @@ class Discussion extends Model
      */
     public static function getBySubject(string $subject): Collection
     {
-        return Discussion::where('subject','LIKE',"%{$subject}%")
+        return Discussion::where('subject','LIKE','%'.$subject.'%')
             ->get();
     }
 

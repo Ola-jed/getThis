@@ -2,18 +2,47 @@
 
 namespace App\Models;
 
+use Database\Factories\ArticleFactory;
+use Eloquent;
 use Exception;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Collection;
 
 /**
  * Class Article
  * Articles on the platform
+ *
  * @package App\Models
+ * @property int $id
+ * @property string $subject
+ * @property string $title
+ * @property string $slug
+ * @property string $content
+ * @property int $user_id
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read Collection|Comment[] $comments
+ * @property-read int|null $comments_count
+ * @property-read User $user
+ * @method static ArticleFactory factory(...$parameters)
+ * @method static Builder|Article newModelQuery()
+ * @method static Builder|Article newQuery()
+ * @method static Builder|Article query()
+ * @method static Builder|Article whereContent($value)
+ * @method static Builder|Article whereCreatedAt($value)
+ * @method static Builder|Article whereId($value)
+ * @method static Builder|Article whereSlug($value)
+ * @method static Builder|Article whereSubject($value)
+ * @method static Builder|Article whereTitle($value)
+ * @method static Builder|Article whereUpdatedAt($value)
+ * @method static Builder|Article whereUserId($value)
+ * @mixin Eloquent
  */
 class Article extends Model
 {
@@ -62,14 +91,14 @@ class Article extends Model
     }
 
     /**
-     * Get the latest articles with the nuber given
+     * Get the latest articles with the number given
      * @param int $number
      * @return Collection
      */
-    public static function getLatest(int $number): Collection
+    public static function getLatest(int $number = 5): Collection
     {
         return Article::latest()
-            ->limit(5)
+            ->limit($number)
             ->get();
     }
 
@@ -88,9 +117,9 @@ class Article extends Model
      * Get with limit and offset
      * @param int $limit
      * @param int $offset
-     * @return Collection
+     * @return Collection|\Illuminate\Support\Collection
      */
-    public static function getByLimitAndOffset(int $limit, int $offset = 0): Collection
+    public static function getByLimitAndOffset(int $limit, int $offset = 0): Collection|\Illuminate\Support\Collection
     {
         return Article::limit($limit)
             ->latest()

@@ -23,7 +23,7 @@
             <div class="has-text-white subtitle">Last account update on {{ date('F j, Y H:i:s', strtotime(session()->get('user')->created_at)) }}</div>
             <div class="has-text-white subtitle">{{ $article_count }} article(s) written</div>
         </div>
-        <div class="button is-link update">Update account</div>
+        <div class="button is-warning is-outlined update">Update account</div>
         @include('profile.profileupdateform')
         @if(count($articles) > 0)
             <div class="articles">
