@@ -4,6 +4,11 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Class SignInRequest
+ * Connection data for a new user
+ * @package App\Http\Requests
+ */
 class SignInRequest extends FormRequest
 {
     /**

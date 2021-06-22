@@ -93,7 +93,7 @@ class DiscussionController extends Controller
      */
     public function update(DiscussionCreationRequest $request,int $discussionId): Response|Redirector|Application|RedirectResponse
     {
-        Discussion::where('id',$discussionId)
+        Discussion::find($discussionId)
             ->update($request->only(['subject']));
         return redirect('discussion/'.$discussionId);
     }

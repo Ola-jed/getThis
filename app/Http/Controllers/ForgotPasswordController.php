@@ -39,7 +39,9 @@ class ForgotPasswordController extends Controller
             ->exists();
         if(!$userExisting)
         {
-            return back()->withErrors(['email' => 'Email not found']);
+            return back()
+                ->withInput()
+                ->withErrors(['email' => 'This user is not registered']);
         }
         $status = Password::sendResetLink(
             $forgetPasswordRequest->input('email')
@@ -58,6 +60,7 @@ class ForgotPasswordController extends Controller
     public function passwordResetForm(string $token): Factory|View|Application
     {
         session(['token' => $token]);
+        session()->save();
         return view('auth.passwordreset')->with(['token' => $token]);
     }
 
@@ -70,16 +73,20 @@ class ForgotPasswordController extends Controller
     {
         if(session()->get('token') !== $passwordResetRequest->input('token'))
         {
-            return back()->withErrors(['token' => 'Invalid token']);
+            return back()
+                ->withInput()
+                ->withErrors(['token' => 'Invalid token']);
         }
         if(session()->get('email') !== $passwordResetRequest->input('email'))
         {
-            return back()->withErrors(['email' => 'Invalid email']);
+            return back()
+                ->withInput()
+                ->withErrors(['email' => 'Invalid email']);
         }
         User::where('email',$passwordResetRequest->input('email'))
             ->update([
                 'password' => Hash::make($passwordResetRequest->input('password'))
             ]);
-        return redirect('/signin');
+        return redirect('/login');
     }
 }

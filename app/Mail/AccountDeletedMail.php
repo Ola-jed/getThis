@@ -15,24 +15,21 @@ use Illuminate\Queue\SerializesModels;
 class AccountDeletedMail extends Mailable
 {
     use Queueable, SerializesModels;
-    public User $user;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $userDeleted)
-    {
-        $this->user = $userDeleted;
-    }
+    public function __construct(public User $user)
+    {}
 
     /**
      * Build the message.
      *
      * @return $this
      */
-    public function build()
+    public function build(): static
     {
         return $this->from(env('MAIL_FROM_ADDRESS'))
             ->subject('GetThis : User deleted')

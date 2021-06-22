@@ -15,14 +15,14 @@
             <h5 class="has-text-centered has-text-light is-white title is-5">Login</h5>
             <div class="field column is-two-thirds">
                 <label for="email" class="label has-text-white">Email</label>
-                <input type="email" name="email" class="input is-primary" placeholder="user@mail.com" required>
+                <input type="email" name="email" class="input is-primary" placeholder="user@mail.com" value="{{ old('email') }}" required>
                 @error('email')
                     <div class="help is-danger">{{ $message }}</div>
                 @enderror
             </div>
             <div class="field column is-two-thirds">
                 <label for="password" class="label has-text-white">Password</label>
-                <input type="password" name="password" class="input is-primary" placeholder="*****" required>
+                <input type="password" name="password" class="input is-primary" placeholder="*****" value="{{ old('password') }}" required>
                 @error('password')
                     <div class="help is-danger">{{ $message }}</div>
                 @enderror
@@ -39,7 +39,10 @@
                     <img src="{{ asset('images/github.svg') }}" alt="">
                 </a>
             </div>
-            <div class="register has-text-link"><a href="{{ url('/register') }}">Not yet registered ? Register</a></div>
+            <div class="columns">
+                <div class="column register has-text-link"><a href="{{ url('/register') }}">Register</a></div>
+                <div class="column register has-text-link"><a href="{{ url('/forget-password') }}">Forgotten password ?</a></div>
+            </div>
             @if($errors->has('message'))
                 <div class="help is-danger error">{{ $errors->first('message') }}</div>
             @endif
