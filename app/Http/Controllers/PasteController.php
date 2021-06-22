@@ -27,7 +27,6 @@ class PasteController extends Controller
      */
     public function index(): View|Factory|Redirector|RedirectResponse|Application
     {
-        if(!session()->has('user')) return redirect('/');
         return view('paste.pasteform');
     }
 
@@ -57,7 +56,6 @@ class PasteController extends Controller
      */
     public function store(PasteRequest $pasteRequest): Redirector|Application|RedirectResponse
     {
-        if(!session()->has('user')) return redirect('/');
         try
         {
             $paste = Paste::createFromInfo($pasteRequest->all(),session()->get('user')->id);
@@ -81,7 +79,6 @@ class PasteController extends Controller
      */
     public function edit(string $slug): Redirector|Application|RedirectResponse|View
     {
-        if(!session()->has('user')) return redirect('/');
         $askedPaste = Paste::getWithSlug($slug);
         if(session()->get('user')->id === $askedPaste->user_id)
         {
@@ -98,7 +95,6 @@ class PasteController extends Controller
      */
     public function update(string $slug, PasteRequest $pasteRequest): Redirector|RedirectResponse|Application
     {
-        if(!session()->has('user')) return redirect('/');
         $pasteToUpdate = Paste::getWithSlug($slug);
         if($pasteToUpdate->user_id === session()->get('user')->id)
         {
@@ -131,7 +127,6 @@ class PasteController extends Controller
      */
     public function destroy(string $slug): Redirector|Application|RedirectResponse
     {
-        if(!session()->has('user')) return redirect('/');
         $pasteToDelete = Paste::getWithSlug($slug);
         if($pasteToDelete->user_id === session()->get('user')->id)
         {

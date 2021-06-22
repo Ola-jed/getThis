@@ -33,7 +33,6 @@ class ArticleController extends Controller
      */
     public function index(Request $args): View|Factory|Application|RedirectResponse
     {
-        if(!session()->has('user')) return redirect('/');
         // If a valid offset is given, we consider it. Otherwise, we start from zero
         $offset = $args->has(self::OFFSET) && intval($args->input(self::OFFSET)) > 0 ?
             intval($args->input(self::OFFSET)) : 0;
@@ -49,7 +48,6 @@ class ArticleController extends Controller
      */
     public function store(ArticleCreationRequest $request): Redirector|RedirectResponse|Application
     {
-        if(!session()->has('user')) return redirect('/');
         try
         {
             $article = Article::createFromInformation($request->all(),session()->get('user'));
@@ -73,7 +71,6 @@ class ArticleController extends Controller
      */
     public function show(string $slug): Factory|View|RedirectResponse|Application
     {
-        if(!session()->has('user')) return redirect('/');
         try
         {
             $article = Article::getBySlug($slug);
@@ -92,7 +89,6 @@ class ArticleController extends Controller
      */
     public function edit(string $slug): Response|Redirector|Application|RedirectResponse|View
     {
-        if(!session()->has('user')) return redirect('/');
         try
         {
             $articleToUpdate = Article::getBySlug($slug);
@@ -116,7 +112,6 @@ class ArticleController extends Controller
      */
     public function update(ArticleCreationRequest $request, string $slug): Response|Redirector|Application|RedirectResponse
     {
-        if(!session()->has('user')) return redirect('/');
         $articleToUpdate = Article::getBySlug($slug);
         if(session()->get('user')->id === $articleToUpdate->user_id)
         {

@@ -28,7 +28,6 @@ class AccountController extends Controller
      */
     public function show(int $userId): View|Factory|Redirector|RedirectResponse|Application
     {
-        if(!session()->has('user')) return redirect('/');
         try
         {
             $requestedUser = User::findOrFail($userId);

@@ -18,18 +18,14 @@ use function session;
 class IndexController extends Controller
 {
     /**
-     * Method to check if index should appear
+     * Load index data and call the view
      * @return Application|Factory|View|RedirectResponse
      */
     public function index(): Application|Factory|View|RedirectResponse
     {
-        if(session()->has('user'))
-        {
-            return view('index')->with([
-                'articles' => Article::getLatest(5),
-                'discussions' => Discussion::getHottest(10)
-            ]);
-        }
-        return redirect('/login');
+        return view('index')->with([
+            'articles' => Article::getLatest(5),
+            'discussions' => Discussion::getHottest(10)
+        ]);
     }
 }

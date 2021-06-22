@@ -9,6 +9,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\View\View;
+use Throwable;
 
 /**
  * Class CommentController
@@ -24,7 +25,6 @@ class CommentController extends Controller
      */
     public function getAll(string $articleSlug): Redirector|Application|RedirectResponse|View
     {
-        if(!session()->has('user')) return redirect('/');
         $commentsRelated = Article::getBySlug($articleSlug)->comments;
         return view('article.comments')->with(['comments' => $commentsRelated]);
     }
@@ -37,7 +37,6 @@ class CommentController extends Controller
      */
     public function store(CommentCreationRequest $request, string $articleSlug): void
     {
-        if(!session()->has('user')) return;
         Comment::create([
             'user_id' => session()->get('user')->id,
             'article_id' => Article::whereSlug($articleSlug)->first()->id,
@@ -52,11 +51,17 @@ class CommentController extends Controller
      */
     public function deleteComment(int $commentId): bool
     {
-        if(!session()->has('user')) return false;
-        $commentToDelete = Comment::find($commentId);
-        if($commentToDelete->user_id === session()->get('user')->id)
+        try
         {
-            return boolval(Comment::destroy($commentId));
+            $commentToDelete = Comment::findOrFail($commentId);
+            if($commentToDelete->user_id === session()->get('user')->id)
+            {
+                return boolval(Comment::destroy($commentId));
+            }
+        }
+        catch (Throwable)
+        {
+            return false;
         }
         return false;
     }
@@ -68,8 +73,8 @@ class CommentController extends Controller
      */
     public function update(int $commentId, CommentCreationRequest $request)
     {
-        if(!session()->has('user')) return;
         $commentToUpdate = Comment::find($commentId);
+        if(is_null($commentToUpdate)) return;
         if($commentToUpdate->user_id === session()->get('user')->id)
         {
             $commentToUpdate->content = $request->input('content');

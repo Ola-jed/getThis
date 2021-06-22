@@ -23,11 +23,10 @@ class ProfileController extends Controller
 {
     /**
      * Get the profile page of the connected user
-     * @return View|Factory|Application|RedirectResponse
+     * @return View|Factory|Application
      */
-    public function index(): View|Factory|Application|RedirectResponse
+    public function index(): View|Factory|Application
     {
-        if(!session()->has('user')) return redirect('/');
         $articlesWritten = session()->get('user')->articles;
         $articleCount = count($articlesWritten);
         $discussionsCreated = session()->get('user')
@@ -50,7 +49,6 @@ class ProfileController extends Controller
      */
     public function update(AccountUpdateRequest $updateAccount): Redirector|RedirectResponse|Application
     {
-        if(!session()->has('user')) return redirect('/');
         $userToUpdate = User::find(session()->get('user')->id);
         // Let's update the user attributes
         $userToUpdate->name = $updateAccount->input('name');
@@ -69,7 +67,6 @@ class ProfileController extends Controller
      */
     public function destroy(): Redirector|RedirectResponse|Application
     {
-        if(!session()->has('user')) return redirect('/');
         if(User::destroy(session()->get('user')->id))
         {
             Mail::to(session()->get('user')->email)

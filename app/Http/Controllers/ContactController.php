@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ContactRequest;
 use App\Mail\ContactMail;
 use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Mail;
@@ -19,11 +20,10 @@ class ContactController extends Controller
 {
     /**
      * Show the contact form
-     * @return Redirector|Application|RedirectResponse|View
+     * @return Factory|\Illuminate\Contracts\View\View|Application
      */
-    public function index(): Redirector|Application|RedirectResponse|View
+    public function index(): Factory|\Illuminate\Contracts\View\View|Application
     {
-        if(!session()->has('user')) return redirect('/');
         return view('others.contactform');
     }
 
@@ -34,7 +34,6 @@ class ContactController extends Controller
      */
     public function sendContactForm(ContactRequest $request): Redirector|Application|RedirectResponse|View
     {
-        if(!session()->has('user')) return redirect('/');
         Mail::to(env('ADMIN_EMAIL'))
             ->send(new ContactMail(
                 $request->input('subject'),

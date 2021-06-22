@@ -32,7 +32,6 @@ class DiscussionController extends Controller
      */
     public function index(Request $args): View|Factory|Application|RedirectResponse
     {
-        if(!session()->has('user')) return redirect('/');
         // If a valid offset is given, we consider it. Otherwise, we start from zero
         $offset = $args->has(self::OFFSET) && intval($args->input(self::OFFSET)) > 0 ?
                 intval($args->input(self::OFFSET)) : 0;
@@ -52,7 +51,6 @@ class DiscussionController extends Controller
      */
     public function store(DiscussionCreationRequest $request): Redirector|RedirectResponse|Application
     {
-        if(!session()->has('user')) return redirect('/');
         $discussion = Discussion::create([
             'subject' => $request->input('subject'),
             'user_id' => session()->get('user')->id
@@ -69,7 +67,6 @@ class DiscussionController extends Controller
      */
     public function show(int $discId): Factory|View|RedirectResponse|Application
     {
-        if(!session()->has('user')) return redirect('/');
         try
         {
             $disc = Discussion::findOrFail($discId);
@@ -96,7 +93,6 @@ class DiscussionController extends Controller
      */
     public function update(DiscussionCreationRequest $request,int $discussionId): Response|Redirector|Application|RedirectResponse
     {
-        if(!session()->has('user')) return redirect('/');
         Discussion::where('id',$discussionId)
             ->update($request->only(['subject']));
         return redirect('discussion/'.$discussionId);
@@ -106,11 +102,10 @@ class DiscussionController extends Controller
      * Delete a discussion if the connected user is the author.
      *
      * @param int $discussionId
-     * @return Factory|Response|View|RedirectResponse|Application
+     * @return Factory|Response|View|RedirectResponse
      */
-    public function destroy(int $discussionId): Factory|Response|View|RedirectResponse|Application
+    public function destroy(int $discussionId): Response|Factory|View|RedirectResponse
     {
-        if(!session()->has('user')) return redirect('/');
         // Check that connected user is author of the discussion
         $discussionToDelete = Discussion::find($discussionId);
         if($discussionToDelete->writer_id === session()->get('user')->id)
