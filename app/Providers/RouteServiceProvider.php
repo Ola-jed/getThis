@@ -67,7 +67,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/custom/message.php'));
             Route::middleware('web')
                 ->namespace($this->namespace)
-                ->group(base_path('routes/custom/others.php'));
+                ->group(base_path('routes/custom/contact.php'));
             Route::middleware('web')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/custom/account_profile.php'));
