@@ -18,7 +18,7 @@
 @section('content')
     @include('components.menu')
     <main class="has-text-white">
-        <div class="title">
+        <div class="title is-centered is-center has-text-centered">
             {{ $article->title }}
         </div>
         <hr>
@@ -36,7 +36,7 @@
             <p>Last update on {{ date('F j , Y H:i:s', strtotime($article->updated_at)) }}</p>
         </div>
         @if(session()->get('user')->id === $article->user_id)
-            <a href="{{ url('/article/'.$article->slug.'/update') }}" class="button is-link">Update</a>
+            <a href="{{ url('/article/'.$article->slug.'/update') }}" class="button is-warning is-outlined">Update</a>
         @endif
         <hr>
         <div class="comment-form">

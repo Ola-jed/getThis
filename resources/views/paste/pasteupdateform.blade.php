@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="{{ asset('css/paste.css') }}">
 @endsection
 
+@section('script')
+    <script src="{{ asset('js/pasteform.js') }}" defer></script>
+@endsection
+
 @section('content')
     @include('components.menu')
     <form action="{{ url('paste/'.$paste->slug) }}" method="post" class="is-center has-text-white column is-centered">

@@ -16,11 +16,11 @@
         <div class="box">
             <h3 class="has-text-centered subtitle">Paste released</h3>
             <div>
-                <div class="box has-background-primary-dark">
-                    <p class="subtitle question"> What is paste ?</p>
+                <div class="box paste-msg">
+                    <p class="subtitle question has-text-warning"> What is paste ?</p>
                     <div class="has-text-white">
                         Paste is a basic service that allow users to paste their code snippets in many languages (C++,C#,Rust,PHP,...)
-                        After pasting your code, you chose the lifetime in hours of your snippet and you get the url.
+                        After pasting your code or drag&dropping your file, you chose the lifetime in hours of your snippet and you get the url.
                         You can share the link your anyone and your snippets are public.
                         You can also remove prematurely snippets and modify them
                         <p class="is-centered"><a href="{{ url('paste') }}" class="is-link has-text-link-light">Try paste now !</a></p>

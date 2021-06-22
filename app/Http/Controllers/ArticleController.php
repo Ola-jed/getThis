@@ -53,14 +53,14 @@ class ArticleController extends Controller
         try
         {
             $article = Article::createFromInformation($request->all(),session()->get('user'));
-            return redirect('article/'.$article->id);
+            return redirect('article/'.$article->slug);
         }
         catch (Exception)
         {
             return back()
                 ->withInput()
                 ->withErrors([
-                    'message' => 'Cannot create the user'
+                    'message' => 'Cannot create the article'
                 ]);
         }
     }

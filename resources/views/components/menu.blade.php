@@ -1,7 +1,7 @@
 <nav class="navbar has-background-dark has-shadow is-primary">
     <div class="navbar-brand">
         <a href="#" class="navbar-item">
-            <img src="{{ asset('images/logo.png') }}" alt="getthis logo" class="py-2 px-2">
+            <img src="{{ asset('images/logo.png') }}" alt="getthis logo">
         </a>
         <a href="#" class="navbar-burger" id="burger">
             <span></span>

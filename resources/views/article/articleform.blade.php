@@ -2,15 +2,15 @@
     @csrf
     <h3>New article</h3>
     <div class="field">
-        <label for="subject" class="label has-text-black">Subject</label>
-        <input type="text" class="input is-primary" name="subject" placeholder="Subject" required>
+        <label for="subject" class="label has-text-black">Subject(s)</label>
+        <input type="text" class="input is-primary" name="subject" placeholder="Subject(s)" value="{{ old('subject') }}" required>
         @error('subject')
             <div class="help is-danger">{{ $message }}</div>
         @enderror
     </div>
     <div class="field">
-        <label for="subject" class="label has-text-black">Title</label>
-        <input type="text" class="input is-primary" name="title" placeholder="Title" required>
+        <label for="title" class="label has-text-black">Title</label>
+        <input type="text" class="input is-primary" name="title" placeholder="Title" value="{{ old('title') }}" required>
         @error('title')
             <div class="help is-danger">{{ $message }}</div>
         @enderror
