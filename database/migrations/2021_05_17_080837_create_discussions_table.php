@@ -21,11 +21,9 @@ class CreateDiscussionsTable extends Migration
     {
         Schema::create('discussions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
             $table->string('subject');
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users')
+            $table->foreignId('user_id')
+                ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
             $table->timestamps();

@@ -18,10 +18,10 @@ class CreatePastesTable extends Migration
             $table->longText('content');
             $table->dateTime('deletion_date');
             $table->string('slug');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users');
+            $table->foreignId('user_id')
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
             $table->timestamps();
         });
     }

@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\UserSocialAuthController;
+use App\Http\Controllers\Auth\UserSocialAuthController;
 use Illuminate\Support\Facades\Route;
 
-/*
+/**
  * Social media auth
  */
 

@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\ForgotPasswordController;
-use App\Http\Controllers\UserAuthController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\UserAuthController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('{signin}',[UserAuthController::class,'signinView'])

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ForgetPasswordRequest;
 use App\Http\Requests\PasswordResetRequest;
 use App\Models\User;
@@ -35,7 +36,7 @@ class ForgotPasswordController extends Controller
      */
     public function submitForgetPasswordForm(ForgetPasswordRequest $forgetPasswordRequest): RedirectResponse
     {
-        $userExisting = User::where('email',$forgetPasswordRequest->input('email'))
+        $userExisting = User::whereEmail($forgetPasswordRequest->input('email'))
             ->exists();
         if(!$userExisting)
         {
@@ -83,7 +84,7 @@ class ForgotPasswordController extends Controller
                 ->withInput()
                 ->withErrors(['email' => 'Invalid email']);
         }
-        User::where('email',$passwordResetRequest->input('email'))
+        User::whereEmail($passwordResetRequest->input('email'))
             ->update([
                 'password' => Hash::make($passwordResetRequest->input('password'))
             ]);

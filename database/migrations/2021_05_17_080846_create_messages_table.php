@@ -23,17 +23,13 @@ class CreateMessagesTable extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('discussion_id');
             $table->text('content');
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users')
+            $table->foreignId('user_id')
+                ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
-            $table->foreign('discussion_id')
-                ->references('id')
-                ->on('discussions')
+            $table->foreignId('discussion_id')
+                ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
             $table->timestamps();

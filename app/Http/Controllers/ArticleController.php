@@ -78,7 +78,7 @@ class ArticleController extends Controller
         }
         catch (Exception)
         {
-            return redirect('/articles');
+            abort(404);
         }
     }
 
