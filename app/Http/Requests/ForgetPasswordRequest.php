@@ -4,6 +4,10 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Class ForgetPasswordRequest
+ * @package App\Http\Requests
+ */
 class ForgetPasswordRequest extends FormRequest
 {
     /**
