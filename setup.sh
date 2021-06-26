@@ -1,5 +1,5 @@
 #!/bin/sh
-echo 'Make sure that you have created the database get-this in mysql'
+echo 'Make sure that you have created the database get-this in your dbms'
 composer install
 mv .env.example .env
 read -p "Do you want to configure the .env file ? y/N " rep
