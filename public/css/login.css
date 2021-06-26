@@ -37,3 +37,13 @@ form .control{
     text-align: center;
     font-size: 1em;
 }
+#alts div{
+    padding: 0;
+}
+.line{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    padding: 0 0 0 2%;
+    margin: 0;
+}

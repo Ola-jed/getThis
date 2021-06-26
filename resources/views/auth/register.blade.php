@@ -18,35 +18,35 @@
         <form action="{{ url('register') }}" method="post" class="box has-background-dark is-center has-text-white column is-4 is-offset-4">
             @csrf
             <h5 class="has-text-centered has-text-light is-white title is-5">Register</h5>
-            <div class="field column is-two-thirds">
+            <div class="field column">
                 <label for="name" class="label has-text-white">Username</label>
                 <input type="text" class="input is-primary" name="name" placeholder="Name" maxlength="25" value="{{ old('name') }}" required>
                 @error('name')
                     <div class="help is-danger">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="field column is-two-thirds">
+            <div class="field column">
                 <label for="email" class="label has-text-white">Email</label>
                 <input type="email" name="email" class="input is-primary" placeholder="user@mail.com" value="{{ old('email') }}" required>
                 @error('email')
                     <div class="help is-danger">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="field column is-two-thirds">
+            <div class="field column">
                 <label for="password1" class="label has-text-white">Password</label>
                 <input type="password" name="password1" class="input is-primary" placeholder="*****" value="{{ old('password1') }}" id="p1" required>
                 @error('password1')
                     <div class="help is-danger">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="field column is-two-thirds">
+            <div class="field column">
                 <label for="password2" class="label has-text-white">Confirm password</label>
                 <input type="password" name="password2" class="input is-primary" placeholder="*****" value="{{ old('password2') }}" id="p2" required>
                 @error('password2')
                     <div class="help is-danger">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="control">
+            <div class="field column">
                 <button type="submit" class="button is-link is-outlined">Register</button>
             </div>
             <div class="register has-text-link"><a href="{{ url('/login') }}">Already registered ? Login</a></div>
