@@ -15,14 +15,20 @@
             <h5 class="has-text-centered has-text-light is-white title is-5">Login</h5>
             <div class="field column">
                 <label for="email" class="label has-text-white">Email</label>
-                <input type="email" name="email" class="input is-primary" placeholder="user@mail.com" value="{{ old('email') }}" required>
+                <p class="control has-icons-left has-icons-right">
+                    <input class="input" name="email" type="email" placeholder="Email" value="{{ old('email') }}" required>
+                    <span class="icon is-small is-left"><i class="fas fa-envelope" aria-hidden="true"></i></span>
+                </p>
                 @error('email')
                     <div class="help is-danger">{{ $message }}</div>
                 @enderror
             </div>
             <div class="field column">
                 <label for="password" class="label has-text-white">Password</label>
-                <input type="password" name="password" class="input is-primary" placeholder="*****" value="{{ old('password') }}" required>
+                <p class="control has-icons-left">
+                    <input class="input" type="password" name="password" placeholder="*****" value="{{ old('password') }}" required>
+                    <span class="icon is-small is-left"><i class="fas fa-lock" aria-hidden="true"></i></span>
+                </p>
                 @error('password')
                     <div class="help is-danger">{{ $message }}</div>
                 @enderror

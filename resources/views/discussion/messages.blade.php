@@ -8,7 +8,9 @@
             <form action="{{ url('/message/'.$message->id) }}" method="post" class="message-delete">
                 @csrf
                 @method('DELETE')
-                <button class="button is-danger"><img src="{{ asset('images/delete.svg') }}" alt="Delete"></button>
+                <button class="button is-danger">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
             </form>
         @endif
     </div>

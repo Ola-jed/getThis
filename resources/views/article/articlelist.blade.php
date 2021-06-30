@@ -8,7 +8,7 @@
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="button is-danger">
-                    <img src="{{ asset('images/delete.svg') }}" alt="delete">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
                 </button>
             </form>
         @endif

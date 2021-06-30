@@ -15,7 +15,10 @@
             <h2 class="subtitle has-text-white has-text-centered">Forgotten password</h2>
             <div class="field">
                 <label for="email" class="label has-text-white">Email</label>
-                <input type="email" name="email" class="input is-primary" value="{{ old('email') }}" required>
+                <p class="control has-icons-left has-icons-right">
+                    <input class="input" name="email" type="email" placeholder="Email" value="{{ old('email') }}" required>
+                    <span class="icon is-small is-left"><i class="fas fa-envelope" aria-hidden="true"></i></span>
+                </p>
                 @error('email')
                     <div class="help is-danger">{{ $message }}</div>
                 @enderror

@@ -20,28 +20,40 @@
             <h5 class="has-text-centered has-text-light is-white title is-5">Register</h5>
             <div class="field column">
                 <label for="name" class="label has-text-white">Username</label>
-                <input type="text" class="input is-primary" name="name" placeholder="Name" maxlength="25" value="{{ old('name') }}" required>
+                <p class="control has-icons-left has-icons-right">
+                    <input type="text" class="input is-primary" name="name" placeholder="Name" maxlength="25" value="{{ old('name') }}" required>
+                    <span class="icon is-small is-left"><i class="fas fa-user" aria-hidden="true"></i></span>
+                </p>
                 @error('name')
                     <div class="help is-danger">{{ $message }}</div>
                 @enderror
             </div>
             <div class="field column">
                 <label for="email" class="label has-text-white">Email</label>
-                <input type="email" name="email" class="input is-primary" placeholder="user@mail.com" value="{{ old('email') }}" required>
+                <p class="control has-icons-left has-icons-right">
+                    <input class="input" name="email" type="email" placeholder="Email" value="{{ old('email') }}" required>
+                    <span class="icon is-small is-left"><i class="fas fa-envelope" aria-hidden="true"></i></span>
+                </p>
                 @error('email')
                     <div class="help is-danger">{{ $message }}</div>
                 @enderror
             </div>
             <div class="field column">
                 <label for="password1" class="label has-text-white">Password</label>
-                <input type="password" name="password1" class="input is-primary" placeholder="*****" value="{{ old('password1') }}" id="p1" required>
+                <p class="control has-icons-left">
+                    <input class="input" type="password" name="password1" placeholder="*****" value="{{ old('password1') }}" required>
+                    <span class="icon is-small is-left"><i class="fas fa-lock" aria-hidden="true"></i></span>
+                </p>
                 @error('password1')
                     <div class="help is-danger">{{ $message }}</div>
                 @enderror
             </div>
             <div class="field column">
                 <label for="password2" class="label has-text-white">Confirm password</label>
-                <input type="password" name="password2" class="input is-primary" placeholder="*****" value="{{ old('password2') }}" id="p2" required>
+                <p class="control has-icons-left">
+                    <input type="password" name="password2" class="input is-primary" placeholder="*****" value="{{ old('password2') }}" id="p2" required>
+                    <span class="icon is-small is-left"><i class="fas fa-lock" aria-hidden="true"></i></span>
+                </p>
                 @error('password2')
                     <div class="help is-danger">{{ $message }}</div>
                 @enderror

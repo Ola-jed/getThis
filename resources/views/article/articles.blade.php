@@ -28,7 +28,7 @@
             </div>
             <div class="control">
                 <button class="button is-info is-outlined search-btn">
-                    <img src="{{ asset('images/search.svg') }}" alt="delete">
+                    <i class="fa fa-search" aria-hidden="true"></i>
                 </button>
             </div>
         </div>
@@ -40,8 +40,8 @@
             @include('article.articlelist')
         </div>
         <div class="navigation-links">
-            <a href="javascript: void(0)" class="previous button is-primary is-outlined">Previous</a>
-            <a href="javascript: void(0)" class="next button is-primary is-outlined">Next</a>
+            <a href="javascript: void(0)" class="previous button is-primary is-outlined"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+            <a href="javascript: void(0)" class="next button is-primary is-outlined"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
         </div>
     </main>
     @include('components.footer')

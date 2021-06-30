@@ -29,7 +29,7 @@
             <div class="articles">
                 <h4 class="has-text-centered subtitle has-text-white">
                     Articles written
-                    <img src="{{ asset('images/article.svg') }}" alt="">
+                    <i class="fa fa-book fa-fw" aria-hidden="true"></i>
                 </h4>
                 @include('article.articlelist')
             </div>

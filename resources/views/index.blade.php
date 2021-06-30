@@ -14,7 +14,7 @@
         <h3 class="has-text-centered">Hello {{ session()->get('user')->name }}</h3>
         <hr>
         <div class="box">
-            <h3 class="has-text-centered subtitle">Paste released</h3>
+            <h3 class="has-text-centered subtitle"><i class="fa fa-clipboard" aria-hidden="true"></i> Paste released</h3>
             <div>
                 <div class="box paste-msg">
                     <p class="subtitle question has-text-warning"> What is paste ?</p>
@@ -30,14 +30,14 @@
         </div>
         <h3 class="has-text-centered subtitle has-text-white">
             Latest articles
-            <img src="{{ asset('images/article.svg') }}" alt="">
+            <i class="fa fa-book fa-fw" aria-hidden="true"></i>
         </h3>
         <div class="latest-articles">
             @include('article.articlelist')
         </div>
         <h3 class="has-text-centered subtitle has-text-white">
             Hottest discussions
-            <img src="{{ asset('images/discussion.svg') }}" alt="">
+            <i class="fa fa-comment" aria-hidden="true"></i>
         </h3>
         <div class="hottest-discussions">
             @include('discussion.discussionlist')
