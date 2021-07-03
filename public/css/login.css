@@ -2,16 +2,6 @@ html{
     min-height: 100vh;
     height: auto;
 }
-.register,.other{
-    text-align: center;
-}
-.register{
-    margin: 3%;
-    padding-top: 1%;
-}
-.register a:hover{
-    color: #b38a09;
-}
 textarea{
     resize: none;
 }
@@ -44,4 +34,9 @@ form .control{
 }
 .google-login{
     margin-bottom: 3%;
+}
+.social{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
 }

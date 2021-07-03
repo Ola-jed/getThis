@@ -17,7 +17,7 @@
     <div class="hero-body">
         <form action="{{ url('register') }}" method="post" class="box has-background-dark is-center has-text-white column is-4 is-offset-4">
             @csrf
-            <h5 class="has-text-centered has-text-light is-white title is-5">Register</h5>
+            <h5 class="has-text-centered has-text-light is-white title is-3">Register</h5>
             <div class="field column">
                 <label for="name" class="label has-text-white">Username</label>
                 <p class="control has-icons-left has-icons-right">
@@ -61,7 +61,9 @@
             <div class="field column">
                 <button type="submit" class="button is-link is-outlined">Register</button>
             </div>
-            <div class="register has-text-link"><a href="{{ url('/login') }}">Already registered ? Login</a></div>
+            <div class="column has-text-centered has-text-white">
+                Already registered ? <a href="{{ url('/login') }}" class="is-link has-text-link-dark">Sign in</a>
+            </div>
             @if($errors->has('message'))
                 <div class="help is-danger error">{{ $errors->first('message') }}</div>
             @endif
