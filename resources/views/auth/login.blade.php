@@ -38,16 +38,12 @@
                 <div class="column is-narrow register has-text-link"><a href="{{ url('/forget-password') }}">Forgotten password ?</a></div>
             </div>
             <div class="column register has-text-link"><a href="{{ url('/register') }}">Register</a></div>
-            <hr>
-            <div class="other">Or login with</div>
-            <div class="other-login ">
-                <a href="{{ url('/login/google') }}" class="google-login button is-light is-outlined">
-                    <img src="{{ asset('images/google-color.svg') }}" alt="Google">
-                </a>
-                <a href="{{ url('/login/github') }}" class="github-login button is-light is-outlined">
-                    <img src="{{ asset('images/github.svg') }}" alt="Github">
-                </a>
-            </div>
+            <a href="{{ url('/login/google') }}" class="column google-login button is-light is-outlined">
+                <img src="{{ asset('images/google-color.svg') }}" alt="Google">
+            </a>
+            <a href="{{ url('/login/github') }}" class="column github-login button is-light is-outlined">
+                <img src="{{ asset('images/github.svg') }}" alt="Github">
+            </a>
             @if($errors->has('message'))
                 <div class="help is-danger error">{{ $errors->first('message') }}</div>
             @endif

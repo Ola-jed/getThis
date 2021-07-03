@@ -1,15 +1,6 @@
-body{
-    overflow:hidden;
-}
-.other-login {
-    position: center;
-    margin-top: 4%;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-evenly;
-}
-.other-login a{
-    text-align: center;
+html{
+    min-height: 100vh;
+    height: auto;
 }
 .register,.other{
     text-align: center;
@@ -46,4 +37,11 @@ form .control{
     justify-content: space-between;
     padding: 0 0 0 2%;
     margin: 0;
+}
+.google-login,.github-login{
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+.google-login{
+    margin-bottom: 3%;
 }
