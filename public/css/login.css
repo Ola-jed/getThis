@@ -40,3 +40,7 @@ form .control{
     flex-flow: row nowrap;
     justify-content: space-evenly;
 }
+.register{
+    margin-top: 2%;
+    text-align: center;
+}

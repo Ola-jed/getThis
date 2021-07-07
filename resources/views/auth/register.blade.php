@@ -15,7 +15,7 @@
 
 @section('content')
     <div class="hero-body">
-        <form action="{{ url('register') }}" method="post" class="box has-background-dark is-center has-text-white column is-4 is-offset-4">
+        <form action="{{ url('register') }}" method="post" class="box dark-bg-transparent is-center has-text-white column is-4 is-offset-4 is-centered">
             @csrf
             <h5 class="has-text-centered has-text-light is-white title is-3">Register</h5>
             <div class="field column">

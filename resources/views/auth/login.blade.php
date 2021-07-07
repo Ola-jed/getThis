@@ -10,7 +10,7 @@
 
 @section('content')
     <div class="hero-body">
-        <form action="{{ url('login') }}" method="post" class="box has-background-dark is-center has-text-white column is-4 is-offset-4 is-centered">
+        <form action="{{ url('login') }}" method="post" class="box dark-bg-transparent has-text-white column is-4 is-offset-4">
             @csrf
             <h5 class="has-text-centered has-text-light is-white title is-3">Login</h5>
             <div class="field column">
@@ -45,6 +45,7 @@
                     <img src="{{ asset('images/github.svg') }}" alt="Github">
                 </a>
             </div>
+            <hr>
             <div class="column has-text-centered has-text-white">
                 Not registered yet ? <a href="{{ url('/register') }}" class="is-link has-text-link-dark">Sign up</a>
             </div>
