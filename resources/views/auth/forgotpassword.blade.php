@@ -16,7 +16,7 @@
             <div class="field column">
                 <label for="email" class="label has-text-white">Email</label>
                 <p class="control has-icons-left has-icons-right">
-                    <input class="input" name="email" type="email" value="{{ old('email') }}" required>
+                    <input class="input" id="email" name="email" type="email" value="{{ old('email') }}" required>
                     <span class="icon is-small is-left"><i class="fas fa-envelope" aria-hidden="true"></i></span>
                 </p>
                 @error('email')

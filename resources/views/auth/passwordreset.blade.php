@@ -20,7 +20,7 @@
             <div class="field column">
                 <label class="label has-text-white" for="email">Email</label>
                 <p class="control has-icons-left has-icons-right">
-                    <input class="input" name="email" type="email" value="{{ old('email') }}" required>
+                    <input class="input" id="email" name="email" type="email" value="{{ old('email') }}" required>
                     <span class="icon is-small is-left"><i class="fas fa-envelope" aria-hidden="true"></i></span>
                 </p>
                 @error('email')
@@ -30,7 +30,7 @@
             <div class="field column">
                 <label class="label has-text-white" for="password">Password</label>
                 <p class="control has-icons-left">
-                    <input class="input" type="password" name="password" placeholder="*****" value="{{ old('password') }}" required>
+                    <input class="input" type="password" id="password" name="password" placeholder="*****" value="{{ old('password') }}" required>
                     <span class="icon is-small is-left"><i class="fas fa-lock" aria-hidden="true"></i></span>
                 </p>
                 @error('password')
@@ -40,7 +40,7 @@
             <div class="field column">
                 <label class="label has-text-white" for="password_confirmation">Confirm password</label>
                 <p class="control has-icons-left">
-                    <input class="input" type="password" name="password_confirmation" placeholder="*****" value="{{ old('password_cnfirmation') }}" required>
+                    <input class="input" type="password" id="password_confirmation" name="password_confirmation" placeholder="*****" value="{{ old('password_cnfirmation') }}" required>
                     <span class="icon is-small is-left"><i class="fas fa-lock" aria-hidden="true"></i></span>
                 </p>
                 @error('password_confirmation')

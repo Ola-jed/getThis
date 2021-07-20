@@ -34,8 +34,9 @@ class ArticleController extends Controller
     public function index(Request $args): View|Factory|Application|RedirectResponse
     {
         // If a valid offset is given, we consider it. Otherwise, we start from zero
-        $offset = $args->has(self::OFFSET) && intval($args->input(self::OFFSET)) > 0 ?
-            intval($args->input(self::OFFSET)) : 0;
+        $offset = $args->has(self::OFFSET) && intval($args->input(self::OFFSET)) > 0
+            ? intval($args->input(self::OFFSET))
+            : 0;
         $articles = Article::getByLimitAndOffset(self::LIMIT_NUM,$offset);
         return view('article.articles')->with(['articles' => $articles]);
     }
@@ -55,8 +56,7 @@ class ArticleController extends Controller
         }
         catch (Exception)
         {
-            return back()
-                ->withInput()
+            return back()->withInput()
                 ->withErrors([
                     'message' => 'Cannot create the article'
                 ]);
@@ -134,7 +134,7 @@ class ArticleController extends Controller
      */
     public function destroy(string $slug): void
     {
-        $articleToDelete = Article::whereSlug($slug)->first();
+        $articleToDelete = Article::getBySlug($slug);
         if($articleToDelete->user_id === session()->get('user')->id)
         {
             $articleToDelete->delete();

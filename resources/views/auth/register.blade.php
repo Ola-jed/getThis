@@ -21,7 +21,7 @@
             <div class="field column">
                 <label for="name" class="label has-text-white">Username</label>
                 <p class="control has-icons-left has-icons-right">
-                    <input type="text" class="input is-primary" name="name" placeholder="Name" maxlength="25" value="{{ old('name') }}" required>
+                    <input type="text" class="input is-primary" id="name" name="name" placeholder="Name" maxlength="25" value="{{ old('name') }}" required>
                     <span class="icon is-small is-left"><i class="fas fa-user" aria-hidden="true"></i></span>
                 </p>
                 @error('name')
@@ -31,7 +31,7 @@
             <div class="field column">
                 <label for="email" class="label has-text-white">Email</label>
                 <p class="control has-icons-left has-icons-right">
-                    <input class="input" name="email" type="email" placeholder="Email" value="{{ old('email') }}" required>
+                    <input class="input" id="email" name="email" type="email" placeholder="Email" value="{{ old('email') }}" required>
                     <span class="icon is-small is-left"><i class="fas fa-envelope" aria-hidden="true"></i></span>
                 </p>
                 @error('email')
@@ -41,7 +41,7 @@
             <div class="field column">
                 <label for="password1" class="label has-text-white">Password</label>
                 <p class="control has-icons-left">
-                    <input class="input" type="password" name="password1" placeholder="*****" value="{{ old('password1') }}" required>
+                    <input class="input" id="password1" type="password" name="password1" placeholder="*****" value="{{ old('password1') }}" required>
                     <span class="icon is-small is-left"><i class="fas fa-lock" aria-hidden="true"></i></span>
                 </p>
                 @error('password1')
@@ -51,7 +51,7 @@
             <div class="field column">
                 <label for="password2" class="label has-text-white">Confirm password</label>
                 <p class="control has-icons-left">
-                    <input type="password" name="password2" class="input is-primary" placeholder="*****" value="{{ old('password2') }}" id="p2" required>
+                    <input type="password" name="password2" class="input is-primary" placeholder="*****" value="{{ old('password2') }}" id="password2" required>
                     <span class="icon is-small is-left"><i class="fas fa-lock" aria-hidden="true"></i></span>
                 </p>
                 @error('password2')

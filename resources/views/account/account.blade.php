@@ -43,7 +43,7 @@
         @endif
 
         @if($user->id !== session()->get('user')->id)
-            <button class="button is-warning" id="report"><i class="fa fa-flag" aria-hidden="true"></i> Report</button>
+            <button class="button is-warning" id="report"><i class="fa fa-flag" aria-hidden="true"></i>  Report</button>
             <div class="modal">
                 <div class="modal-background"></div>
                 <div class="modal-content">
@@ -54,8 +54,7 @@
                         <section class="modal-card-body has-background-dark">
                             <form action="{{ url('/account/'.$user->id) }}" method="post">
                                 @csrf
-                                <textarea name="cause" class="textarea is-warning" placeholder="Explain why you want to report this user" required>
-                                </textarea>
+                                <textarea name="cause" class="textarea is-warning" placeholder="Explain why you want to report this user" required></textarea>
                                 <button type="submit" class="button is-primary">Ok</button>
                                 <button class="button is-danger is-outlined" id="cancel">Cancel</button>
                             </form>

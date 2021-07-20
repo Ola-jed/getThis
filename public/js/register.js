@@ -1,14 +1,14 @@
 "use strict";
 
-const passwordInput = document.getElementById("p1");
-const passwordConfirmInput = document.getElementById("p2");
+const passwordInput = document.getElementById("password1");
+const passwordConfirmInput = document.getElementById("password2");
 
 /**
  * Are the password same ?
  */
 function checkPasswords()
 {
-    let isGood = passwordInput.value === passwordConfirmInput.value;
+    const isGood = passwordInput.value === passwordConfirmInput.value;
     passwordInput.style.color = isGood ? "black" : "red";
     passwordConfirmInput.style.color = isGood ? "black" : "red";
 }
