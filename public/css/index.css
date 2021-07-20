@@ -1,8 +1,10 @@
 html{
     height: auto;
 }
+.has-margin-top{
+    margin-top: 2%;
+}
 .latest-articles,.hottest-discussions{
-    border: 1px #ffffff solid;
     padding: 1%;
     margin-top: 2%;
     margin-bottom: 2%;

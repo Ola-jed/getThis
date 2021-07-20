@@ -19,19 +19,19 @@
         <h5 class="has-text-centered has-text-light is-white title is-5">Paste</h5>
         <div class="field column">
             <label for="title" class="label has-text-white">Title</label>
-            <input type="text" name="title" class="input is-primary has-background-dark has-text-white" placeholder="Title" required>
+            <input type="text" id="title" name="title" class="input is-primary has-background-dark has-text-white" placeholder="Title" required>
             @error('title')
                 <div class="help is-danger">{{ $message }}</div>
             @enderror
             <label for="content" class="label has-text-white">Code</label>
-            <textarea name="content" cols="30" rows="20" class="textarea is-primary has-background-dark has-text-white" required></textarea>
+            <textarea name="content" id="content" cols="30" rows="20" class="textarea is-primary has-background-dark has-text-white" required></textarea>
             @error('content')
                 <div class="help is-danger">{{ $message }}</div>
             @enderror
         </div>
         <label for="lifetime" class="label has-text-white">Lifetime in hours</label>
         <div class="select">
-            <select name="lifetime" required>
+            <select name="lifetime" id="lifetime">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="4">4</option>

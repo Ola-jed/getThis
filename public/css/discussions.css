@@ -2,8 +2,10 @@ html{
     height: auto;
 }
 .discussion{
-    margin: 1%;
-    padding: 1%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    padding-top: 1%;
+    padding-bottom: 1%;
 }
 .discussion-creation h3{
     text-align: center;

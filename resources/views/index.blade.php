@@ -22,8 +22,8 @@
                         Paste is a basic service that allow users to paste their code snippets in many languages (C++,C#,Rust,PHP,...)
                         After pasting your code or drag&dropping your file, you chose the lifetime in hours of your snippet and you get the url.
                         You can share the link your anyone and your snippets are public.
-                        You can also remove prematurely snippets and modify them
-                        <p class="is-centered"><a href="{{ url('paste') }}" class="is-link has-text-link-light">Try paste now !</a></p>
+                        You can also remove prematurely snippets and modify them.
+                        <p class="is-centered has-margin-top"><a href="{{ url('paste') }}" class="is-link has-text-white has-text-link-light">Try paste now !</a></p>
                     </div>
                 </div>
             </div>

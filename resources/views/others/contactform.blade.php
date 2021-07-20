@@ -28,9 +28,9 @@
                     <div class="help is-danger">{{ $message }}</div>
                 @enderror
             </div>
-            <button type="submit" class="button is-link is-outlined">Send</button>
+            <div class="line"><button type="submit" class="button is-link is-outlined">Send</button></div>
             @error('message')
-            <div class="help is-danger">{{ $message }}</div>
+                <div class="help is-danger">{{ $message }}</div>
             @enderror
         </form>
     </div>

@@ -2,11 +2,10 @@ html{
     height: auto;
 }
 .article{
-    margin: 1%;
-    padding: 1%;
-}
-.article-search{
-    margin-left: 2%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    padding-top: 1%;
+    padding-bottom: 1%;
 }
 .article-title{
     display: block;
