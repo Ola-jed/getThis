@@ -211,18 +211,18 @@ img {
 .button {
     border-radius: 3px;
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16);
-    color: #91929b;
+    color: #ffffff;
     display: inline-block;
     text-decoration: none;
     -webkit-text-size-adjust: none;
 }
 
 .button-blue, .button-primary {
-    background-color: #004166;
-    border-top: 10px solid #004166;
-    border-right: 18px solid #004166;
-    border-bottom: 10px solid #004166;
-    border-left: 18px solid #004166;
+    background-color: #2a3a55;
+    border-top: 10px solid #2a3a55;
+    border-right: 18px solid #2a3a55;
+    border-bottom: 10px solid #2a3a55;
+    border-left: 18px solid #2a3a55;
 }
 
 .button-green, .button-success {
