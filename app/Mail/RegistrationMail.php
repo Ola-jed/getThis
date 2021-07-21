@@ -36,6 +36,6 @@ class RegistrationMail extends Mailable
     {
         return $this->from(env('MAIL_FROM_ADDRESS'))
             ->subject('GetThis : Registration')
-            ->view('emails.signupmail');
+            ->markdown('emails.signupmail');
     }
 }

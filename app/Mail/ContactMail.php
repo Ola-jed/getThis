@@ -40,6 +40,6 @@ class ContactMail extends Mailable
         return $this->from(env('MAIL_FROM_ADDRESS'))
             ->subject($this->subject)
             ->replyTo($this->user->email)
-            ->view('emails.contact');
+            ->markdown('emails.contact');
     }
 }

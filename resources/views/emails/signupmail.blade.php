@@ -1,6 +1,13 @@
-<h1>Registration to GetThis</h1>
-<p>Dear {{ $user->name }}</p>
-<p>
-    We are happy to welcome you among us. <br>
-    Do not hesitate to visit <a href="#">our platform</a>
-</p>
+@component('mail::message')
+# Registration to GetThis
+
+Dear {{ $user->name }}<br>
+We are happy to welcome you among us. <br>
+
+@component('mail::button', ['url' => 'https://www.google.com'])
+    Take a look at getThis
+@endcomponent
+
+Thanks,<br>
+{{ config('app.name') }}
+@endcomponent

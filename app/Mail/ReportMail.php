@@ -34,11 +34,11 @@ class ReportMail extends Mailable
      *
      * @return $this
      */
-    public function build()
+    public function build(): static
     {
         return $this->from(env('MAIL_FROM_ADDRESS'))
             ->subject('Report')
             ->replyTo($this->user->email)
-            ->view('emails.report');
+            ->markdown('emails.report');
     }
 }

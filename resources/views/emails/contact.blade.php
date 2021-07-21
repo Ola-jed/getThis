@@ -1,7 +1,11 @@
-<h1>Contact</h1>
+@component('mail::message')
+# Contact
+
 <p>Someone has contacted us</p>
 <p>It is {{ $user->name }} with the mail : {{ $user->email }}</p>
 <p>Here is his message</p>
-<p>
+@component('mail::panel')
     {!! $content !!}
-</p>
+@endcomponent
+
+@endcomponent
