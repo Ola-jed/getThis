@@ -22,7 +22,7 @@ use Illuminate\Routing\Redirector;
 class DiscussionController extends Controller
 {
     private const LIMIT_NUM = 10;
-    private const OFFSET = 'offset';
+    private const OFFSET    = 'offset';
 
     /**
      * Display a listing of the articles.
@@ -34,7 +34,7 @@ class DiscussionController extends Controller
     {
         // If a valid offset is given, we consider it. Otherwise, we start from zero
         $offset = $args->has(self::OFFSET) && intval($args->input(self::OFFSET)) > 0 ?
-                intval($args->input(self::OFFSET)) : 0;
+            intval($args->input(self::OFFSET)) : 0;
         $discussions = Discussion::withCount('messages')
             ->latest()
             ->limit(self::LIMIT_NUM)
@@ -55,8 +55,11 @@ class DiscussionController extends Controller
             'subject' => $request->input('subject'),
             'user_id' => session()->get('user')->id
         ]);
-        if(is_null($discussion)) return back();
-        return redirect('discussion/'.$discussion->id);
+        if(is_null($discussion))
+        {
+            return back();
+        }
+        return redirect('discussion/' . $discussion->id);
     }
 
     /**
@@ -70,15 +73,15 @@ class DiscussionController extends Controller
         try
         {
             $disc = Discussion::findOrFail($discId);
-            $messages = Message::where('discussion_id',$discId)
+            $messages = Message::where('discussion_id', $discId)
                 ->latest()
                 ->get();
             return view('discussion.discussion')->with([
                 'discussion' => $disc,
-                'messages' => $messages
+                'messages'   => $messages
             ]);
         }
-        catch (Exception)
+        catch(Exception)
         {
             return back();
         }
@@ -91,11 +94,11 @@ class DiscussionController extends Controller
      * @param int $discussionId
      * @return Response|Redirector|Application|RedirectResponse
      */
-    public function update(DiscussionCreationRequest $request,int $discussionId): Response|Redirector|Application|RedirectResponse
+    public function update(DiscussionCreationRequest $request, int $discussionId): Response|Redirector|Application|RedirectResponse
     {
         Discussion::find($discussionId)
             ->update($request->only(['subject']));
-        return redirect('discussion/'.$discussionId);
+        return redirect('discussion/' . $discussionId);
     }
 
     /**

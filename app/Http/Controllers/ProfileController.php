@@ -35,8 +35,8 @@ class ProfileController extends Controller
             ->limit(10)
             ->get();
         return \view('profile.profile')->with([
-            'articles' => $articlesWritten,
-            'discussions' => $discussionsCreated,
+            'articles'      => $articlesWritten,
+            'discussions'   => $discussionsCreated,
             'article_count' => $articleCount
         ]);
     }

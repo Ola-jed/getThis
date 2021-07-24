@@ -41,12 +41,12 @@ class AccountController extends Controller
                 ->limit(10)
                 ->get();
             return \view('account.account')->with([
-                'user' => $requestedUser,
-                'articles' => $articlesWritten,
+                'user'        => $requestedUser,
+                'articles'    => $articlesWritten,
                 'discussions' => $discussionsCreated
             ]);
         }
-        catch (Exception)
+        catch(Exception)
         {
             abort(404);
         }
@@ -64,10 +64,10 @@ class AccountController extends Controller
         {
             $userReported = User::findOrFail($userId);
             Mail::to(env('ADMIN_EMAIL'))
-                ->send(new ReportMail($userReported,$reportRequest->input('cause')));
+                ->send(new ReportMail($userReported, $reportRequest->input('cause')));
             return view('account.accountreported');
         }
-        catch (Exception)
+        catch(Exception)
         {
             return back();
         }

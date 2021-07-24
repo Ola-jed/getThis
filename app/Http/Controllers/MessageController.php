@@ -35,8 +35,8 @@ class MessageController extends Controller
     public function store(int $discussionId, MessageCreationRequest $messageCreationRequest)
     {
         Message::create([
-            'content' => $messageCreationRequest->input('content'),
-            'user_id' => session()->get('user')->id,
+            'content'       => $messageCreationRequest->input('content'),
+            'user_id'       => session()->get('user')->id,
             'discussion_id' => $discussionId
         ]);
     }
@@ -50,7 +50,10 @@ class MessageController extends Controller
     public function destroy(int $messageId): bool
     {
         $messageToDelete = Message::find($messageId);
-        if(session()->get('user')->id !== $messageToDelete->user_id) return false;
+        if(session()->get('user')->id !== $messageToDelete->user_id)
+        {
+            return false;
+        }
         return Message::destroy($messageId);
     }
 }

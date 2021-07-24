@@ -43,7 +43,7 @@ class PasteController extends Controller
                 'paste' => Paste::getWithSlug($slug)
             ]);
         }
-        catch (Exception)
+        catch(Exception)
         {
             abort(404);
         }
@@ -58,10 +58,10 @@ class PasteController extends Controller
     {
         try
         {
-            $paste = Paste::createFromInfo($pasteRequest->all(),session()->get('user')->id);
-            return redirect('paste/'.$paste->slug);
+            $paste = Paste::createFromInfo($pasteRequest->all(), session()->get('user')->id);
+            return redirect('paste/' . $paste->slug);
         }
-        catch (Exception)
+        catch(Exception)
         {
             return back()
                 ->withInput()
@@ -84,7 +84,7 @@ class PasteController extends Controller
         {
             return view('paste.pasteupdateform')->with(['paste' => $askedPaste]);
         }
-        return redirect('/paste/'.$slug);
+        return redirect('/paste/' . $slug);
     }
 
     /**
@@ -106,9 +106,9 @@ class PasteController extends Controller
                     ->addHours(intval($pasteRequest->input('lifetime')))
                     ->toDateTime();
                 $pasteToUpdate->saveOrFail();
-                return redirect('/paste/'.$pasteToUpdate->slug);
+                return redirect('/paste/' . $pasteToUpdate->slug);
             }
-            catch (Throwable)
+            catch(Throwable)
             {
                 return back()
                     ->withInput()
@@ -117,7 +117,7 @@ class PasteController extends Controller
                     ]);
             }
         }
-        return redirect('/paste/'.$slug);
+        return redirect('/paste/' . $slug);
     }
 
     /**
@@ -133,6 +133,6 @@ class PasteController extends Controller
             $pasteToDelete->forceDelete();
             return redirect('/paste');
         }
-        return redirect('/paste/'.$slug);
+        return redirect('/paste/' . $slug);
     }
 }

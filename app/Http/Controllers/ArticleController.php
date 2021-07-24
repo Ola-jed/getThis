@@ -22,7 +22,7 @@ use Illuminate\Http\Response;
 class ArticleController extends Controller
 {
     private const LIMIT_NUM = 10;
-    private const OFFSET = 'offset';
+    private const OFFSET    = 'offset';
 
     /**
      * Display a listing of the articles.
@@ -37,7 +37,7 @@ class ArticleController extends Controller
         $offset = $args->has(self::OFFSET) && intval($args->input(self::OFFSET)) > 0
             ? intval($args->input(self::OFFSET))
             : 0;
-        $articles = Article::getByLimitAndOffset(self::LIMIT_NUM,$offset);
+        $articles = Article::getByLimitAndOffset(self::LIMIT_NUM, $offset);
         return view('article.articles')->with(['articles' => $articles]);
     }
 
@@ -51,10 +51,10 @@ class ArticleController extends Controller
     {
         try
         {
-            $article = Article::createFromInformation($request->all(),session()->get('user'));
-            return redirect('article/'.$article->slug);
+            $article = Article::createFromInformation($request->all(), session()->get('user'));
+            return redirect('article/' . $article->slug);
         }
-        catch (Exception)
+        catch(Exception)
         {
             return back()->withInput()
                 ->withErrors([
@@ -76,7 +76,7 @@ class ArticleController extends Controller
             $article = Article::getBySlug($slug);
             return view('article.article')->with(['article' => $article]);
         }
-        catch (Exception)
+        catch(Exception)
         {
             abort(404);
         }
@@ -96,11 +96,11 @@ class ArticleController extends Controller
             {
                 return \view('article.articleupdate')->with(['article' => $articleToUpdate]);
             }
-            return redirect('article/'.$slug);
+            return redirect('article/' . $slug);
         }
-        catch (Exception)
+        catch(Exception)
         {
-           return redirect('/articles');
+            return redirect('/articles');
         }
     }
 
@@ -121,7 +121,7 @@ class ArticleController extends Controller
             $articleToUpdate->content = $request->input('content');
             $articleToUpdate->save();
             // When the update is finished, we redirect with the new slug
-            return redirect('article/'.Str::slug($request->input('title')));
+            return redirect('article/' . Str::slug($request->input('title')));
         }
         return redirect('/articles');
     }

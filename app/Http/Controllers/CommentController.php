@@ -38,9 +38,9 @@ class CommentController extends Controller
     public function store(CommentCreationRequest $request, string $articleSlug): void
     {
         Comment::create([
-            'user_id' => session()->get('user')->id,
+            'user_id'    => session()->get('user')->id,
             'article_id' => Article::whereSlug($articleSlug)->first()->id,
-            'content' => $request->input('content')
+            'content'    => $request->input('content')
         ]);
     }
 
@@ -59,7 +59,7 @@ class CommentController extends Controller
                 return boolval(Comment::destroy($commentId));
             }
         }
-        catch (Throwable)
+        catch(Throwable)
         {
             return false;
         }
@@ -74,7 +74,10 @@ class CommentController extends Controller
     public function update(int $commentId, CommentCreationRequest $request)
     {
         $commentToUpdate = Comment::find($commentId);
-        if(is_null($commentToUpdate)) return;
+        if(is_null($commentToUpdate))
+        {
+            return;
+        }
         if($commentToUpdate->user_id === session()->get('user')->id)
         {
             $commentToUpdate->content = $request->input('content');
