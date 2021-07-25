@@ -24,21 +24,27 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $updated_at
  * @property-read Discussion $discussion
  * @property-read User $user
- * @method static MessageFactory factory(...$parameters)
+ * @method static MessageFactory factory( ...$parameters )
  * @method static Builder|Message newModelQuery()
  * @method static Builder|Message newQuery()
  * @method static Builder|Message query()
- * @method static Builder|Message whereContent($value)
- * @method static Builder|Message whereCreatedAt($value)
- * @method static Builder|Message whereDiscussionId($value)
- * @method static Builder|Message whereId($value)
- * @method static Builder|Message whereUpdatedAt($value)
- * @method static Builder|Message whereUserId($value)
+ * @method static Builder|Message whereContent( $value )
+ * @method static Builder|Message whereCreatedAt( $value )
+ * @method static Builder|Message whereDiscussionId( $value )
+ * @method static Builder|Message whereId( $value )
+ * @method static Builder|Message whereUpdatedAt( $value )
+ * @method static Builder|Message whereUserId( $value )
  * @mixin Eloquent
  */
 class Message extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'discussion_id',
+        'content'
+    ];
 
     /**
      * Get the latest messages of a discussion
@@ -47,7 +53,7 @@ class Message extends Model
      */
     public static function getLatestOfDiscussion(int $discussionId): Collection
     {
-        return Message::where('discussion_id',$discussionId)
+        return Message::where('discussion_id', $discussionId)
             ->latest()
             ->get();
     }
@@ -69,10 +75,4 @@ class Message extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    protected $fillable = [
-        'user_id',
-        'discussion_id',
-        'content'
-    ];
 }

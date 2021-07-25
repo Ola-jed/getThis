@@ -27,27 +27,25 @@ use Illuminate\Support\Str;
  * @method static Builder|Paste newModelQuery()
  * @method static Builder|Paste newQuery()
  * @method static Builder|Paste query()
- * @method static Builder|Paste whereContent($value)
- * @method static Builder|Paste whereCreatedAt($value)
- * @method static Builder|Paste whereDeletionDate($value)
- * @method static Builder|Paste whereId($value)
- * @method static Builder|Paste whereSlug($value)
- * @method static Builder|Paste whereUpdatedAt($value)
- * @method static Builder|Paste whereUserId($value)
+ * @method static Builder|Paste whereContent( $value )
+ * @method static Builder|Paste whereCreatedAt( $value )
+ * @method static Builder|Paste whereDeletionDate( $value )
+ * @method static Builder|Paste whereId( $value )
+ * @method static Builder|Paste whereSlug( $value )
+ * @method static Builder|Paste whereUpdatedAt( $value )
+ * @method static Builder|Paste whereUserId( $value )
  * @mixin Eloquent
  */
 class Paste extends Model
 {
     use HasFactory;
 
-    /**
-     * Get the user who created this paste
-     * @return BelongsTo
-     */
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
+    protected $fillable = [
+        'content',
+        'deletion_date',
+        'slug',
+        'user_id'
+    ];
 
     /**
      * Create a new paste with a unique key
@@ -59,12 +57,15 @@ class Paste extends Model
     public static function createFromInfo(array $data, int $userId): Paste
     {
         $paste = Paste::create([
-            'content' => $data['content'],
+            'content'       => $data['content'],
             'deletion_date' => Carbon::now()->addHours(intval($data['lifetime']))->toDateTime(),
-            'slug' => Str::slug($data['title']),
-            'user_id' => $userId
+            'slug'          => Str::slug($data['title']),
+            'user_id'       => $userId
         ]);
-        if(is_null($paste)) throw new Exception('Cannot create paste');
+        if(is_null($paste))
+        {
+            throw new Exception('Cannot create paste');
+        }
         return $paste;
     }
 
@@ -75,13 +76,15 @@ class Paste extends Model
      */
     public static function getWithSlug(string $slug): Paste
     {
-        return Paste::where('slug',$slug)->firstOrFail();
+        return Paste::where('slug', $slug)->firstOrFail();
     }
 
-    protected $fillable = [
-        'content',
-        'deletion_date',
-        'slug',
-        'user_id'
-    ];
+    /**
+     * Get the user who created this paste
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }

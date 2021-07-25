@@ -25,20 +25,25 @@ use Illuminate\Support\Carbon;
  * @property-read Collection|Message[] $messages
  * @property-read int|null $messages_count
  * @property-read User $user
- * @method static DiscussionFactory factory(...$parameters)
+ * @method static DiscussionFactory factory( ...$parameters )
  * @method static Builder|Discussion newModelQuery()
  * @method static Builder|Discussion newQuery()
  * @method static Builder|Discussion query()
- * @method static Builder|Discussion whereCreatedAt($value)
- * @method static Builder|Discussion whereId($value)
- * @method static Builder|Discussion whereSubject($value)
- * @method static Builder|Discussion whereUpdatedAt($value)
- * @method static Builder|Discussion whereUserId($value)
+ * @method static Builder|Discussion whereCreatedAt( $value )
+ * @method static Builder|Discussion whereId( $value )
+ * @method static Builder|Discussion whereSubject( $value )
+ * @method static Builder|Discussion whereUpdatedAt( $value )
+ * @method static Builder|Discussion whereUserId( $value )
  * @mixin Eloquent
  */
 class Discussion extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'subject'
+    ];
 
     /**
      * Get the n hottest discussions
@@ -59,7 +64,7 @@ class Discussion extends Model
      */
     public static function getBySubject(string $subject): Collection
     {
-        return Discussion::where('subject','LIKE','%'.$subject.'%')
+        return Discussion::where('subject', 'LIKE', '%' . $subject . '%')
             ->get();
     }
 
@@ -80,9 +85,4 @@ class Discussion extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    protected $fillable = [
-        'user_id',
-        'subject'
-    ];
 }

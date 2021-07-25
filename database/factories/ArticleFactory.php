@@ -26,9 +26,9 @@ class ArticleFactory extends Factory
         $title = $this->faker->sentence;
         return [
             'subject' => $this->faker->catchPhrase,
-            'title' => $title,
-            'slug' => Str::slug($title),
-            'content' => $this->faker->sentences(15,true),
+            'title'   => $title,
+            'slug'    => Str::slug($title),
+            'content' => $this->faker->sentences(15, true),
             'user_id' => $this->faker->randomElement(User::all()->pluck('id')->all())
         ];
     }

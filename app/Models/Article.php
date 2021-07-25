@@ -30,23 +30,31 @@ use Illuminate\Database\Eloquent\Collection;
  * @property-read Collection|Comment[] $comments
  * @property-read int|null $comments_count
  * @property-read User $user
- * @method static ArticleFactory factory(...$parameters)
+ * @method static ArticleFactory factory( ...$parameters )
  * @method static Builder|Article newModelQuery()
  * @method static Builder|Article newQuery()
  * @method static Builder|Article query()
- * @method static Builder|Article whereContent($value)
- * @method static Builder|Article whereCreatedAt($value)
- * @method static Builder|Article whereId($value)
- * @method static Builder|Article whereSlug($value)
- * @method static Builder|Article whereSubject($value)
- * @method static Builder|Article whereTitle($value)
- * @method static Builder|Article whereUpdatedAt($value)
- * @method static Builder|Article whereUserId($value)
+ * @method static Builder|Article whereContent( $value )
+ * @method static Builder|Article whereCreatedAt( $value )
+ * @method static Builder|Article whereId( $value )
+ * @method static Builder|Article whereSlug( $value )
+ * @method static Builder|Article whereSubject( $value )
+ * @method static Builder|Article whereTitle( $value )
+ * @method static Builder|Article whereUpdatedAt( $value )
+ * @method static Builder|Article whereUserId( $value )
  * @mixin Eloquent
  */
 class Article extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'subject',
+        'title',
+        'slug',
+        'content',
+        'user_id'
+    ];
 
     /**
      * Create an article with the data and the writer
@@ -59,12 +67,15 @@ class Article extends Model
     {
         $article = Article::create([
             'subject' => $information['subject'],
-            'title' => $information['title'],
-            'slug' => Str::slug($information['title']),
+            'title'   => $information['title'],
+            'slug'    => Str::slug($information['title']),
             'content' => $information['content'],
             'user_id' => $writer->id
         ]);
-        if(is_null($article)) throw new Exception('Article creation failed');
+        if(is_null($article))
+        {
+            throw new Exception('Article creation failed');
+        }
         return $article;
     }
 
@@ -75,7 +86,7 @@ class Article extends Model
      */
     public static function searchByTitle(string $title): Collection
     {
-        return Article::where('title','LIKE','%'.$title.'%')
+        return Article::where('title', 'LIKE', '%' . $title . '%')
             ->get();
     }
 
@@ -86,7 +97,7 @@ class Article extends Model
      */
     public static function searchBySubject(string $subject): Collection
     {
-        return Article::where('subject',$subject)
+        return Article::where('subject', $subject)
             ->get();
     }
 
@@ -144,12 +155,4 @@ class Article extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    protected $fillable = [
-        'subject',
-        'title',
-        'slug',
-        'content',
-        'user_id'
-    ];
 }

@@ -39,23 +39,43 @@ use Illuminate\Support\Facades\Hash;
  * @property-read int|null $messages_count
  * @property-read DatabaseNotificationCollection|DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
- * @method static UserFactory factory(...$parameters)
+ * @method static UserFactory factory( ...$parameters )
  * @method static Builder|User newModelQuery()
  * @method static Builder|User newQuery()
  * @method static Builder|User query()
- * @method static Builder|User whereCreatedAt($value)
- * @method static Builder|User whereEmail($value)
- * @method static Builder|User whereGithubId($value)
- * @method static Builder|User whereGoogleId($value)
- * @method static Builder|User whereId($value)
- * @method static Builder|User whereName($value)
- * @method static Builder|User wherePassword($value)
- * @method static Builder|User whereUpdatedAt($value)
+ * @method static Builder|User whereCreatedAt( $value )
+ * @method static Builder|User whereEmail( $value )
+ * @method static Builder|User whereGithubId( $value )
+ * @method static Builder|User whereGoogleId( $value )
+ * @method static Builder|User whereId( $value )
+ * @method static Builder|User whereName( $value )
+ * @method static Builder|User wherePassword( $value )
+ * @method static Builder|User whereUpdatedAt( $value )
  * @mixin Eloquent
  */
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
+
+    /**
+     * The attributes that are mass assignable
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'google_id',
+        'github_id'
+    ];
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password'
+    ];
 
     /**
      * Creates  new user from the request data
@@ -66,11 +86,14 @@ class User extends Authenticatable
     public static function createFromInformation(array $information): User
     {
         $user = User::create([
-            'name' => $information['name'],
-            'email' => $information['email'],
+            'name'     => $information['name'],
+            'email'    => $information['email'],
             'password' => Hash::make($information['password1'])
         ]);
-        if(is_null($user)) throw new Exception('Cannot create user');
+        if(is_null($user))
+        {
+            throw new Exception('Cannot create user');
+        }
         return $user;
     }
 
@@ -109,25 +132,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(Message::class);
     }
-
-    /**
-     * The attributes that are mass assignable
-     * @var array
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'google_id',
-        'github_id'
-    ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password'
-    ];
 }

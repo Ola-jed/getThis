@@ -24,9 +24,9 @@ class MessageFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => $this->faker->randomElement(User::all()->pluck('id')->all()),
+            'user_id'       => $this->faker->randomElement(User::all()->pluck('id')->all()),
             'discussion_id' => $this->faker->randomElement(Discussion::all()->pluck('id')->all()),
-            'content' => $this->faker->realText()
+            'content'       => $this->faker->realText()
         ];
     }
 }
