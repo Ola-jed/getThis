@@ -68,12 +68,13 @@ class UserAuthController extends Controller
 
     /**
      * Sign in
+     * If remember me is checked, we use it
      * @param SignInRequest $signInRequest
      * @return Redirector|Application|RedirectResponse|View
      */
     public function signIn(SignInRequest $signInRequest): Redirector|Application|RedirectResponse|View
     {
-        if(Auth::attempt($signInRequest->only('email', 'password')))
+        if(Auth::attempt($signInRequest->only('email', 'password'),$signInRequest->has('remember-me')))
         {
             $user = Auth::user();
             session(['user' => $user]);
@@ -95,6 +96,7 @@ class UserAuthController extends Controller
      */
     public function logout(): Redirector|Application|RedirectResponse
     {
+        Auth::logout();
         session()->flush();
         return redirect('/');
     }

@@ -33,6 +33,12 @@
                     <div class="help is-danger">{{ $message }}</div>
                 @enderror
             </div>
+            <div class="field column has-text-white">
+                <label class="checkbox">
+                    <input type="checkbox" name="remember-me">
+                    Remember me
+                </label>
+            </div>
             <div class="line">
                 <button type="submit" class="button is-link is-outlined is-one-third">Login</button>
                 <div class="column is-narrow"><a href="{{ url('/forget-password') }}" class="is-link has-text-link-dark">Forgotten password ?</a></div>

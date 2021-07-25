@@ -15,6 +15,7 @@ class ValidSession
     /**
      * Handle an incoming request.
      * The user must have a valid session
+     * If there is a remember token, we use it to create the session
      * @param Request $request
      * @param Closure $next
      * @return mixed
@@ -24,6 +25,10 @@ class ValidSession
         if(!$request->session()->has('user'))
         {
             return redirect('/login');
+        }
+        if(\Auth::check())
+        {
+            session(['user' => \Auth::user()]);
         }
         return $next($request);
     }

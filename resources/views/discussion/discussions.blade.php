@@ -19,7 +19,7 @@
     @include('components.menu')
     <main>
         <div class="columns">
-            <div class="discussion-search field has-addons column">
+            <div class="discussion-search field has-addons column is-four-fifths">
                 <div class="control is-expanded">
                     <input class="input" name="search" type="search" placeholder="Search a discussion" id="form-search">
                 </div>
