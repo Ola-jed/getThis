@@ -18,7 +18,7 @@ deleteArticles.forEach((e) => {
         }).then(function () {
             location.reload();
         }).catch(function (error) {
-            console.log("Suppression failed :" + error);
+            console.log("Suppression failed : " + error);
         });
     });
 });

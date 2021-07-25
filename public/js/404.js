@@ -55,6 +55,7 @@ function peep()
 /**
  * Start the game
  * Function called on click of the start button
+ * Show random moles for 15 seconds
  */
 function startGame()
 {
@@ -62,7 +63,7 @@ function startGame()
     timeUp = false;
     score = 0;
     peep();
-    setTimeout(() => timeUp = true, 15000) // Show random moles for 15 seconds
+    setTimeout(() => timeUp = true, 15000);
 }
 
 /**
