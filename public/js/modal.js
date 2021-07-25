@@ -13,9 +13,9 @@ function removeIsActive()
     modalBox.classList.remove('is-active');
 }
 
-reportButton.addEventListener('click',function () {
+reportButton.addEventListener('click', function () {
     modalBox.classList.add('is-active');
 })
 
-closeBox.addEventListener('click',removeIsActive);
-cancelBtn.addEventListener('click',removeIsActive);
+closeBox.addEventListener('click', removeIsActive);
+cancelBtn.addEventListener('click', removeIsActive);

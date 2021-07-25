@@ -17,9 +17,9 @@ function goTo(isNext = true)
     // We get the current offset displayed in the url
     const currentOffset = Number.parseInt(document.URL.split("?offset=").pop());
     const hasOffset = !Number.isNaN(currentOffset);
-    console.log('has offset : '+hasOffset);
+    console.log('has offset : ' + hasOffset);
     let newOffset;
-    if(isNext)
+    if (isNext)
     {
         newOffset = hasOffset ? currentOffset + 10 : 10;
     }
@@ -34,10 +34,10 @@ function goTo(isNext = true)
  * Adding listeners on previous and next links
  * We change the offset's value to do the request
  */
-previousLink.onclick = function (){
+previousLink.onclick = function () {
     goTo(false);
 };
 
-nextLink.onclick = function (){
+nextLink.onclick = function () {
     goTo(true);
 };

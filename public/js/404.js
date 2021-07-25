@@ -45,7 +45,10 @@ function peep()
     hole.classList.add('up'); // CSS class so selected mole can "pop up"
     setTimeout(() => {
         hole.classList.remove('up'); //make the selected mole "pop down" after a random time
-        if(!timeUp) peep();
+        if (!timeUp)
+        {
+            peep();
+        }
     }, time);
 }
 
@@ -69,7 +72,10 @@ function startGame()
 function wack(e)
 {
     // Make sure it is created by a user. To prevent cheaters
-    if(!e.isTrusted) return;
+    if (!e.isTrusted)
+    {
+        return;
+    }
     score++;
     this.parentNode.classList.remove('up'); // Item clicked
     scoreBoard.textContent = score;

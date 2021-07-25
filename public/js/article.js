@@ -9,18 +9,16 @@ const searchInput = document.getElementById("form-search");
  * We iter on the array of delete buttons and add event listener
  */
 deleteArticles.forEach((e) => {
-    e.addEventListener('submit',function (event) {
+    e.addEventListener('submit', function (event) {
         const deleteFormAction = e.getAttribute("action");
         const deleteFormContent = new FormData(e);
-        fetch(deleteFormAction,{
-            method : 'post',
-            body : deleteFormContent,
-        }).then(function()
-        {
+        fetch(deleteFormAction, {
+            method: 'post',
+            body: deleteFormContent,
+        }).then(function () {
             location.reload();
-        }).catch(function(error)
-        {
-            console.log("Suppression failed :"+error);
+        }).catch(function (error) {
+            console.log("Suppression failed :" + error);
         });
     });
 });
@@ -30,16 +28,13 @@ deleteArticles.forEach((e) => {
  */
 searchBtn.onclick = function () {
     console.log(searchInput.value);
-    fetch(`/articles/title?title=${searchInput.value}`,{
-        method : 'GET'
-    }).then(function(response)
-    {
+    fetch(`/articles/title?title=${searchInput.value}`, {
+        method: 'GET'
+    }).then(function (response) {
         return response.text();
-    }).then(function(text)
-    {
+    }).then(function (text) {
         document.querySelector(".articles").innerHTML = text === "" ? "No result" : text;
-    }).catch(function(error)
-    {
+    }).catch(function (error) {
         console.log(error);
     });
 };

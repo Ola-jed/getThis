@@ -9,6 +9,6 @@ const editor = new Editor({
     previewStyle: 'vertical',
     usageStatistics: false
 });
-createArticleButton.addEventListener('click',function (){
+createArticleButton.addEventListener('click', function () {
     articleTextarea.value = editor.getMarkdown();
 });

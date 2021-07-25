@@ -13,5 +13,5 @@ function checkPasswords()
     passwordConfirmInput.style.color = isGood ? "black" : "red";
 }
 
-passwordInput.addEventListener('keyup',checkPasswords);
-passwordConfirmInput.addEventListener('keyup',checkPasswords);
+passwordInput.addEventListener('keyup', checkPasswords);
+passwordConfirmInput.addEventListener('keyup', checkPasswords);

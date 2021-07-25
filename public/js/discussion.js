@@ -12,21 +12,18 @@ makeMessagesDeletable();
  */
 function loadMessages()
 {
-    fetch(`/discussion/${currentDiscussion}/messages`,{
-        method : 'GET'
-    }).then(function(response)
-    {
+    fetch(`/discussion/${currentDiscussion}/messages`, {
+        method: 'GET'
+    }).then(function (response) {
         return response.text();
-    }).then(function(text)
-    {
+    }).then(function (text) {
         if (text !== "")
         {
             document.querySelector(".messages").innerHTML = text;
             deleteMessageForms = document.querySelectorAll(".message-delete");
             makeMessagesDeletable();
         }
-    }).catch(function(error)
-    {
+    }).catch(function (error) {
         console.log(error);
     })
 }
@@ -35,21 +32,19 @@ function loadMessages()
  * Submitting the message form
  * With fetch
  */
-messageForm.addEventListener('submit',function (e){
+messageForm.addEventListener('submit', function (e) {
     e.preventDefault();
     const formContent = new FormData(messageForm);
     const formAction = this.getAttribute("action");
     console.log(formAction);
-    fetch(formAction,{
-        method : 'post',
-        body : formContent,
-    }).then(function()
-    {
+    fetch(formAction, {
+        method: 'post',
+        body: formContent,
+    }).then(function () {
         alert("Message posted");
         loadMessages();
-    }).catch(function(error)
-    {
-        alert("Message post failed : "+error);
+    }).catch(function (error) {
+        alert("Message post failed : " + error);
     });
     return false;
 });
@@ -60,21 +55,19 @@ messageForm.addEventListener('submit',function (e){
 function makeMessagesDeletable()
 {
     deleteMessageForms.forEach((aDeleteForm) => {
-        aDeleteForm.addEventListener('submit',function (event) {
+        aDeleteForm.addEventListener('submit', function (event) {
             event.preventDefault();
             const deleteFormAction = aDeleteForm.getAttribute("action");
             const deleteFormContent = new FormData(aDeleteForm);
-            fetch(deleteFormAction,{
-                method : 'post',
-                body : deleteFormContent,
-            }).then(function(isOk)
-            {
+            fetch(deleteFormAction, {
+                method: 'post',
+                body: deleteFormContent,
+            }).then(function (isOk) {
                 console.log(isOk)
                 alert("Message deleted");
                 loadMessages();
-            }).catch(function(error)
-            {
-                alert("Suppression failed :"+error);
+            }).catch(function (error) {
+                alert("Suppression failed :" + error);
             });
         });
         return false;
