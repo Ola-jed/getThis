@@ -28,12 +28,12 @@ class ArticleController extends Controller
      * Display a listing of the articles.
      * Offset and limit can be passed
      * We get the latest articles first
+     * If a valid offset is given, we consider it. Otherwise, we start from zero
      * @param Request $args
      * @return View|Factory|Application|RedirectResponse
      */
     public function index(Request $args): View|Factory|Application|RedirectResponse
     {
-        // If a valid offset is given, we consider it. Otherwise, we start from zero
         $offset = $args->has(self::OFFSET) && intval($args->input(self::OFFSET)) > 0
             ? intval($args->input(self::OFFSET))
             : 0;
@@ -65,7 +65,7 @@ class ArticleController extends Controller
 
     /**
      * Display the specified article.
-     *
+     * Throws 404 if article not existing
      * @param string $slug
      * @return Application|Factory|View|RedirectResponse
      */
@@ -106,6 +106,7 @@ class ArticleController extends Controller
 
     /**
      * Update the specified article in database.
+     * Redirect to the new page if the slug is modified
      * @param ArticleCreationRequest $request
      * @param string $slug
      * @return Response|Redirector|Application|RedirectResponse
@@ -120,7 +121,6 @@ class ArticleController extends Controller
             $articleToUpdate->subject = $request->input('subject');
             $articleToUpdate->content = $request->input('content');
             $articleToUpdate->save();
-            // When the update is finished, we redirect with the new slug
             return redirect('article/' . Str::slug($request->input('title')));
         }
         return redirect('/articles');

@@ -43,9 +43,6 @@ class UserAuthController extends Controller
         {
             $userCreated = User::createFromInformation($signInRequest->all());
             session(['user' => $userCreated]);
-            Mail::to($userCreated->email)
-                ->send(new RegistrationMail($userCreated));
-            return redirect('/');
         }
         catch(Exception)
         {
@@ -55,6 +52,9 @@ class UserAuthController extends Controller
                     'message' => 'Cannot create the user'
                 ]);
         }
+        Mail::to($userCreated->email)
+            ->send(new RegistrationMail($userCreated));
+        return redirect('/');
     }
 
     /**

@@ -103,13 +103,12 @@ class DiscussionController extends Controller
 
     /**
      * Delete a discussion if the connected user is the author.
-     *
+     * Check that connected user is author of the discussion
      * @param int $discussionId
      * @return Factory|Response|View|RedirectResponse
      */
     public function destroy(int $discussionId): Response|Factory|View|RedirectResponse
     {
-        // Check that connected user is author of the discussion
         $discussionToDelete = Discussion::find($discussionId);
         if($discussionToDelete->writer_id === session()->get('user')->id)
         {

@@ -4,16 +4,17 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Mail\RegistrationMail;
-use Exception;
 use App\Models\User;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\View\View;
+use Exception;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Contracts\View\Factory;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+use Illuminate\View\View;
 use Laravel\Socialite\Facades\Socialite;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Illuminate\Contracts\Foundation\Application;
 
 /**
  * Class UserSocialAuthController
@@ -70,42 +71,41 @@ class UserSocialAuthController extends Controller
             $user = Socialite::driver($driver)->user();
             $findUser = User::where($column, $user->id)
                 ->first();
-            if (!is_null($findUser))
+            if(!is_null($findUser))
             {
                 session(['user' => $user]);
                 return redirect('/');
             }
-            // else
             $findUser = User::where('email', $user->getEmail())
                 ->first();
-            if (is_null($findUser))
+            if(is_null($findUser))
             {
                 $name = empty($user->getName()) ? "User" : $user->getName();
                 $newUser = User::create([
-                    'name' => $name,
-                    'email' => $user->getEmail(),
-                    $column => $user->getId(),
-                    'password' => Hash::make('0000')
+                    'name'     => $name,
+                    'email'    => $user->getEmail(),
+                    $column    => $user->getId(),
+                    'password' => Hash::make(Str::random())
                 ]);
-                if (is_null($newUser))
+                if(is_null($newUser))
                 {
                     return view('error')->with([
-                        'message' => 'Registration with '.$driver.' failed'
+                        'message' => 'Registration with ' . $driver . ' failed'
                     ]);
                 }
+                session(['user' => $newUser]);
                 Mail::to($newUser->email)
                     ->send(new RegistrationMail($newUser));
-                session(['user' => $newUser]);
                 return redirect('/');
             }
             return view('error')->with([
                 'message' => 'Email address already in use'
             ]);
         }
-        catch (Exception $e)
+        catch(Exception $e)
         {
             return view('error')->with([
-                'message' => 'Something weird happened : '.$e->getMessage()
+                'message' => 'Something weird happened : ' . $e->getMessage()
             ]);
         }
     }
