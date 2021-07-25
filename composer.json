@@ -9,16 +9,16 @@
     "license": "MIT",
     "require": {
         "php": "^8.0",
+        "ext-pdo": "*",
+        "barryvdh/laravel-ide-helper": "^2.10",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.40",
         "laravel/socialite": "^5.2",
-        "laravel/tinker": "^2.5",
-        "ext-pdo": "*"
+        "laravel/tinker": "^2.5"
     },
     "require-dev": {
-        "barryvdh/laravel-ide-helper": "^2.10",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
@@ -53,7 +53,6 @@
     "extra": {
         "laravel": {
             "dont-discover": [
-
             ]
         }
     },
