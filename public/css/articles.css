@@ -11,17 +11,13 @@ html{
     display: block;
     margin-bottom: 1%;
 }
-.article-author{
-    margin-bottom: 1%;
-}
 .article-subject{
     border: 1px #ffffff solid;
     box-shadow: 2px 2px #959595;
     padding: 1%;
-    width: 50%;
 }
-.article-author{
-    font-size: 0.95em;
+.date-col{
+    text-align: end;
 }
 .navigation-links{
     text-align: center;
@@ -33,4 +29,10 @@ h4 {
 div#editor{
     margin: 0;
     padding: 0;
+}
+
+@media only screen and (max-width: 772px){
+    .date-col{
+        text-align: unset;
+    }
 }

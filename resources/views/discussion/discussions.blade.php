@@ -19,7 +19,7 @@
     @include('components.menu')
     <main>
         <div class="discussion-search field has-addons">
-            <div class="control">
+            <div class="control is-expanded">
                 <input class="input" name="search" type="search" placeholder="Search a discussion" id="form-search">
             </div>
             <div class="control">

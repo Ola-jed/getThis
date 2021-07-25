@@ -22,19 +22,21 @@
 @section('content')
     @include('components.menu')
     <main>
-        <div class="article-search field has-addons">
-            <div class="control">
-                <input class="input" name="search" type="search" placeholder="Search by title" id="form-search">
+        <div class="columns">
+            <div class="article-search field has-addons column">
+                <div class="control is-expanded">
+                    <input class="input" name="search" type="search" placeholder="Search by title" id="form-search">
+                </div>
+                <div class="control">
+                    <button class="button is-info is-outlined search-btn">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </button>
+                </div>
             </div>
-            <div class="control">
-                <button class="button is-info is-outlined search-btn">
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                </button>
-            </div>
+            <span class="add column">
+                <img src="{{ asset('images/plus.svg') }}" alt="Add">
+            </span>
         </div>
-        <span class="add">
-            <img src="{{ asset('images/plus.svg') }}" alt="Add">
-        </span>
         @include('article.articleform')
         <div class="articles">
             @include('article.articlelist')
