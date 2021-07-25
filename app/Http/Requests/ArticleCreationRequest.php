@@ -29,7 +29,7 @@ class ArticleCreationRequest extends FormRequest
     {
         return [
             'subject' => 'string|bail|required',
-            'title' => 'string|bail|required',
+            'title'   => 'string|bail|required',
             'content' => 'string|bail|required'
         ];
     }

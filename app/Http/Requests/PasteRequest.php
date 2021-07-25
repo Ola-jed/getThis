@@ -29,8 +29,8 @@ class PasteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'string|bail|required',
-            'content' => 'string|bail|required',
+            'title'    => 'string|bail|required',
+            'content'  => 'string|bail|required',
             'lifetime' => 'integer|numeric|bail|required'
         ];
     }

@@ -47,7 +47,7 @@ class UserAuthController extends Controller
                 ->send(new RegistrationMail($userCreated));
             return redirect('/');
         }
-        catch (Exception)
+        catch(Exception)
         {
             return back()
                 ->withInput()
@@ -73,7 +73,7 @@ class UserAuthController extends Controller
      */
     public function signIn(SignInRequest $signInRequest): Redirector|Application|RedirectResponse|View
     {
-        if(Auth::attempt($signInRequest->only('email','password')))
+        if(Auth::attempt($signInRequest->only('email', 'password')))
         {
             $user = Auth::user();
             session(['user' => $user]);

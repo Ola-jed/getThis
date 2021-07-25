@@ -29,9 +29,9 @@ class PasswordResetRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'email|bail|required',
-            'token' => 'bail|required',
-            'password' => 'string|bail|required|same:password_confirmation',
+            'email'                 => 'email|bail|required',
+            'token'                 => 'bail|required',
+            'password'              => 'string|bail|required|same:password_confirmation',
             'password_confirmation' => 'string|bail|required|same:password'
         ];
     }
