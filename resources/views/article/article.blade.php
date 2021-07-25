@@ -42,7 +42,7 @@
         <div class="comment-form">
             <form action="{{ url('/article/'.$article->slug.'/comments') }}" method="post" id="comment-post" onsubmit="return false">
                 @csrf
-                <textarea name="content" id="content" cols="30" rows="10" placeholder="Your comment" required></textarea><br>
+                <textarea name="content" id="content" cols="30" rows="10" placeholder="Your comment" class="textarea is-primary" required></textarea><br>
                 <button type="submit" class="button is-primary">Post</button>
             </form>
         </div>

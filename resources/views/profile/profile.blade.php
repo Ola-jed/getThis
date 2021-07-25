@@ -10,6 +10,7 @@
 
 @section('script')
     <script src="{{ asset('js/profile.js') }}" defer></script>
+    <script src="{{ asset('js/modal.js') }}" defer></script>
 @endsection
 
 @section('content')
@@ -44,14 +45,32 @@
             </div>
         @endif
         <div>
-            <form action="{{ url('/profile') }}" method="post" class="delete-profile">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="button is-danger is-outlined" name="delete">Delete my account</button>
-                @error('delete')
-                    <div class="help is-danger">{{ $message }}</div>
-                @enderror
-            </form>
+            <button class="button is-danger is-outlined" id="open-modal">Delete my account</button>
+            @error('delete')
+                <div class="help is-danger">{{ $message }}</div>
+            @enderror
+            <div class="modal">
+                <div class="modal-background"></div>
+                <div class="modal-content">
+                    <div class="modal-card">
+                        <header class="modal-card-head has-background-dark">
+                            <p class="modal-card-title has-text-white">Do you really want to delete your account ?</p>
+                        </header>
+                        <section class="modal-card-body has-background-dark">
+                            <form action="{{ url('/profile') }}" method="post" class="delete-profile">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="button is-danger is-outlined">Yes</button>
+                                <button type="button" class="button is-success" id="cancel">No</button>
+                                <button class="modal-close is-large" aria-label="close" id="close"></button>
+                                @error('delete')
+                                    <div class="help is-danger">{{ $message }}</div>
+                                @enderror
+                            </form>
+                        </section>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
     @include('components.footer')

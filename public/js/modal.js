@@ -1,6 +1,6 @@
 "use strict";
 
-const reportButton = document.getElementById("report");
+const reportButton = document.getElementById("open-modal");
 const modalBox = document.querySelector(".modal");
 const closeBox = document.getElementById("close");
 const cancelBtn = document.getElementById("cancel");

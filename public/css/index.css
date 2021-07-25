@@ -16,6 +16,6 @@ html{
 .article-author{
     margin-bottom: 1%;
 }
-.paste-msg{
-    background-color: #2a3a55
+.link:hover{
+    color: #367dec;
 }

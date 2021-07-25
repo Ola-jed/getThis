@@ -1,6 +1,9 @@
 html{
     height: auto;
 }
+button#open-modal{
+    margin-top: 1%;
+}
 .articles, .discussions{
     border: 1px rgba(0, 0, 0, 0.69) solid;
     border-radius: 7px;

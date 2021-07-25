@@ -32,7 +32,7 @@ class AccountDeletedMail extends Mailable
     public function build(): static
     {
         return $this->from(env('MAIL_FROM_ADDRESS'))
-            ->subject('GetThis : User deleted')
+            ->subject('GetThis : Account deleted')
             ->markdown('emails.accountdeleted');
     }
 }

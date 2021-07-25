@@ -9,7 +9,7 @@
 @endsection
 
 @section('script')
-    <script src="{{ asset('js/account.js') }}" defer></script>
+    <script src="{{ asset('js/modal.js') }}" defer></script>
 @endsection
 
 @section('content')
@@ -43,7 +43,7 @@
         @endif
 
         @if($user->id !== session()->get('user')->id)
-            <button class="button is-warning" id="report"><i class="fa fa-flag" aria-hidden="true"></i>  Report</button>
+            <button class="button is-warning" id="open-modal"><i class="fa fa-flag" aria-hidden="true"></i>  Report</button>
             <div class="modal">
                 <div class="modal-background"></div>
                 <div class="modal-content">

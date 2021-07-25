@@ -7,12 +7,11 @@ html{
 }
 .subject{
     font-style: italic;
-    text-align: center;
     width: max-content;
     padding: 1%;
-    margin: 0 auto 1%;
+    margin-bottom: 1.5%;
     border: 1px solid #fff;
-    box-shadow: 2px 1px #ffffff;
+    box-shadow: 2px 1px #fff;
 }
 .title{
     color: #fabb3f;
@@ -43,16 +42,13 @@ legend{
 .comment-author{
     font-weight: bold;
 }
-.comment form{
-    margin-top: 1%;
-}
 .comment-date{
     font-size: 0.8em;
-}
-#comment-post button{
-    margin-top: 2%;
 }
 #viewer{
     border-radius: 10px;
     padding: 1%;
+}
+.delete-form button{
+    margin-top: 1%;
 }

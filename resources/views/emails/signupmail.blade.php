@@ -8,6 +8,5 @@ We are happy to welcome you among us. <br>
     Take a look at getThis
 @endcomponent
 
-Thanks,<br>
-{{ config('app.name') }}
+Thanks
 @endcomponent

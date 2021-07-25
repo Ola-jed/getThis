@@ -8,6 +8,8 @@ use Tests\TestCase;
 
 class HttpTests extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * Test if you're redirected when you get the index url
      *
@@ -16,9 +18,12 @@ class HttpTests extends TestCase
     public function test_home()
     {
         $response = $this->get('/');
-        $response->assertStatus(302);
+        $response->assertRedirect('/login');
     }
 
+    /**
+     * Testing availability of login and register routes
+     */
     public function test_get_login_and_register(): void
     {
         $response = $this->get('/login');
@@ -35,7 +40,7 @@ class HttpTests extends TestCase
             'password1' => '0000',
             'password2' => '0000'
         ]);
-        dd($response);
+        $response->assertRedirect('/index');
     }
 
 }
