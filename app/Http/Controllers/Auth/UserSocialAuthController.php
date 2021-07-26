@@ -73,7 +73,7 @@ class UserSocialAuthController extends Controller
                 ->first();
             if(!is_null($findUser))
             {
-                session(['user' => User::fromSocialiteUser($user)]);
+                session(['user' => $findUser]);
                 return redirect('/');
             }
             $findUser = User::where('email', $user->getEmail())
