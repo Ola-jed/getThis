@@ -19,3 +19,11 @@ html{
 .link:hover{
     color: #367dec;
 }
+.date-col{
+    text-align: end;
+}
+@media only screen and (max-width: 772px){
+    .date-col{
+        text-align: unset;
+    }
+}
