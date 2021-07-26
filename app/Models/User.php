@@ -99,6 +99,19 @@ class User extends Authenticatable
     }
 
     /**
+     * Creates a user model from a socialite model
+     * @param \Laravel\Socialite\Two\User|\Laravel\Socialite\Contracts\User $socialiteUser
+     * @return User
+     */
+    public static function fromSocialiteUser(\Laravel\Socialite\Two\User|\Laravel\Socialite\Contracts\User $socialiteUser): User
+    {
+        $user = new User();
+        $user->name = $socialiteUser->getName();
+        $user->email = $socialiteUser->getEmail();
+        return $user;
+    }
+
+    /**
      * Get all the articles written by the user
      * @return HasMany
      */
