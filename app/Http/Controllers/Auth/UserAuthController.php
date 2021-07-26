@@ -43,18 +43,20 @@ class UserAuthController extends Controller
         {
             $userCreated = User::createFromInformation($signInRequest->all());
             session(['user' => $userCreated]);
+            Mail::to($userCreated->email)
+                ->send(new RegistrationMail($userCreated));
+            return redirect('/');
         }
         catch(Exception)
         {
+            User::whereEmail($signInRequest->input('email'))
+                ->delete();
             return back()
                 ->withInput()
                 ->withErrors([
                     'message' => 'Cannot create the user'
                 ]);
         }
-        Mail::to($userCreated->email)
-            ->send(new RegistrationMail($userCreated));
-        return redirect('/');
     }
 
     /**
