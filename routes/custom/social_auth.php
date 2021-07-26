@@ -14,5 +14,5 @@ Route::get('/login/google/callback',[UserSocialAuthController::class,'googleCall
 
 // Github
 Route::get('/login/github',[UserSocialAuthController::class, 'githubRedirectTo'])
-    ->name('auth/google');;
+    ->name('auth/github');;
 Route::get('/login/github/callback',[UserSocialAuthController::class, 'githubCallback']);
