@@ -102,10 +102,10 @@ class UserSocialAuthController extends Controller
                 'message' => 'Email address already in use'
             ]);
         }
-        catch(Exception $e)
+        catch(Exception)
         {
             return view('error')->with([
-                'message' => 'Something weird happened : ' . $e->getMessage()
+                'message' => 'Something weird happened'
             ]);
         }
     }

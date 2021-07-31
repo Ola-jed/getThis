@@ -27,12 +27,12 @@ class DiscussionController extends Controller
     /**
      * Display a listing of the articles.
      * Offset and limit can be passed
+     * If a valid offset is given, we consider it. Otherwise, we start from zero
      * @param Request $args
      * @return View|Factory|Application|RedirectResponse
      */
     public function index(Request $args): View|Factory|Application|RedirectResponse
     {
-        // If a valid offset is given, we consider it. Otherwise, we start from zero
         $offset = $args->has(self::OFFSET) && intval($args->input(self::OFFSET)) > 0 ?
             intval($args->input(self::OFFSET)) : 0;
         $discussions = Discussion::withCount('messages')
