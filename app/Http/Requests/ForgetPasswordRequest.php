@@ -28,7 +28,7 @@ class ForgetPasswordRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'email|bail|required'
+            'email' => 'email|required'
         ];
     }
 }

@@ -28,9 +28,9 @@ class AccountUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'                 => 'string|bail|required|max:25',
-            'email'                => 'email|bail|required',
-            'initial_password'     => 'string|bail|required',
+            'name'                 => 'string|required|max:25',
+            'email'                => 'email|required',
+            'initial_password'     => 'string|required',
             'new_password'         => 'same:new_password_confirm',
             'new_password_confirm' => 'same:new_password'
         ];

@@ -28,7 +28,7 @@ class DiscussionCreationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'subject' => 'string|bail|required'
+            'subject' => 'string|required'
         ];
     }
 }

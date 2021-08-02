@@ -29,10 +29,10 @@ class SignUpRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'      => 'string|bail|required|max:25',
-            'email'     => 'email|bail|required|unique:users,email',
-            'password1' => 'string|bail|required|same:password2',
-            'password2' => 'string|bail|required|same:password1'
+            'name'      => 'string|required|max:25',
+            'email'     => 'email|required|unique:users,email',
+            'password1' => 'string|required|same:password2',
+            'password2' => 'string|required|same:password1'
         ];
     }
 }

@@ -28,7 +28,7 @@ class CommentCreationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'content' => 'string|bail|required'
+            'content' => 'string|required'
         ];
     }
 }

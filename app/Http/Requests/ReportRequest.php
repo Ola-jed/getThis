@@ -29,7 +29,7 @@ class ReportRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'cause' => 'string|bail|required'
+            'cause' => 'string|required'
         ];
     }
 }
