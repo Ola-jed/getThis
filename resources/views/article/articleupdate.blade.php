@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-    @include('components.menu')
+    <x-menu></x-menu>
     <main class="has-text-white">
         <form action="{{ url('article/'.$article->slug) }}" method="post">
             @csrf
@@ -34,5 +34,5 @@
             <button type="submit" class="button is-primary">Update</button>
         </form>
     </main>
-    @include('components.footer')
+    <x-footer></x-footer>
 @endsection

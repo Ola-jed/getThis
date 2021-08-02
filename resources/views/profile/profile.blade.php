@@ -14,7 +14,7 @@
 @endsection
 
 @section('content')
-    @include('components.menu')
+    <x-menu></x-menu>
     <main>
         <div class="user-infos card has-background-dark">
             <div class="profile-photo"><img src="{{ asset('images/user.svg') }}" alt="Profile"></div>
@@ -22,7 +22,7 @@
             <div class="has-text-white subtitle">Email : {{ session()->get('user')->email }}</div>
             <div class="has-text-white subtitle">Active since the {{ session()->get('user')->created_at->toDayDateTimeString() }}</div>
             <div class="has-text-white subtitle">Last account update on {{ session()->get('user')->updated_at->toDayDateTimeString() }}</div>
-            <div class="has-text-white subtitle">{{ $article_count }} article(s) written</div>
+            <div class="has-text-white subtitle">{{ $article_count }} @choice('article|articles',$article_count) written</div>
         </div>
         <div class="button is-warning is-outlined update">Update account</div>
         @include('profile.profileupdateform')
@@ -73,5 +73,5 @@
             </div>
         </div>
     </main>
-    @include('components.footer')
+    <x-footer></x-footer>
 @endsection

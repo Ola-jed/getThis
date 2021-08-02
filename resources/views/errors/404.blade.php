@@ -13,7 +13,7 @@
 @endsection
 
 @section('content')
-    @include('components.menu')
+    <x-menu></x-menu>
     <div class="hero-body">
         <div class="box has-background-dark is-center has-text-white column is-4 is-offset-4 is-centered">
             <p class="not-found">404 - Not found</p>
@@ -47,5 +47,5 @@
             </p>
         </div>
     </div>
-    @include('components.footer')
+    <x-footer></x-footer>
 @endsection

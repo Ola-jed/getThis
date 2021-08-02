@@ -10,7 +10,7 @@
 @endsection
 
 @section('content')
-    @include('components.menu')
+    <x-menu></x-menu>
     <div class="hero-body">
         <form action="{{ url('contact') }}" method="post" class="box has-background-dark is-center has-text-white column is-4 is-offset-4 is-centered">
             @csrf
@@ -34,5 +34,5 @@
             @enderror
         </form>
     </div>
-    @include('components.footer')
+    <x-footer></x-footer>
 @endsection

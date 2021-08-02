@@ -13,7 +13,7 @@
 @endsection
 
 @section('content')
-    @include('components.menu')
+    <x-menu></x-menu>
     <form action="{{ url('paste/'.$paste->slug) }}" method="post" class="is-center has-text-white column is-centered">
         @csrf
         @method('PUT')
@@ -56,5 +56,5 @@
             <div class="error">{{ $message }}</div>
         @enderror
     </form>
-    @include('components.footer')
+    <x-footer></x-footer>
 @endsection

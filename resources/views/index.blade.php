@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-    @include('components.menu')
+    <x-menu></x-menu>
     <main class="has-text-white">
         <h3 class="has-text-centered">Hello {{ session()->get('user')->name }}</h3>
         <hr>
@@ -43,5 +43,5 @@
             @include('discussion.discussionlist')
         </div>
     </main>
-    @include('components.footer')
+    <x-footer></x-footer>
 @endsection

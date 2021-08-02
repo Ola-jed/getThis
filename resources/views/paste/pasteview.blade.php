@@ -16,7 +16,7 @@
 @endsection
 
 @section('content')
-    @include('components.menu')
+    <x-menu></x-menu>
     <main>
         <pre><code>
 {{ $paste->content }}
@@ -37,5 +37,5 @@
             </div>
         @endif
     </main>
-    @include('components.footer')
+    <x-footer></x-footer>
 @endsection

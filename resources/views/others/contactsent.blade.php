@@ -9,11 +9,11 @@
 @endsection
 
 @section('content')
-    @include('components.menu')
+    <x-menu></x-menu>
     <div class="hero-body response">
         <div class="box has-background-dark is-center has-text-white column is-4 is-offset-4 is-centered">
             Your message have been sent successfully
         </div>
     </div>
-    @include('components.footer')
+    <x-footer></x-footer>
 @endsection

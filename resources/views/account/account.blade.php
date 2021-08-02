@@ -13,7 +13,7 @@
 @endsection
 
 @section('content')
-    @include('components.menu')
+    <x-menu></x-menu>
     <main>
         <div class="user-infos card has-background-dark">
             <div class="profile-photo"><img src="{{ asset('images/user.svg') }}" alt="Profile"></div>
@@ -64,5 +64,5 @@
             </div>
         @endif
     </main>
-    @include('components.footer')
+    <x-footer></x-footer>
 @endsection

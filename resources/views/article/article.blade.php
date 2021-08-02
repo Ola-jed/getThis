@@ -16,7 +16,7 @@
 @endsection
 
 @section('content')
-    @include('components.menu')
+    <x-menu></x-menu>
     <main class="has-text-white">
         <div class="title is-centered is-center has-text-centered">
             {{ $article->title }}
@@ -50,5 +50,5 @@
             {{-- Put the comments here --}}
         </div>
     </main>
-    @include('components.footer')
+    <x-footer></x-footer>
 @endsection

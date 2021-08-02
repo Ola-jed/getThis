@@ -16,7 +16,7 @@
 @endsection
 
 @section('content')
-    @include('components.menu')
+    <x-menu></x-menu>
     <main>
         <div class="columns">
             <div class="discussion-search field has-addons column is-four-fifths">
@@ -42,5 +42,5 @@
             <a href="javascript: void(0)" class="next button is-primary is-outlined"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
         </div>
     </main>
-    @include('components.footer')
+    <x-footer></x-footer>
 @endsection

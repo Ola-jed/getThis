@@ -13,7 +13,7 @@
 @endsection
 
 @section('content')
-    @include('components.menu')
+    <x-menu></x-menu>
     <main>
         <div class="has-text-white infos">
             <h2 class="title has-text-white is-center">{{ $discussion->subject }}</h2>
@@ -24,5 +24,5 @@
             @include('discussion.messages')
         </div>
     </main>
-    @include('components.footer')
+    <x-footer></x-footer>
 @endsection

@@ -9,9 +9,9 @@
 @endsection
 
 @section('content')
-    @include('components.menu')
+    <x-menu></x-menu>
     <div class="hero-body has-text-white center">
         419 | Page expired
     </div>
-    @include('components.footer')
+    <x-footer></x-footer>
 @endsection
