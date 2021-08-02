@@ -20,8 +20,8 @@
             <div class="profile-photo"><img src="{{ asset('images/user.svg') }}" alt="Profile"></div>
             <div class="has-text-white subtitle">Name : {{ session()->get('user')->name }}</div>
             <div class="has-text-white subtitle">Email : {{ session()->get('user')->email }}</div>
-            <div class="has-text-white subtitle">Active since {{ date('F j, Y H:i:s', strtotime(session()->get('user')->created_at)) }}</div>
-            <div class="has-text-white subtitle">Last account update on {{ date('F j, Y H:i:s', strtotime(session()->get('user')->created_at)) }}</div>
+            <div class="has-text-white subtitle">Active since the {{ session()->get('user')->created_at->toDayDateTimeString() }}</div>
+            <div class="has-text-white subtitle">Last account update on {{ session()->get('user')->updated_at->toDayDateTimeString() }}</div>
             <div class="has-text-white subtitle">{{ $article_count }} article(s) written</div>
         </div>
         <div class="button is-warning is-outlined update">Update account</div>
@@ -29,7 +29,7 @@
         @if(count($articles) > 0)
             <div class="articles">
                 <h4 class="has-text-centered subtitle has-text-white">
-                    Articles written
+                    @choice('article|articles',$articles->count()) written
                     <i class="fa fa-book fa-fw" aria-hidden="true"></i>
                 </h4>
                 @include('article.articlelist')
@@ -38,7 +38,7 @@
         @if(count($discussions) > 0)
             <div class="discussions">
                 <h4 class="has-text-centered subtitle has-text-white">
-                    Discussions created
+                    @choice('discussion|discussions',$discussions->count()) created
                     <img src="{{ asset('images/discussion.svg') }}" alt="">
                 </h4>
                 @include('discussion.discussionlist')

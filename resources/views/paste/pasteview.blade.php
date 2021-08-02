@@ -21,7 +21,7 @@
         <pre><code>
 {{ $paste->content }}
         </code></pre>
-        <p class="has-text-white"><a href="{{ url('/account/'.$paste->user_id) }}" class="has-text-link-light">{{ $paste->user->name }}</a>, on {{ date('F j , Y H:i:s', strtotime($paste->created_at)) }}</p>
+        <p class="has-text-white"><a href="{{ url('/account/'.$paste->user_id) }}" class="has-text-link-light">{{ $paste->user->name }}</a>, on {{ $paste->created_at->toDayDateTimeString() }}</p>
         @if(session()->get('user')?->id === $paste->user_id)
             <div class="modifications columns">
                 <div class="column is-narrow">

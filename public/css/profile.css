@@ -30,3 +30,6 @@ button#open-modal{
 section form textarea{
     margin-bottom: 2%;
 }
+.date-col{
+    text-align: end;
+}

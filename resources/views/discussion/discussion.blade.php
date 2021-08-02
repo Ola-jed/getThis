@@ -17,7 +17,7 @@
     <main>
         <div class="has-text-white infos">
             <h2 class="title has-text-white is-center">{{ $discussion->subject }}</h2>
-            <p>Created by <a href="{{ url('/account/'.$discussion->user_id) }}">{{ $discussion->user->name }}</a>, on {{ date('F j , Y H:i:s', strtotime($discussion->created_at)) }}</p>
+            <p>Created by <a href="{{ url('/account/'.$discussion->user_id) }}">{{ $discussion->user->name }}</a>, on {{ $discussion->created_at->toDayDateTimeString() }}</p>
         </div>
         @include('discussion.messagecreationform')
         <div class="messages">

@@ -32,8 +32,8 @@
             </div>
         </article>
         <div class="date">
-            <a href="{{ url('/account/'.$article->user_id) }}">{{ $article->user->name }}</a>, on {{ date('F j , Y H:i:s', strtotime($article->created_at)) }}
-            <p>Last update on {{ date('F j , Y H:i:s', strtotime($article->updated_at)) }}</p>
+            <a href="{{ url('/account/'.$article->user_id) }}">{{ $article->user->name }}</a>, on {{ $article->created_at->toDayDateTimeString() }}
+            <p>Last update on {{ $article->updated_at->toDayDateTimeString() }}</p>
         </div>
         @if(session()->get('user')->id === $article->user_id)
             <a href="{{ url('/article/'.$article->slug.'/update') }}" class="button is-warning is-outlined">Update</a>

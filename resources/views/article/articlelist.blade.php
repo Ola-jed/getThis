@@ -7,7 +7,7 @@
                 <a href="{{ url('/account/'.$article->user_id) }}">{{ $article->user->name }}</a>
             </div>
             <div class="column is-half date-col">
-                {{ date('F j, Y H:i:s', strtotime($article->created_at)) }}
+                {{ $article->created_at->toDayDateTimeString() }}
             </div>
         </div>
         @if(session()->get('user')->id === $article->user_id)

@@ -19,14 +19,13 @@
             <div class="profile-photo"><img src="{{ asset('images/user.svg') }}" alt="Profile"></div>
             <div class="has-text-white subtitle">Name : {{ $user->name }}</div>
             <div class="has-text-white subtitle">Email : {{ $user->email }}</div>
-            <div class="has-text-white subtitle">Active since {{ date('F j, Y H:i:s', strtotime($user->created_at)) }}</div>
-            <div class="has-text-white subtitle">Last account update on {{ date('F j, Y H:i:s', strtotime($user->created_at)) }}</div>
-            <div class="has-text-white subtitle">{{ $articles->count() }} article(s) written</div>
+            <div class="has-text-white subtitle">Active since {{ $user->created_at->toDayDateTimeString() }}</div>
+            <div class="has-text-white subtitle">{{ $articles->count() }} @choice('article|articles',$articles->count()) written</div>
         </div>
         @if($articles->count() > 0)
             <div class="articles">
                 <h4 class="has-text-centered subtitle has-text-white">
-                    Articles written
+                    @choice('article|articles',$articles->count()) written
                     <i class="fa fa-book fa-fw" aria-hidden="true"></i>
                 </h4>
                 @include('article.articlelist')
