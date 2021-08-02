@@ -8,7 +8,7 @@
     Do not hesitate to come back to <a href="#">our platform</a>
 </p>
 
-@component('mail::button', ['url' => 'https://www.google.com'])
+@component('mail::button', ['url' => 'https://get-this.herokuapp.com'])
     Come back to GetThis
 @endcomponent
 
