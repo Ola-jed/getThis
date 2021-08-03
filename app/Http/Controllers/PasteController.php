@@ -130,7 +130,12 @@ class PasteController extends Controller
         $pasteToDelete = Paste::getWithSlug($slug);
         if($pasteToDelete->user_id === session()->get('user')->id)
         {
-            $pasteToDelete->forceDelete();
+            if(!$pasteToDelete->delete())
+            {
+                return back()->withErrors([
+                   'message' => 'Could not delete the paste'
+                ]);
+            }
             return redirect('/paste');
         }
         return redirect('/paste/' . $slug);

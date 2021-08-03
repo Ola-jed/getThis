@@ -23,11 +23,11 @@
         </code></pre>
         <p class="has-text-white"><a href="{{ url('/account/'.$paste->user_id) }}" class="has-text-link-light">{{ $paste->user->name }}</a>, on {{ $paste->created_at->toDayDateTimeString() }}</p>
         @if(session()->get('user')?->id === $paste->user_id)
-            <div class="modifications columns">
-                <div class="column is-narrow">
+            <div class="field is-grouped is-centered">
+                <p class="control">
                     <a href="{{ url('paste/'.$paste->slug.'/edit') }}" class="button is-warning is-outlined">Edit</a>
-                </div>
-                <div class="column is-narrow">
+                </p>
+                <div class="control">
                     <form action="{{ url('paste/'.$paste->slug) }}" method="post">
                         @method('DELETE')
                         @csrf

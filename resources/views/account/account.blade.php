@@ -25,7 +25,7 @@
         @if($articles->count() > 0)
             <div class="articles">
                 <h4 class="has-text-centered subtitle has-text-white">
-                    @choice('article|articles',$articles->count()) written
+                    @choice('Article|Articles',$articles->count()) written
                     <i class="fa fa-book fa-fw" aria-hidden="true"></i>
                 </h4>
                 @include('article.articlelist')
@@ -34,7 +34,7 @@
         @if($discussions->count() > 0)
             <div class="discussions">
                 <h4 class="has-text-centered subtitle has-text-white">
-                    Discussions created
+                    @choice('Discussion|Discussions',$discussions->count()) created
                     <i class="fa fa-comment" aria-hidden="true"></i>
                 </h4>
                 @include('discussion.discussionlist')
@@ -54,8 +54,10 @@
                             <form action="{{ url('/account/'.$user->id) }}" method="post">
                                 @csrf
                                 <textarea name="cause" class="textarea is-warning" placeholder="Explain why you want to report this user" required></textarea>
-                                <button type="submit" class="button is-primary">Ok</button>
-                                <button class="button is-danger is-outlined" id="cancel">Cancel</button>
+                                <div class="buttons has-addons">
+                                    <button type="submit" class="button is-primary is-outlined">Report</button>
+                                    <button class="button is-danger is-selected" id="cancel">Cancel</button>
+                                </div>
                             </form>
                         </section>
                     </div>

@@ -19,7 +19,7 @@
             <p class="not-found">404 - Not found</p>
             <p class="title has-text-white is-centered has-text-weight-semibold whack">Whack-a-mole!</p>
             <div class="buttons">
-                <span class="score has-background-black button has-text-white">0</span>
+                <span class="score button has-text-white is-black">0</span>
                 <button onClick="startGame()" class="button is-link is-outlined">Start!</button>
             </div>
             <div class="game">
@@ -43,7 +43,7 @@
                 </div>
             </div>
             <p>
-                <a href="{{ route('index') }}" class="is-link has-text-link-dark">Go back to home</a>
+                <a href="{{ route('index') }}" class="is-link button is-outlined">Go back to home</a>
             </p>
         </div>
     </div>

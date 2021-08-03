@@ -11,10 +11,8 @@ html{
     display: block;
     margin-bottom: 1%;
 }
-.article-subject{
-    border: 1px #ffffff solid;
-    box-shadow: 2px 2px #959595;
-    padding: 1%;
+.article-author{
+    margin-bottom: 1%;
 }
 .date-col{
     text-align: end;
@@ -30,7 +28,6 @@ div#editor{
     margin: 0;
     padding: 0;
 }
-
 @media only screen and (max-width: 772px){
     .date-col{
         text-align: unset;

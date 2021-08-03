@@ -17,14 +17,18 @@
     <form action="{{ url('paste') }}" method="post" class="is-center has-text-white column is-centered">
         @csrf
         <h5 class="has-text-centered has-text-light is-white title is-5">Paste</h5>
+        <div class="has-text-centered">
+            Copy and paste your source code file here and choose the lifetime of your paste (The pastes are all temporal).
+            You can also drag and drop a file into the form.
+        </div>
         <div class="field column">
             <label for="title" class="label has-text-white">Title</label>
-            <input type="text" id="title" name="title" class="input is-primary has-background-dark has-text-white" placeholder="Title" required>
+            <input type="text" id="title" name="title" class="input is-primary" placeholder="Title" required>
             @error('title')
                 <div class="help is-danger">{{ $message }}</div>
             @enderror
             <label for="content" class="label has-text-white">Code</label>
-            <textarea name="content" id="content" cols="30" rows="20" class="textarea is-primary has-background-dark has-text-white" required></textarea>
+            <textarea name="content" id="content" cols="30" rows="20" class="textarea is-primary" required></textarea>
             @error('content')
                 <div class="help is-danger">{{ $message }}</div>
             @enderror
