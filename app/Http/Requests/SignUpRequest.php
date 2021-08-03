@@ -31,7 +31,7 @@ class SignUpRequest extends FormRequest
         return [
             'name'      => 'string|required|max:25',
             'email'     => 'email|required|unique:users,email',
-            'password1' => 'string|required|same:password2',
+            'password1' => 'string|required|same:password2|',
             'password2' => 'string|required|same:password1'
         ];
     }

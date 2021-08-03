@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\Route;
  */
 
 // Google
-Route::get('/login/google',[UserSocialAuthController::class,'googleRedirectTo'])
+Route::get('/login/google', [UserSocialAuthController::class, 'googleRedirectTo'])
     ->name('auth/google');
-Route::get('/login/google/callback',[UserSocialAuthController::class,'googleCallback']);
+Route::get('/login/google/callback', [UserSocialAuthController::class, 'googleCallback']);
 
 // Github
-Route::get('/login/github',[UserSocialAuthController::class, 'githubRedirectTo'])
-    ->name('auth/github');;
-Route::get('/login/github/callback',[UserSocialAuthController::class, 'githubCallback']);
+Route::get('/login/github', [UserSocialAuthController::class, 'githubRedirectTo'])
+    ->name('auth/github');
+Route::get('/login/github/callback', [UserSocialAuthController::class, 'githubCallback']);
