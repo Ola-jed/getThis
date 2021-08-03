@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\User;
+use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 /**
@@ -13,20 +14,22 @@ use Tests\TestCase;
  */
 class AuthTest extends TestCase
 {
-    protected string $password;
-    protected User $user;
+    use WithFaker;
+
+    protected static string $password;
+    protected static User $user;
 
     /**
-     * Flush the user table
+     * If you want to run this test more than once, change this values
      * Init the password and the user objet
      */
-    public function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        parent::setUp();
-        $this->password = 'thisisAsecur3p@ssw0rD';
-        $this->user = new User();
-        $this->user->name = 'Test user';
-        $this->user->email = 'getthis@getthistest.com';
+        parent::setUpBeforeClass();
+        self::$password = 'thisisAsecur3p@ssw0rD';
+        self::$user = new User();
+        self::$user->name = 'Test user';
+        self::$user->email = 'getthis@getthistest.com';
     }
 
     /**
@@ -48,10 +51,10 @@ class AuthTest extends TestCase
     public function testUserRegister(): void
     {
         $response = $this->post('signup', [
-            'name'      => $this->user->name,
-            'email'     => $this->user->email,
-            'password1' => $this->password,
-            'password2' => $this->password
+            'name'      => self::$user->name,
+            'email'     => self::$user->email,
+            'password1' => self::$password,
+            'password2' => self::$password
         ]);
         $response->assertRedirect('/')
             ->assertSessionHas('user');
@@ -59,12 +62,13 @@ class AuthTest extends TestCase
 
     /**
      * Test for normal login
+     * And logout
      */
     public function testUserLogin(): void
     {
         $response = $this->post('signin', [
-            'email'    => $this->user->email,
-            'password' => $this->password
+            'email'    => self::$user->email,
+            'password' => self::$password
         ]);
         $response->assertRedirect('/')
             ->assertSessionHas('user');
@@ -76,8 +80,8 @@ class AuthTest extends TestCase
     public function testInvalidLogins(): void
     {
         $response = $this->post('signin', [
-            'email'    => $this->user->email,
-            'password' => 'invalid'
+            'email'    => self::$user->email,
+            'password' => self::$password . 'i'
         ]);
         $response->assertSessionHasErrors();
     }

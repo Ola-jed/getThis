@@ -19,6 +19,7 @@ class ArticlesTest extends TestCase
 
     protected User $user;
     protected Article $article;
+    const NEW_TITLE = 'new';
 
     /**
      * Set up our test class
@@ -27,22 +28,26 @@ class ArticlesTest extends TestCase
     {
         parent::setUp();
         $this->setUpFaker();
-        $this->user = User::factory()->create();
+        $this->user = User::firstOrCreate([
+            'name'     => 'test user',
+            'email'    => 'testarticles@getthis.com',
+            'password' => '$2y$10$6WtY0VPUgLgARnhyNvsmwORg9MPxZlXcyBpltOOw0ocwJ.Q2.de4W' // 0000
+        ]);
         $this->article = new Article();
         $this->article->title = 'article';
         $this->article->slug = 'article';
         $this->article->content = 'this is a new article to test my laravel app';
         $this->article->subject = 'test';
         $this->be($this->user);
+        $this->withSession(['user' => $this->user]);
     }
 
     /**
-     * Testing our /articles url
+     * Testing our/articles url
      */
     public function testGetAllArticles(): void
     {
-        $response = $this->withSession(['user' => $this->user])
-            ->get('/articles');
+        $response = $this->get('/articles');
         $response->assertOk();
     }
 
@@ -51,8 +56,7 @@ class ArticlesTest extends TestCase
      */
     public function testArticleCreationAndRead(): void
     {
-        $response = $this->withSession(['user' => $this->user])
-            ->post('/articles', $this->article->toArray());
+        $response = $this->post('/articles', $this->article->toArray());
         $response->assertRedirect('/article/' . $this->article->slug);
     }
 
@@ -61,20 +65,22 @@ class ArticlesTest extends TestCase
      */
     public function testArticleEdit(): void
     {
-        $response = $this->withSession(['user' => $this->user])
-            ->get('/article/' . $this->article->slug . '/update');
+        $response = $this->get('/article/' . $this->article->slug . '/update');
         $response->assertOk();
-        $response = $this->withSession(['user' => $this->user])
-            ->put('/article/' . $this->article->slug, [
-                'title'   => 'new',
-                'content' => 'Article updated in unit tests',
-                'subject' => 'Update'
-            ]);
+        $response = $this->put('/article/' . $this->article->slug, [
+            'title'   => self::NEW_TITLE,
+            'content' => 'Article updated in unit tests',
+            'subject' => 'Update'
+        ]);
         $response->assertRedirect('/article/new');
     }
 
+    /**
+     * Test the deletion of the newly created article
+     */
     public function testArticleDeletion(): void
     {
-
+        $response = $this->delete('/article/' . self::NEW_TITLE);
+        $response->assertOk();
     }
 }
