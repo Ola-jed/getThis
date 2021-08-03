@@ -7,3 +7,6 @@ html{
 .infos p{
     margin-bottom: 2%;
 }
+.delete-btn{
+    text-align: end;
+}

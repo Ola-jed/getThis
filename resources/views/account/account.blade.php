@@ -49,12 +49,13 @@
                     <div class="modal-card">
                         <header class="modal-card-head has-background-dark">
                             <p class="modal-card-title has-text-white">Report {{ $user->name }}</p>
+                            <button class="delete close" aria-label="close"></button>
                         </header>
                         <section class="modal-card-body has-background-dark">
                             <form action="{{ url('/account/'.$user->id) }}" method="post">
                                 @csrf
-                                <textarea name="cause" class="textarea is-warning" placeholder="Explain why you want to report this user" required></textarea>
-                                <div class="buttons has-addons">
+                                <textarea name="cause" class="textarea" placeholder="Explain why you want to report this user" required></textarea>
+                                <div class="buttons">
                                     <button type="submit" class="button is-primary is-outlined">Report</button>
                                     <button class="button is-danger is-selected" id="cancel">Cancel</button>
                                 </div>
@@ -62,7 +63,7 @@
                         </section>
                     </div>
                 </div>
-                <button class="modal-close is-large" aria-label="close" id="close"></button>
+                <button class="modal-close is-large close" aria-label="close"></button>
             </div>
         @endif
     </main>
