@@ -2,11 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Article;
-use App\Models\Comment;
-use App\Models\Discussion;
-use App\Models\Message;
-use App\Models\User;
+use App\Models\{Article, Comment, Discussion, Message, User};
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
