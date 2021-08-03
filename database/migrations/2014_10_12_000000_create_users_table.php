@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Schema;
  * Name
  * Email
  * Password
- * Google and github id's
+ * Google and GitHub id's
  */
 class CreateUsersTable extends Migration
 {
