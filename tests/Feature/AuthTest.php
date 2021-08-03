@@ -3,12 +3,12 @@
 namespace Tests\Feature;
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 /**
  * Class AuthTest
  * This class should be run once
+ * Test for auth (signup and signin)
  * @package Tests\Feature
  */
 class AuthTest extends TestCase
@@ -58,7 +58,7 @@ class AuthTest extends TestCase
     }
 
     /**
-     * Test for login
+     * Test for normal login
      */
     public function testUserLogin(): void
     {
@@ -68,5 +68,17 @@ class AuthTest extends TestCase
         ]);
         $response->assertRedirect('/')
             ->assertSessionHas('user');
+    }
+
+    /**
+     * Testing invalid logins for our user
+     */
+    public function testInvalidLogins(): void
+    {
+        $response = $this->post('signin', [
+            'email'    => $this->user->email,
+            'password' => 'invalid'
+        ]);
+        $response->assertSessionHasErrors();
     }
 }
