@@ -29,7 +29,7 @@ class ArticleFactory extends Factory
             'title'   => $title,
             'slug'    => Str::slug($title),
             'content' => $this->faker->sentences(15, true),
-            'user_id' => $this->faker->randomElement(User::all()->pluck('id')->all())
+            'user_id' => $this->faker->randomElement(User::pluck('id')->all())
         ];
     }
 }
