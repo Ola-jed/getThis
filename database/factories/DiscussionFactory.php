@@ -23,7 +23,7 @@ class DiscussionFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => $this->faker->randomElement(User::all()->pluck('id')->all()),
+            'user_id' => $this->faker->randomElement(User::pluck('id')->all()),
             'subject' => $this->faker->sentence
         ];
     }
