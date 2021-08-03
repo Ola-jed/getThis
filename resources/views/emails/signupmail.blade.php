@@ -4,7 +4,7 @@
 Dear {{ $user->name }}<br>
 We are happy to welcome you among us. <br>
 
-@component('mail::button', ['url' => 'https://get-this.herokuapp.com' ])
+@component('mail::button', ['url' => env('APP_URL') ])
     Take a look at getThis
 @endcomponent
 

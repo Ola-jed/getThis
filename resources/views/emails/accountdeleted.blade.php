@@ -5,10 +5,10 @@
 <p>
     We are we are very sad to see you leave our platform.<br>
     We wish you a good continuation and we remain in the hope to see you again.<br>
-    Do not hesitate to come back to <a href="#">our platform</a>
+    Do not hesitate to come back to our platform.
 </p>
 
-@component('mail::button', ['url' => 'https://get-this.herokuapp.com'])
+@component('mail::button', ['url' => env('APP_URL')])
     Come back to GetThis
 @endcomponent
 

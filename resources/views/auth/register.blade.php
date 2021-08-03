@@ -9,10 +9,6 @@
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 @endsection
 
-@section('script')
-    <script src="{{ asset('js/register.js') }}" defer></script>
-@endsection
-
 @section('content')
     <div class="hero-body">
         <form action="{{ url('register') }}" method="post" class="box dark-bg-transparent is-center has-text-white column is-4 is-offset-4 is-centered">
