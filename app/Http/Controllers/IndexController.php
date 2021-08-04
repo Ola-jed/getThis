@@ -23,7 +23,7 @@ class IndexController extends Controller
     public function __invoke(): Application|Factory|View|RedirectResponse
     {
         return view('index')->with([
-            'articles'    => Article::getLatest(5),
+            'articles'    => Article::getLatest(),
             'discussions' => Discussion::getHottest(10)
         ]);
     }

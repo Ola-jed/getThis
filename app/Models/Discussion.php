@@ -46,13 +46,14 @@ class Discussion extends Model
     ];
 
     /**
-     * Get the n hottest discussions
+     * Get the hottest discussions
      * @param int $number
      * @return Collection
      */
     public static function getHottest(int $number): Collection
     {
         return Discussion::withCount('messages')
+            ->with(['user'])
             ->orderBy('messages_count', 'desc')
             ->get($number);
     }

@@ -109,6 +109,7 @@ class Article extends Model
     public static function getLatest(int $number = 5): Collection
     {
         return Article::latest()
+            ->with(['user'])
             ->limit($number)
             ->get();
     }
@@ -116,9 +117,9 @@ class Article extends Model
     /**
      * Get an article by slug
      * @param string $slug
-     * @return Article
+     * @return Builder|Model
      */
-    public static function getBySlug(string $slug): Article
+    public static function getBySlug(string $slug): Builder|Model
     {
         return Article::whereSlug($slug)
             ->firstOrFail();
@@ -132,7 +133,8 @@ class Article extends Model
      */
     public static function getByLimitAndOffset(int $limit, int $offset = 0): Collection|\Illuminate\Support\Collection
     {
-        return Article::limit($limit)
+        return Article::with(['user'])
+            ->limit($limit)
             ->latest()
             ->offset($offset)
             ->get();

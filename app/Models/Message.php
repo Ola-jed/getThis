@@ -54,6 +54,7 @@ class Message extends Model
     public static function getLatestOfDiscussion(int $discussionId): Collection
     {
         return Message::where('discussion_id', $discussionId)
+            ->with(['user'])
             ->latest()
             ->get();
     }
