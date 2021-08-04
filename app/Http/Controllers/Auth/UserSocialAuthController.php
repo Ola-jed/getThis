@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * Class UserSocialAuthController
- * Social auth with google and github
+ * Social auth with Google and GitHub
  * @package App\Http\Controllers
  */
 class UserSocialAuthController extends Controller
@@ -33,7 +33,7 @@ class UserSocialAuthController extends Controller
     }
 
     /**
-     * Github redirect
+     * GitHub redirect
      * @return RedirectResponse
      */
     public function githubRedirectTo(): RedirectResponse
@@ -42,7 +42,7 @@ class UserSocialAuthController extends Controller
     }
 
     /**
-     * Github callback function
+     * GitHub callback function
      * @return Application|\Illuminate\Http\RedirectResponse|Redirector|View
      */
     public function githubCallback(): Application|\Illuminate\Http\RedirectResponse|Redirector|View
@@ -69,16 +69,16 @@ class UserSocialAuthController extends Controller
         try
         {
             $user = Socialite::driver($driver)->user();
-            $findUser = User::where($column, $user->id)
+            $userWithSocialId = User::where($column, $user->id)
                 ->first();
-            if(!is_null($findUser))
+            if($userWithSocialId !== null)
             {
-                session(['user' => $findUser]);
+                session(['user' => $userWithSocialId]);
                 return redirect('/');
             }
-            $findUser = User::where('email', $user->getEmail())
+            $userWithSameEmail = User::where('email', $user->getEmail())
                 ->first();
-            if(is_null($findUser))
+            if($userWithSameEmail === null)
             {
                 $name = empty($user->getName()) ? "User" : $user->getName();
                 $newUser = User::create([
@@ -87,7 +87,7 @@ class UserSocialAuthController extends Controller
                     $column    => $user->getId(),
                     'password' => Hash::make(Str::random())
                 ]);
-                if(is_null($newUser))
+                if($newUser === null)
                 {
                     return view('error')->with([
                         'message' => 'Registration with ' . $driver . ' failed'

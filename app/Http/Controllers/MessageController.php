@@ -42,7 +42,7 @@ class MessageController extends Controller
     }
 
     /**
-     * Delete a message with it's id
+     * Delete a message with its id
      * The connected user must be the author of the message
      * @param int $messageId
      * @return bool
