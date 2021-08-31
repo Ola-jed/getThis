@@ -45,9 +45,10 @@ legend{
 .comment-date{
     font-size: 0.8em;
 }
-#viewer{
-    border-radius: 10px;
+article {
     padding: 1%;
+    background-color: rgba(255, 255, 255, 0.68);
+    border-radius: 5px;
 }
 .delete-form button{
     margin-top: 1%;

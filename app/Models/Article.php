@@ -11,8 +11,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Collection;
+use League\CommonMark\CommonMarkConverter;
+use League\CommonMark\Output\RenderedContentInterface;
 
 /**
  * Class Article
@@ -156,5 +159,14 @@ class Article extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the article content as html
+     * @return \League\CommonMark\Output\RenderedContentInterface
+     */
+    public function htmlContent(): RenderedContentInterface
+    {
+        return (new CommonMarkConverter())->convertToHtml($this->content);
     }
 }

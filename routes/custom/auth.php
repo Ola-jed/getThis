@@ -1,18 +1,22 @@
 <?php
 
 use App\Http\Controllers\Auth\ForgotPasswordController;
-use App\Http\Controllers\Auth\UserAuthController;
+use App\Http\Controllers\Auth\SigninController;
+use App\Http\Controllers\Auth\SignupController;
+use App\Http\Controllers\Auth\LogoutController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('{signin}', [UserAuthController::class, 'signinView'])
+Route::get('{signin}', [SigninController::class, 'signinView'])
     ->where('signin', 'signin|login');
-Route::get('{signup}', [UserAuthController::class, 'signupView'])
-    ->where('signup', 'signup|register');
-Route::post('{signin}', [UserAuthController::class, 'signIn'])
+Route::post('{signin}', [SigninController::class, 'signIn'])
     ->where('signin', 'signin|login');
-Route::post('{signup}', [UserAuthController::class, 'signUp'])
+
+Route::get('{signup}', [SignupController::class, 'signupView'])
     ->where('signup', 'signup|register');
-Route::post('logout', [UserAuthController::class, 'logout'])
+Route::post('{signup}', [SignupController::class, 'signUp'])
+    ->where('signup', 'signup|register');
+
+Route::post('logout', [LogoutController::class, 'logout'])
     ->middleware('session');
 
 // Forgotten password routes
