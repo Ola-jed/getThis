@@ -47,7 +47,8 @@ legend{
 }
 article {
     padding: 1%;
-    background-color: rgba(255, 255, 255, 0.68);
+    background-color: rgba(255, 255, 255, 0.76);
+    border: 3px #000000 solid;
     border-radius: 5px;
 }
 .delete-form button{
