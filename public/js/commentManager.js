@@ -27,17 +27,17 @@ function loadComments()
 
 // Submit the comment
 const commentForm = document.getElementsByTagName("form")[0];
-commentForm.addEventListener('submit', function (e) {
+commentForm.addEventListener('submit', function () {
     const formAction = this.getAttribute("action");
     const commentFormContent = new FormData(commentForm);
     fetch(formAction, {
         method: 'post',
         body: commentFormContent,
     }).then(function () {
-        alert("Comment posted");
+        mdtoast.success('Comment posted', { duration: 3000 });
         loadComments();
     }).catch(function (error) {
-        alert("Comment post failed : " + error);
+        mdtoast.error('Comment post failed : ' + error, { duration: 3000 });
     });
 });
 
@@ -45,17 +45,17 @@ commentForm.addEventListener('submit', function (e) {
 function makeCommentsDeletable()
 {
     deleteForms.forEach((e) => {
-        e.addEventListener('submit', function (event) {
+        e.addEventListener('submit', function () {
             const deleteFormAction = e.getAttribute("action");
             const deleteFormContent = new FormData(e);
             fetch(deleteFormAction, {
                 method: 'post',
                 body: deleteFormContent,
             }).then(function () {
-                alert("Comment deleted");
+                mdtoast.success('Comment deleted', { duration: 3000 });
                 loadComments();
             }).catch(function (error) {
-                alert("Suppression failed :" + error);
+                mdtoast.error('Comment deletion failed : ' + error, { duration: 3000 });
             });
         })
     });

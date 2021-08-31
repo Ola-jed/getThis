@@ -41,10 +41,10 @@ messageForm.addEventListener('submit', function (e) {
         method: 'post',
         body: formContent,
     }).then(function () {
-        alert("Message posted");
+        mdtoast.success('Message posted', { duration: 3000 });
         loadMessages();
     }).catch(function (error) {
-        alert("Message post failed : " + error);
+        mdtoast.error('Comment post failed : ' + error, { duration: 3000 });
     });
     return false;
 });
@@ -64,10 +64,10 @@ function makeMessagesDeletable()
                 body: deleteFormContent,
             }).then(function (isOk) {
                 console.log(isOk)
-                alert("Message deleted");
+                mdtoast.success('Message deleted', { duration: 3000 });
                 loadMessages();
             }).catch(function (error) {
-                alert("Suppression failed :" + error);
+                mdtoast.error('Message deletion failed : ' + error, { duration: 3000 });
             });
         });
         return false;
