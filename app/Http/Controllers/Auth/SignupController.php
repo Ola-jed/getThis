@@ -39,7 +39,7 @@ class SignupController extends Controller
     {
         try
         {
-            $userCreated = User::createFromInformation($signInRequest->all());
+            $userCreated = User::createFromInformation($signInRequest->validated());
             session(['user' => $userCreated]);
             Mail::to($userCreated->email)
                 ->send(new RegistrationMail($userCreated));

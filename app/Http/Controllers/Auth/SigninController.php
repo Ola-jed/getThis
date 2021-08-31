@@ -41,13 +41,10 @@ class SigninController extends Controller
             session(['user' => $user]);
             return redirect('/');
         }
-        else
-        {
-            return back()
-                ->withInput()
-                ->withErrors([
-                    'message' => 'Invalid password or email'
-                ]);
-        }
+        return back()
+            ->withInput()
+            ->withErrors([
+                'message' => 'Invalid credentials'
+            ]);
     }
 }
