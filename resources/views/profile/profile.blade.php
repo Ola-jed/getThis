@@ -29,7 +29,7 @@
         @if(count($articles) > 0)
             <div class="articles">
                 <h4 class="has-text-centered subtitle has-text-white">
-                    @choice('article|articles',$articles->count()) written
+                    @choice('Article|Articles',$articles->count()) written
                     <i class="fa fa-book fa-fw" aria-hidden="true"></i>
                 </h4>
                 @include('article.articlelist')
@@ -38,7 +38,7 @@
         @if(count($discussions) > 0)
             <div class="discussions">
                 <h4 class="has-text-centered subtitle has-text-white">
-                    @choice('discussion|discussions',$discussions->count()) created
+                    @choice('Discussion|Discussions',$discussions->count()) created
                     <img src="{{ asset('images/discussion.svg') }}" alt="">
                 </h4>
                 @include('discussion.discussionlist')
