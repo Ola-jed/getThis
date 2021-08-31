@@ -22,8 +22,8 @@
 @section('content')
     <x-menu></x-menu>
     <main>
-        <div class="columns">
-            <div class="article-search field has-addons column is-four-fifths">
+        <div class="search-container">
+            <div class="article-search field has-addons is-four-fifths">
                 <div class="control is-expanded">
                     <input class="input" name="search" type="search" placeholder="Search by title" id="form-search">
                 </div>
@@ -33,9 +33,9 @@
                     </button>
                 </div>
             </div>
-            <span class="add column">
+            <div class="add ">
                 <img src="{{ asset('images/plus.svg') }}" alt="Add">
-            </span>
+            </div>
         </div>
         @include('article.articleform')
         <div class="articles">

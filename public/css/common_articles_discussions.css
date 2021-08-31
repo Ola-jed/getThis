@@ -4,11 +4,23 @@
     text-align: right;
     margin: 1%;
 }
-
 .creation{
     display: none;
 }
 .creation h3{
     text-align: center;
     text-decoration: underline;
+}
+.search-container {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.field:first-child{
+    flex-grow: 3;
+}
+.search-container .add {
+    margin-left: 5%;
+    flex-grow: 0;
 }

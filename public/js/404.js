@@ -40,11 +40,11 @@ function randomHole(holes)
  */
 function peep()
 {
-    const time = randomTime(500, 1000); // Random time to determine how long mole should peep
-    const hole = randomHole(holes); // Get the random hole from the randomHole function
-    hole.classList.add('up'); // CSS class so selected mole can "pop up"
+    const time = randomTime(500, 1000);
+    const hole = randomHole(holes);
+    hole.classList.add('up');
     setTimeout(() => {
-        hole.classList.remove('up'); //make the selected mole "pop down" after a random time
+        hole.classList.remove('up');
         if (!timeUp)
         {
             peep();
@@ -68,17 +68,17 @@ function startGame()
 
 /**
  * A mole is hit
+ * Make sure it is created by a user. To prevent cheaters
  * @param e
  */
 function wack(e)
 {
-    // Make sure it is created by a user. To prevent cheaters
     if (!e.isTrusted)
     {
         return;
     }
     score++;
-    this.parentNode.classList.remove('up'); // Item clicked
+    this.parentNode.classList.remove('up');
     scoreBoard.textContent = score;
 }
 
