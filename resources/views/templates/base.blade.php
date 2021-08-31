@@ -8,8 +8,10 @@
     <link rel="shortcut icon" href="{{ asset('images/logo.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('css/base.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bulma.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/mdtoast.min.css') }}">
     <link rel="stylesheet" href="{{ asset('fa/css/all.css') }}">
     <script src="{{ asset('js/menu.js') }}" defer></script>
+    <script src="{{ asset('js/mdtoast.min.js') }}" defer></script>
     @yield('style')
     @yield('script')
 </head>
