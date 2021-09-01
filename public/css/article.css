@@ -9,9 +9,10 @@ html{
     font-style: italic;
     width: max-content;
     padding: 1%;
+    position: center;
     margin-bottom: 1.5%;
     border: 1px solid #fff;
-    box-shadow: 2px 1px #fff;
+    box-shadow: 1px 1px #fff;
 }
 .title{
     color: #fabb3f;
@@ -47,9 +48,6 @@ legend{
 }
 article {
     padding: 1%;
-    background-color: rgba(255, 255, 255, 0.76);
-    border: 3px #000000 solid;
-    border-radius: 5px;
 }
 .delete-form button{
     margin-top: 1%;

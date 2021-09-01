@@ -17,7 +17,7 @@
             <h3 class="has-text-centered subtitle"><i class="fa fa-clipboard" aria-hidden="true"></i> Paste released</h3>
             <div>
                 <div class="box has-background-dark">
-                    <p class="subtitle question has-text-warning"> What is paste ?</p>
+                    <p class="subtitle question has-text-white"> What is paste ?</p>
                     <div class="has-text-white">
                         Paste is a basic service that allow users to paste their code snippets in many languages (C++,C#,Rust,PHP,...)
                         After pasting your code or drag&dropping your file, you chose the lifetime in hours of your snippet and you get the url.

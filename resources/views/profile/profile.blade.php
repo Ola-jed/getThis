@@ -17,7 +17,6 @@
     <x-menu></x-menu>
     <main>
         <div class="user-infos card has-background-dark">
-            <div class="profile-photo"><img src="{{ asset('images/user.svg') }}" alt="Profile"></div>
             <div class="has-text-white subtitle">Name : {{ session()->get('user')->name }}</div>
             <div class="has-text-white subtitle">Email : {{ session()->get('user')->email }}</div>
             <div class="has-text-white subtitle">Active since the {{ session()->get('user')->created_at->toDayDateTimeString() }}</div>

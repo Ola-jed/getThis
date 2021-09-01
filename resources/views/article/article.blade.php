@@ -22,7 +22,7 @@
         <div class="subject">
             {{ $article->subject }}
         </div>
-        <article class="has-text-black">
+        <article class="has-text-white">
 {!! $article->htmlContent() !!}
         </article>
         <div class="date">
