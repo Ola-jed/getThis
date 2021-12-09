@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "Fira";
+    src: url("../font/FiraCode-Regular.ttf") format("truetype");
+}
+
 html{
     height: auto;
 }
@@ -8,6 +13,7 @@ main{
 main pre{
     margin: 0;
     padding: 0;
+    font-family: "Fira" !important;
 }
 main .has-text-white{
     margin-top: 1%;
