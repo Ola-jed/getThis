@@ -11,8 +11,6 @@
 @section('content')
     <x-menu></x-menu>
     <main class="has-text-white">
-        <h3 class="has-text-centered">Hello {{ session()->get('user')->name }}</h3>
-        <hr>
         <div class="box">
             <h3 class="has-text-centered subtitle"><i class="fa fa-clipboard" aria-hidden="true"></i> Paste released</h3>
             <div>
